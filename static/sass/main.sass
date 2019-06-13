@@ -1,0 +1,48 @@
+$slogan_width: 85%
+$mobile_width: 768px
+$main-color: #FDEB7B
+$text-color: #581D17
+$main-font-family: 'Noto Sans TC', 微軟正黑體, 'Helvetica Neue', Helvetica, Arial, sans-serif
+$title-color: #E38200
+@mixin link-hover
+    &:hover, &:focus, &:active, &:visited
+        @content
+body
+    background-color: white
+    overflow-x: hidden
+    font-family: $main-font-family
+    color: $text-color
+    -webkit-overflow-scrolling: touch
+
+.nav-pills > li.active
+    > a, > a:focus, > a:hover
+        background-color: gray
+    &:after
+        content: ''
+        position: absolute
+        top: 100%
+        left: 0
+        right: 0
+        margin: 0 auto
+        width: 0
+        height: 0
+        border-top: solid 10px gray
+        border-left: solid 10px transparent
+        border-right: solid 10px transparent
+
+.nav-justified > li
+    display: table-cell
+    width: 1%
+    > a
+        letter-spacing: 2px
+        font-size: 18px
+        
+.nav-block
+    margin-top: 50px
+
+@media (max-width: $mobile_width)
+    .nav-justified > li > a
+        letter-spacing: 1px
+        font-size: 14px
+        margin-bottom: 0px
+        padding: 5px

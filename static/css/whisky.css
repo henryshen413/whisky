@@ -1,0 +1,45 @@
+canvas {
+  display: block;
+}
+
+a {
+  color: black;
+}
+
+.whisky-img {
+  text-align: center;
+}
+
+.whisky-img .pic {
+  width: 300px;
+}
+
+.whisky-distillery h3 {
+  margin-bottom: 0px;
+}
+
+.whisky-name {
+  margin-top: 0px;
+}
+
+.whisky-name h2 {
+  margin-top: 0px;
+}
+
+.whisky-year, .whisky-abv, .whisky-casktype {
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.whisky-year .info, .whisky-abv .info, .whisky-casktype .info {
+  font-weight: normal;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .whisky-info {
+    text-align: center;
+  }
+}
+/*# sourceMappingURL=whisky.css.map */
