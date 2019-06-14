@@ -1,3 +1,3 @@
 # whisky
 
-This is a django project for whisky lovers, and for people who wants to learn more about the whisky through data mining.
+This is a django project for whisky lovers, and for people who want to learn more about the whisky through data mining.
