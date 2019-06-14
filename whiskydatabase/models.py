@@ -19,17 +19,43 @@ GRADES_CHOICES = (
     (5, '5'),
 )
 
-PUBLISH_CHOICE =(
+PUBLISH_CHOICE = (
     ('Private', 'Private'),
     ('Public', 'Public'),
 )
-# Create your models here.
 
+BOTTLING_CHOICE = (
+    ('OB', 'OB'),
+    ('IB', 'IB'),
+)
+# Create your models here.
 class UserRole(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, unique=True, related_name="role")
     role = models.CharField(max_length=10, choices=ROLE_CHOICE)
     class Meta:
         ordering = ['-id']
+
+class Menu(models.Model):
+    parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    url = models.CharField(max_length=255, blank=True)
+    icon = models.CharField(max_length=255, default='fa fa-search', blank=True, null=True)
+    status = models.BooleanField(default=True)
+    lvl = models.IntegerField(blank=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_children(self):
+        return self.menu_set.filter(status=True)
+
+    def has_children(self):
+        if self.get_children():
+            return True
+        return False
+
+    def get_absolute_url(self):
+        return reverse('selected_category', kwargs={"slug": self.title})
 
 class Distillery(models.Model):
     is_active = models.BooleanField(default=False)
@@ -69,6 +95,7 @@ class WhiskyInfo(models.Model):
     year = models.IntegerField(default=0)
     abv = models.IntegerField(default=0)
     casktype = models.CharField(max_length=100)
+    bottling = models.CharField(max_length=2, choices=BOTTLING_CHOICE)
     photo = models.ImageField(upload_to='whisky/uploads/%Y/%m/%d/', blank=True, null=True)
     slug = models.SlugField(
         default='',
