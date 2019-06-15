@@ -8,21 +8,7 @@ body {
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
-  background-color: #e38200;
-}
-
-.nav-pills > li.active:after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 0;
-  height: 0;
-  border-top: solid 10px #e38200;
-  border-left: solid 10px transparent;
-  border-right: solid 10px transparent;
+  background-color: #E38200;
 }
 
 .nav-justified > li {
@@ -32,7 +18,7 @@ body {
 
 .nav-justified > li > a {
   letter-spacing: 2px;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .nav-block {
@@ -42,7 +28,7 @@ body {
 @media (max-width: 768px) {
   .nav-justified > li > a {
     letter-spacing: 1px;
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 0px;
     padding: 5px;
   }

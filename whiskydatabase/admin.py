@@ -11,4 +11,6 @@ class MenuAdmin(admin.ModelAdmin):
 class DistilleryAdmin(admin.ModelAdmin):
     list_display = ('name', 'region', 'country', 'owner')
 
-admin.site.register(WhiskyInfo)
+@admin.register(WhiskyInfo)
+class WhiskyInfoAdmin(admin.ModelAdmin):
+    list_display = ('name', 'abv', 'bottling')

@@ -24,7 +24,7 @@
            
            if (lastDist == false){ lastDist = c2; stepDist = c2; }    
            
-           lastPoint = [evt.x, evt.y];
+           lalastPointstPoint = [evt.x, evt.y];
            
            direction = (lastDist < c2) ? 'down' : 'up'; 
            console.log(direction);

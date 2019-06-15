@@ -91,7 +91,7 @@ class Distillery(models.Model):
 
 class WhiskyInfo(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    distillery = models.ManyToManyField(Distillery, related_name='distillery')
+    distillery = models.ForeignKey(Distillery, related_name='whisky_distillery', on_delete=models.CASCADE)
     year = models.IntegerField(default=0)
     abv = models.IntegerField(default=0)
     casktype = models.CharField(max_length=100)
