@@ -17,12 +17,14 @@
 
     <!-- Google Fonts - Noto Sans TC -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,400,500,700&amp;subset=chinese-traditional">
-    
+
+    <link rel="stylesheet" href="{% static "owlcarousel/owl.carousel.min.css" %}?">
+    <link rel="stylesheet" href="{% static "owlcarousel/owl.theme.default.min.css" %}">
+    <link rel="stylesheet" href="{% static "owlcarousel/add_snnipts.css" %}">
     <link rel='stylesheet' href="{% static "css/main.css" %}">
     <link rel="stylesheet" href="{% static "css/menu.css" %}">
     <link rel="stylesheet" href="{% static "css/footer.css" %}">
-    <link rel="stylesheet" href="{% static "owlcarousel/owl.carousel.min.css" %}?">
-    <link rel="stylesheet" href="{% static "owlcarousel/owl.theme.default.min.css" %}">
+
     {% block extra_css %}{% endblock %}
 </head>
 
@@ -53,6 +55,7 @@
     <script  type="text/javascript" src="{% static "js/main.js" %}"></script>
     <script  type="text/javascript" src="{% static "tabslet/jquery.tabslet.min.js" %}" defer></script>
     <script src="{% static "owlcarousel/owl.carousel.min.js" %}"></script>
+    <script src="{% static "owlcarousel/add_snnipts.js" %}"></script>
     {% block extra_js %}{% endblock %}
 
 </body>

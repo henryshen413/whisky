@@ -3,7 +3,93 @@
 
 {% block title %}Whisky Vitae{% endblock %}
 {% block site_name %}{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "css/home.css" %}">
+{% endblock %}
 
 {% block content %}
-    <div>hello world</div>
+    <div class="block-1">
+        <div id="owl-demo" class="owl-carousel owl-theme">
+            <div class="item">
+                <div class="img-wrp">
+                    <div class="img-text">
+                        <h2>Whisky Map</h2>
+                    </div>
+                    <a href="">
+                        <div class="sliders-img" style="background-image: url('{% static "img/whisky_map.jpg" %}'); height: 405px;"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block-2">
+        <div id="owl-demo" class="owl-carousel owl-theme">
+            <div class="item">
+                <div class="img-wrp">
+                    <div class="img-text">
+                        <h2>Scotch Whisky</h2>
+                    </div>
+                    <a href="">
+                        <div class="sliders-img" style="background-image: url('{% static "img/scotch_whisky.jpg" %}');"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="img-wrp">
+                    <div class="img-text">
+                        <h2>Bourbon</h2>
+                    </div>
+                    <a href="">
+                        <div class="sliders-img" style="background-image: url('{% static "img/bourbon.jpg" %}');"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="img-wrp">
+                    <div class="img-text">
+                        <h2>Japanese WHisky</h2>
+                    </div>
+                    <a href="">
+                        <div class="sliders-img" style="background-image: url('{% static "img/jp_whisky.jpg" %}');"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="block-gallery">
+            <div id="owl-demo" class="owl-carousel owl-theme">
+                <div class="item">
+                    <div class="img-wrp">
+                        <div class="img-text">
+                            <h2>Whisky Gallery</h2>
+                        </div>
+                        <a href="">
+                            <div class="sliders-img" style="background-image: url('{% static "img/jp_whisky.jpg" %}');"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <img src="{% static "img/pot_still.png" %}"/>
+    </div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            items:1,
+            loop:true,
+            margin:10,
+            autoplay:true,
+            autoplayTimeout:3000,
+            autoplayHoverPause:true
+        });
+    </script>
 {% endblock %}
