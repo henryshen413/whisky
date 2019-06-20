@@ -10,6 +10,9 @@ def distillery_list():
 class HomeView(TemplateView):
     template_name = "home.html"
 
+class DistilleryMapView(TemplateView):
+    template_name = "whiskymap.html"
+
 class WhiskyView(DetailView):
     template_name = "whisky_info.html"
     model = WhiskyInfo

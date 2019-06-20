@@ -3,6 +3,10 @@
   width: 60%;
 }
 
+.whisky_map_img {
+  height: 405px;
+}
+
 .block-2 {
   display: inline;
   width: 39%;
@@ -11,5 +15,31 @@
 
 .block-gallery {
   margin-top: 5px;
+}
+
+.whisky_trivia {
+  height: 150px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.trivia_title {
+  margin-top: 0px;
+}
+
+.pot_still_icon {
+  width: 80px;
+}
+
+@media (max-width: 768px) {
+  .block-1, .block-2 {
+    width: 100%;
+  }
+  .whisky_map_img {
+    height: 200px;
+  }
+  .whisky_trivia {
+    display: inline-block;
+  }
 }
 /*# sourceMappingURL=home.css.map */

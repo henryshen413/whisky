@@ -9,14 +9,14 @@
 
 {% block content %}
     <div class="block-1">
-        <div id="owl-demo" class="owl-carousel owl-theme">
+        <div class="owl-carousel">
             <div class="item">
                 <div class="img-wrp">
                     <div class="img-text">
                         <h2>Whisky Map</h2>
                     </div>
-                    <a href="">
-                        <div class="sliders-img" style="background-image: url('{% static "img/whisky_map.jpg" %}'); height: 405px;"></div>
+                    <a href="{% url 'world_distillery_map' %}">
+                        <div class="sliders-img whisky_map_img" style="background-image: url('{% static "img/whisky_map.jpg" %}');"></div>
                     </a>
                 </div>
             </div>
@@ -58,14 +58,14 @@
         </div>
 
         <div class="block-gallery">
-            <div id="owl-demo" class="owl-carousel owl-theme">
+            <div class="owl-carousel">
                 <div class="item">
                     <div class="img-wrp">
                         <div class="img-text">
                             <h2>Whisky Gallery</h2>
                         </div>
                         <a href="">
-                            <div class="sliders-img" style="background-image: url('{% static "img/jp_whisky.jpg" %}');"></div>
+                            <div class="sliders-img" style="background-image: url('{% static "img/whisky_gallery.jpg" %}');"></div>
                         </a>
                     </div>
                 </div>
@@ -73,8 +73,23 @@
         </div>
     </div>
 
-    <div>
-        <img src="{% static "img/pot_still.png" %}"/>
+    <div class="row whisky_trivia">
+        <div class="col-md-2 col-xs-3">
+            <img class="pot_still_icon" src="{% static "img/pot_still_l.png" %}"/>
+        </div>
+
+        <div class="col-md-8 col-xs-6">
+            <h2 class="trivia_title">Whisky Trivia</h2>
+            <p>New make whisky is transparent and no color</p>
+        </div>
+        
+        <div class="col-md-2 col-xs-3">
+            <img class="pot_still_icon" src="{% static "img/pot_still_r.png" %}"/>
+        </div>
+    </div>
+
+    <div class="whisky_pop_list">
+
     </div>
 
 
