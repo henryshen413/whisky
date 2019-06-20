@@ -28,6 +28,12 @@ BOTTLING_CHOICE = (
     ('OB', 'OB'),
     ('IB', 'IB'),
 )
+
+BOOLEAN_CHOICE = (
+    ('Yes', 'Yes'),
+    ('No', 'No'),
+)
+
 # Create your models here.
 class UserRole(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, unique=True, related_name="role")
@@ -91,12 +97,18 @@ class Distillery(models.Model):
 
 class WhiskyInfo(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    brand_series = models.CharField(max_length=100, blank=True)
+    company = models.CharField(max_length=100, blank=True)
     distillery = models.ForeignKey(Distillery, related_name='whisky_distillery', on_delete=models.CASCADE)
     year = models.IntegerField(default=0)
     abv = models.IntegerField(default=0)
     casktype = models.CharField(max_length=100)
-    bottling = models.CharField(max_length=2, choices=BOTTLING_CHOICE)
+    bottler = models.CharField(max_length=2, choices=BOTTLING_CHOICE)
     photo = models.ImageField(upload_to='whisky/uploads/%Y/%m/%d/', blank=True, null=True)
+    chill_filtration = models.CharField(max_length=2, choices=BOOLEAN_CHOICE)
+    artificial_coloring = models.CharField(max_length=2, choices=BOOLEAN_CHOICE)
+    cask_num = models.CharField(max_length=15, blank=True)
+    bottle_num =  models.CharField(max_length=15, blank=True)
     slug = models.SlugField(
         default='',
         editable=False,
@@ -123,7 +135,7 @@ class PersonalWhiskyNote(models.Model):
     whisky = models.ForeignKey(WhiskyInfo, related_name='per_whisky', on_delete=models.CASCADE)
     flora = models.CharField(max_length=1, choices=GRADES_CHOICES)
     fruity = models.CharField(max_length=1, choices=GRADES_CHOICES)
-    sweetness = models.CharField(max_length=1, choices=GRADES_CHOICES)
+    sweet = models.CharField(max_length=1, choices=GRADES_CHOICES)
     creamy = models.CharField(max_length=1, choices=GRADES_CHOICES)
     nutty = models.CharField(max_length=1, choices=GRADES_CHOICES)
     malty = models.CharField(max_length=1, choices=GRADES_CHOICES)
@@ -136,7 +148,7 @@ class GeneralWhiskyNote(models.Model):
     whisky = models.OneToOneField(WhiskyInfo, on_delete=models.CASCADE, unique=True, related_name="gen_whisky")
     flora = models.IntegerField(default=0)
     fruity = models.IntegerField(default=0)
-    sweetness = models.IntegerField(default=0)
+    sweet = models.IntegerField(default=0)
     creamy = models.IntegerField(default=0)
     nutty = models.IntegerField(default=0)
     malty = models.IntegerField(default=0)

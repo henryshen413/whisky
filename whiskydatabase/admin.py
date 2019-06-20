@@ -13,4 +13,4 @@ class DistilleryAdmin(admin.ModelAdmin):
 
 @admin.register(WhiskyInfo)
 class WhiskyInfoAdmin(admin.ModelAdmin):
-    list_display = ('name', 'abv', 'bottling')
+    list_display = ('name', 'abv', 'bottler')

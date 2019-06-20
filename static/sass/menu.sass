@@ -1,0 +1,342 @@
+$menu_padding: 5%
+$very_light_gray: #e7e7e7
+$main-color: #43c1bd
+$menu_padding_top: 7px
+$member_color: #666666
+$light_green: #0be6af
+$blog_gray: #808080
+$blog_black: #e7e7e7
+$box_shadow: 0 15px 15px -15px rgba(200, 200, 200, 0.9)
+$mobile_width: 768px
+$title-color: #581D17
+@mixin link-hover
+    &:hover, &:focus, &:active, &:visited
+        @content
+.logo
+    height: 40px
+    margin-top: -4px
+ul
+    list-style: none
+    padding: 0
+    margin: 0
+
+.lower-menu, .mobile-nav
+    display: flex
+    padding: 20px 0
+    > li.dropdown.open 
+        position: static
+        a
+            color: $light_green
+        .list-group-item a
+            color: black
+
+        .dropdown-menu
+            width: 100%
+            border: none !important
+            padding: 5px $menu_padding
+            margin-top: -5px
+            box-shadow: $box_shadow
+        .dropdown
+            position: static
+            @include link-hover 
+            .dropdown-menu
+                display: table
+.menu-hr
+    margin: 0 -10%
+    margin-top: 10px
+    border-top: 2px solid white
+.lower-menu, .themes, .membership
+    a
+        padding: 20px
+        font-size: 18px
+        font-weight: bold
+        color: $title-color !important
+.membership
+    a
+        padding: 0px
+        font-size: 16px
+        font-weight: normal
+        letter-spacing: 1px
+        &.username
+            display: inline-block
+            max-width: 130px
+            overflow: hidden
+            text-overflow: ellipsis
+            white-space: nowrap
+.lower-menu
+    li
+        &:first-child a
+            padding-left: 0px
+        &:last-child a
+            padding-right: 0px
+.list-group-item li a
+    padding: 0
+
+.navbar
+    transition: none
+    top: 0
+    background-color: #FDEB7B
+    border-color: #FDEB7B
+    padding: $menu_padding_top $menu_padding
+    padding-bottom: 0px
+    box-shadow: $box_shadow
+    transition: top 0.2s ease-in-out
+    > i
+        color: #B3B3B3
+    a
+        color: white
+        text-decoration: none
+        transition: all 0.3s ease-out
+        &:hover
+            color: $light_green
+.navbar-header
+    padding-top: 6px
+.mobile-nav
+    padding: 15px 0px
+    height: 60px
+    display: none
+    .row
+        background-color: white
+    .collapse
+        overflow-x: scroll
+        max-height: calc(100vh - 210px)
+        margin-bottom: 16px
+        box-shadow: $box-shadow
+    .menu-hr
+        margin-right: 8px
+        margin-left: 8px
+    .lower-menu
+        padding: 0px
+        a
+            font-size: 14px
+            padding: 0px
+        i
+            font-size: 20px
+            margin-top: 5px
+            margin-bottom: 5px
+        li
+            height: 30px
+        .btn
+            padding-top: 0
+            padding-bottom: 0
+        .navbar-brand
+            img
+                height: 30px
+                margin: initial
+    .lower-menu, .themes, .membership
+        a
+            letter-spacing: 1px
+.mobile-div
+    padding-right: 15px
+    padding-left: 15px
+
+.login-btn
+    background-color: transparent
+    border: none
+    font-size: 16px
+    display: flex
+    align-items: center
+    &, &:focus, &:focus:hover
+        box-shadow: none
+
+.dropdown
+    transition: all 0.3s ease-out !important
+.dropdown-toggle
+    cursor: default
+
+.navbar-brand
+    padding: $menu_padding_top 0
+.list-group-item
+    border: none
+.menu-blog
+    border-left: 2px solid $very_light_gray
+.submenu-title
+    color: $light_green
+.submenu-icon
+    border: 1px solid $very_light_gray
+    border-radius: 100%
+    margin-right: 3px
+    padding: 5px
+    height: 26px
+    width: 26px
+    text-align: center
+.menu-blog-img
+    height: 150px !important
+
+.member-div
+    margin: 0
+.member-submenu
+    right: 0
+    left: auto
+.member-thumbnail
+    background-color: $member_color
+    height: 30px
+    float: right
+    width: 30px
+    border-radius: 100%
+    margin-left: 8px
+.member-thumbnail-mobile
+    height: 30px
+    width: 30px
+    border-radius: 100%
+.membership
+    text-align: right
+    padding-top: $menu_padding_top + 7px
+    .btn
+        padding: 0px 12px
+.member-icon
+    width: 18px
+    margin-right: 2px
+.navbar-form
+    width: calc(100% - 450px)
+    margin-left: 60px
+    border-top: none
+    border-bottom: none
+    input[type=search]
+        color: transparent
+        cursor: pointer
+        outline: none
+        -webkit-appearance: textfield
+        -webkit-box-sizing: content-box
+        font-family: inherit
+        font-size: 100%
+        background: #f2f2f2 url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 13px center !important
+        padding: 9px 10px 9px 42px
+        width: 100%
+        max-width: 550px
+        border-style: solid
+        border-color: transparent
+        border-radius: 10em
+        transition: all .5s
+        &::-webkit-search-decoration, &::-webkit-search-cancel-button
+            display: none
+        &:hover
+            background-color: #fff !important
+            border-color: $main-color
+        &:focus
+            color: #000
+            background-color: #fff !important
+            border-color: $main-color
+            box-shadow: 0 0 5px rgba(109,207,246,.5)
+            cursor: auto
+        &::-moz-placeholder, &::-webkit-input-placeholder
+	        color: transparent
+.list-group-item
+    ul
+        margin-bottom: 8px
+    &:last-child
+        border-bottom-right-radius: 0
+        border-bottom-left-radius: 0
+
+.blog-div
+    padding: 25px
+    transition: all 0.5s ease-out
+    &:hover
+        background-color: $blog_gray
+        border-radius: 25px
+        a, p, h3
+            color: white
+    a
+        color: $blog_black
+        text-decoration: none
+.blog-img
+    height: 300px
+    background-color: $blog_black
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    border-radius: 10px
+.blog-title
+    margin: 10px 0
+
+.blog-desc
+    margin: 0 0 50px 0
+    color: $blog_gray
+
+#user li
+    line-height: 1.8em
+
+#mobile_menu
+    .row
+        margin-bottom: 12px
+    .col-xs-6
+        margin-bottom: 8px
+    .col-xs-12
+        h4, a
+            color: $light_green !important
+    .search-row
+        margin-top: 10px
+        margin-bottom: 0px
+.navbar-toggler
+    display: inline-block
+.animated-icon
+    width: 30px
+    height: 20px
+    position: relative
+    margin: 3px 0px
+    transform: rotate(0deg)
+    transition: .5s ease-in-out
+    cursor: pointer
+    span
+        display: block
+        position: absolute
+        height: 3px
+        width: 100%
+        background-color: $title-color
+        border-radius: 9px
+        opacity: 1
+        left: 0
+        transform: rotate(0deg)
+        transition: .25s ease-in-out
+        &:nth-child(1)
+            top: 0px
+            transform-origin: left center
+        &:nth-child(2)
+            top: 10px
+            transform-origin: left center
+        &:nth-child(3)
+            top: 20px
+            transform-origin: left center
+    &.open span
+        transition: .25s ease-in-out
+        &:nth-child(1)
+            transform: rotate(45deg)
+            top: 0px
+            left: 8px
+        &:nth-child(2)
+            width: 0%
+            opacity: 0
+        &:nth-child(3)
+            transform: rotate(-45deg)
+            top: 21px
+            left: 8px
+
+@media (max-width: $mobile_width)
+    .navbar-header
+        float: left
+    .navbar-form
+        width: 100%
+        border-left: none
+        margin: 0
+        input[type=search], &:focus
+            width: calc(100% - 52px)
+    .desktop-nav
+        display: none
+    .mobile-nav
+        display: block
+
+@media (max-width: 520px)
+    .navbar-form
+        padding: 10px 0px
+
+.collapse-li
+    cursor: pointer
+    
+@media (max-width: $mobile_width) and (orientation: landscape)
+    .mobile-nav
+        .collapse
+            max-height: calc(100vh - 50px)
+
+@media (min-width: 1250px)
+    .membership a.username
+        max-width: 180px

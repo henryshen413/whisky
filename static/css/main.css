@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.main-container {
+  margin-top: 150px;
+}
+
 body {
   background-color: white;
   overflow-x: hidden;

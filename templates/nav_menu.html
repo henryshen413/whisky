@@ -1,0 +1,101 @@
+{% load site_tags %}
+{% load recurse %}
+{% load static %}
+
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top desktop-nav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+
+            <!-- Collect the desktop nav links -->
+            <div data-hover="dropdown" data-animations="zoomIn zoomIn zoomIn zoomIn">
+                <hr class="menu-hr">
+                {% recurse menu.menu_set.all|dictsort:"lvl" with menu as menu %}
+                <ul class="lower-menu">
+                {% loop %}
+                    {% if menu.has_children %}
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle='dropdown' href="#">
+                            {{ menu.title }}
+                        </a>
+
+                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                            <li class="list-group-item col-xs-3" style="padding-left: 0px;">
+                                <h4 class="submenu-title">{{ menu.title }}</h4>
+                                {% for child in menu.get_children %}
+                                    {% if child.has_children %}
+                                        {% include "nav_submenu.html" with menu=child %}
+                                    {% else %}
+                                <ul>
+                                    <li class="">
+                                        <i class="{{ child.icon }} submenu-icon"></i>
+                                        <a href="{{ child.url }}#cat-header">{{ child.title }}</a>
+                                    </li>
+                                </ul>
+                                    {% endif %}
+                                {% endfor %}
+                            </li>
+                        </ul>
+                    {% else %}
+                        <li>
+                            <a href="{{ menu.url }}">{{ menu.title }}</a>
+                        </li>
+                {% endif %}
+                    </li>
+                {% endloop %}
+                </ul>
+        {% endrecurse %}
+            </div><!-- /.navbar-collapse -->
+        </nav>
+
+        <nav class="navbar navbar-default navbar-fixed-top mobile-nav">
+            <!-- Collect the mobile nav links -->
+            <div id="mobile_div">
+                <div class="mobile-div">
+                    <ul class="lower-menu">
+                        <li>
+                            <a class="navbar-toggler" data-toggle="collapse" data-target="#mobile_menu" data-parent="#mobile_div">
+                                <div class="animated-icon"><span></span><span></span><span></span></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="row collapse" id="mobile_menu">
+                    {% recurse menu.menu_set.all|dictsort:"lvl" with menu as menu %}
+                    {% loop %}
+                    <div class="row">
+                        {% if menu.has_children %}
+                        <div class="col-xs-12">
+                            <h4> {{ menu.title }} </h4>
+                        </div>
+                        {% for child in menu.get_children %}
+                        <div class="col-xs-6">
+                            <i class="{{ child.icon }} submenu-icon"></i>
+                            <a href="{{ child.url }}">{{ child.title }}</a>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="col-xs-12">
+                            <h4><a href="{{ menu.url }}">{{ menu.title }}</a></h4>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endloop %}
+                    {% endrecurse %}
+                </div>
+            </div>
+        </nav>
+        
+        <div class="notifications">
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %} alert-dismissible role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% endif %}
+        </div>
+    </header>
