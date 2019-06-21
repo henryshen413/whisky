@@ -90,16 +90,20 @@
 
     <div class="whisky_pop_list">
         <h1>Popular Whisky List</h1>
+        <div id="owl-demo-2" class="owl-carousel owl-theme">
         {% for whisky in object_list %}
             <div class="whisky-item">
                 <img class="whisky-photo" src="{{ whisky.photo.url }}"/>
-                <div class="whisky-brand">{{ whisky.brand_series }}</div>
-                <div class="whisky-name">{{ whisky.name }}</div>
-                <div class="whisky-region"><img class="country-flag" src="{{ whisky.distillery.country.image.url}}" /> {{ whisky.distillery.region }}, {{ whisky.distillery.country.name }}</div>
+                <div class="whisky-text-info">
+                    <div class="whisky-brand">{{ whisky.brand_series }}</div>
+                    <div class="whisky-name"><a class="whisky-name" href="{% url 'whisky_view' whisky_slug=whisky.slug %}">{{ whisky.name }}</a></div>
+                    <div class="whisky-region"><img class="country-flag" src="{{ whisky.distillery.country.image.url}}" /> {{ whisky.distillery.region }}, {{ whisky.distillery.country.name }}</div>
+                </div>
             </div>
         {% empty %}
             <div>No whisky yet.</div>
         {% endfor %}
+        </div>
     </div>
 
 
@@ -114,6 +118,15 @@
 
         $('#owl-demo-1').owlCarousel({
             items:1,
+            loop:true,
+            margin:10,
+            autoplay:true,
+            autoplayTimeout:3000,
+            autoplayHoverPause:true
+        });
+
+        $('#owl-demo-2').owlCarousel({
+            items:4,
             loop:true,
             margin:10,
             autoplay:true,

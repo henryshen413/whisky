@@ -43,13 +43,23 @@
 }
 
 .whisky-item {
-  width: 30%;
   background-color: #ededed;
-  padding: 50px 25px;
+  height: 650px;
+  width: 100%;
+  display: inline-block;
 }
 
 .whisky-photo {
-  width: 200px;
+  width: 250px !important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+
+.whisky-text-info {
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .whisky-brand {
@@ -67,7 +77,8 @@
 }
 
 .country-flag {
-  width: 20px;
+  width: 20px !important;
+  height: auto !important;
 }
 
 @media (max-width: 768px) {
