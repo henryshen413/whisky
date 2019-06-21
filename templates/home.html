@@ -9,7 +9,7 @@
 
 {% block content %}
     <div class="block-1">
-        <div class="owl-carousel">
+        <div class="owl-carousel-other">
             <div class="item">
                 <div class="img-wrp">
                     <div class="img-text">
@@ -24,7 +24,7 @@
     </div>
 
     <div class="block-2">
-        <div id="owl-demo" class="owl-carousel owl-theme">
+        <div id="owl-demo-1" class="owl-carousel owl-theme">
             <div class="item">
                 <div class="img-wrp">
                     <div class="img-text">
@@ -58,7 +58,7 @@
         </div>
 
         <div class="block-gallery">
-            <div class="owl-carousel">
+            <div class="owl-carousel-other">
                 <div class="item">
                     <div class="img-wrp">
                         <div class="img-text">
@@ -74,22 +74,32 @@
     </div>
 
     <div class="row whisky_trivia">
-        <div class="col-md-2 col-xs-3">
+        <div class="col-md-4 col-xs-3">
             <img class="pot_still_icon" src="{% static "img/pot_still_l.png" %}"/>
         </div>
 
-        <div class="col-md-8 col-xs-6">
+        <div class="col-md-4 col-xs-6 trivia_content">
             <h2 class="trivia_title">Whisky Trivia</h2>
             <p>New make whisky is transparent and no color</p>
         </div>
         
-        <div class="col-md-2 col-xs-3">
+        <div class="col-md-4 col-xs-3">
             <img class="pot_still_icon" src="{% static "img/pot_still_r.png" %}"/>
         </div>
     </div>
 
     <div class="whisky_pop_list">
-
+        <h1>Popular Whisky List</h1>
+        {% for whisky in object_list %}
+            <div class="whisky-item">
+                <img class="whisky-photo" src="{{ whisky.photo.url }}"/>
+                <div class="whisky-brand">{{ whisky.brand_series }}</div>
+                <div class="whisky-name">{{ whisky.name }}</div>
+                <div class="whisky-region"><img class="country-flag" src="{{ whisky.distillery.country.image.url}}" /> {{ whisky.distillery.region }}, {{ whisky.distillery.country.name }}</div>
+            </div>
+        {% empty %}
+            <div>No whisky yet.</div>
+        {% endfor %}
     </div>
 
 
@@ -97,8 +107,12 @@
 
 {% block extra_js %}
     <script type="text/javascript">
-        var owl = $('.owl-carousel');
-        owl.owlCarousel({
+        $('.owl-carousel-other').owlCarousel({
+            items:1,
+            margin:10,
+        });
+
+        $('#owl-demo-1').owlCarousel({
             items:1,
             loop:true,
             margin:10,

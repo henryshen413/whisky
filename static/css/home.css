@@ -1,3 +1,7 @@
+.owl-next, .owl-prev {
+  display: none !important;
+}
+
 .block-1 {
   display: inline-block;
   width: 60%;
@@ -19,8 +23,15 @@
 
 .whisky_trivia {
   height: 150px;
-  margin-top: 20px;
+  margin-top: 30px;
   text-align: center;
+}
+
+.trivia_content {
+  border-style: double;
+  border-color: #B87333;
+  border-width: 5px;
+  padding: 10px;
 }
 
 .trivia_title {
@@ -31,15 +42,53 @@
   width: 80px;
 }
 
+.whisky-item {
+  width: 30%;
+  background-color: #ededed;
+  padding: 50px 25px;
+}
+
+.whisky-photo {
+  width: 200px;
+}
+
+.whisky-brand {
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.whisky-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.whisky-region {
+  font-size: 14px;
+}
+
+.country-flag {
+  width: 20px;
+}
+
 @media (max-width: 768px) {
   .block-1, .block-2 {
     width: 100%;
+    float: none;
   }
   .whisky_map_img {
     height: 200px;
   }
-  .whisky_trivia {
-    display: inline-block;
+}
+
+@media (max-width: 375px) {
+  .pot_still_icon {
+    width: 40px;
+  }
+  .trivia_title {
+    font-size: 25px;
+  }
+  .trivia_content {
+    padding: 0px;
   }
 }
 /*# sourceMappingURL=home.css.map */

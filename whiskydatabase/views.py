@@ -1,14 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, ListView
 from whiskydatabase.models import WhiskyInfo, Distillery, Comment
 
 def distillery_list():
     distillery_list = Distillery.objects.filter(is_active=True).distinct()
     return {'distillery_list': distillery_list}
 
-class HomeView(TemplateView):
+class HomeView(ListView):
+    model = WhiskyInfo
     template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 class DistilleryMapView(TemplateView):
     template_name = "whiskymap.html"

@@ -63,15 +63,22 @@ class Menu(models.Model):
     def get_absolute_url(self):
         return reverse('selected_category', kwargs={"slug": self.title})
 
+class Country(models.Model):
+    name = models.CharField(max_length=20)
+    image = models.ImageField(upload_to='country/uploads/%Y/%m/%d/', blank=True)
+    
+    def __str__(self):
+        return self.name
+
 class Distillery(models.Model):
     is_active = models.BooleanField(default=False)
     name = models.CharField(max_length=100, unique=True)
     region = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
+    country = models.ForeignKey(Country, related_name='distillery_country', on_delete=models.CASCADE)
     year_founded = models.IntegerField(default=0)
     owner = models.CharField(max_length=100)
     description = models.TextField()
-    photo = models.ImageField(upload_to='media/distillery/uploads/%Y/%m/%d/', blank=True, null=True)
+    photo = models.ImageField(upload_to='distillery/uploads/%Y/%m/%d/', blank=True, null=True)
     lon = models.FloatField()
     lat = models.FloatField()
     slug = models.SlugField(
