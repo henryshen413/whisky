@@ -9,7 +9,7 @@
 
 {% block content %}
     <div class="block-1">
-        <div class="owl-carousel-other">
+        <div id="owl-demo" class="owl-carousel-other">
             <div class="item">
                 <div class="img-wrp">
                     <div class="img-text">
@@ -58,7 +58,7 @@
         </div>
 
         <div class="block-gallery">
-            <div class="owl-carousel-other">
+            <div id="owl-demo" class="owl-carousel-other">
                 <div class="item">
                     <div class="img-wrp">
                         <div class="img-text">
@@ -113,7 +113,8 @@
     <script type="text/javascript">
         $('.owl-carousel-other').owlCarousel({
             items:1,
-            margin:10,
+            nav:true,
+            margin:10
         });
 
         $('#owl-demo-1').owlCarousel({
@@ -126,12 +127,27 @@
         });
 
         $('#owl-demo-2').owlCarousel({
-            items:4,
+            responsive:{
+                0:{
+                    items:1,
+                    nav:false
+                },
+                600:{
+                    autoWidth:true,
+                    nav:false
+                },
+                1000:{
+                    items:4,
+                    nav:true
+                }
+            },
             loop:true,
             margin:10,
             autoplay:true,
             autoplayTimeout:3000,
-            autoplayHoverPause:true
+            autoplayHoverPause:true,
+            dots:false,
+            navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
         });
     </script>
 {% endblock %}

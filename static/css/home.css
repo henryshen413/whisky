@@ -1,4 +1,4 @@
-.owl-next, .owl-prev {
+.disabled {
   display: none !important;
 }
 
@@ -44,13 +44,13 @@
 
 .whisky-item {
   background-color: #ededed;
-  height: 650px;
+  height: 500px;
   width: 100%;
-  display: inline-block;
 }
 
 .whisky-photo {
-  width: 250px !important;
+  width: 150px !important;
+  height: 350px !important;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15px;
