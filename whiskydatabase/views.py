@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import TemplateView, DetailView, ListView
@@ -36,6 +37,7 @@ class WhiskyListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         return context
 
 class WhiskyView(DetailView):
@@ -47,9 +49,12 @@ class WhiskyView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(WhiskyView, self).get_context_data(*args, **kwargs)
         comments = Comment.objects.filter(whisky_id=self.object.id).order_by('created_at')
-
+        personal_note = PersonalWhiskyNote.objects.filter(whisky=self.object).last()
+        personal_note_array = [personal_note.flora, personal_note.fruity, personal_note.sweet, personal_note.creamy, personal_note.nutty, personal_note.malty, personal_note.salty, personal_note.spicy, personal_note.smoky, personal_note.peaty]
+        
         context.update({
-            "comments": comments
+            "comments": comments,
+            "personal_note_array":  json.dumps(list(personal_note_array))
         })
         context.update(distillery_list())
         return context

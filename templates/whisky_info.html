@@ -10,13 +10,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript"> 
+        (function () {
+            window.tableData = JSON.parse('{{ personal_note_array|safe}}');
+        }());
+    </script>
     <script src="{% static "js/whisky.js" %}"></script>
 {% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-1 col-sm-1"></div>
-        <div class="col-md-5 col-sm-12 col-xs-12 whisky-img"><img src="{{ whisky_detail.photo.url }}" class="pic" /></div>
+        <div class="col-md-5 col-sm-12 col-xs-12 whisky-img"><img class="img-responsive" src="{{ whisky_detail.photo.url }}" /></div>
         <div class="col-md-5 col-sm-12 col-xs-12 whisky-info">
             <div class="whisky-distillery">
                 {% for distillery in whisky_detail.distillery.all %}
@@ -52,6 +57,7 @@
 
                 <div class="nav-block" id='tab-2'>
                     <div class="chart">
+                            <input type="hidden" id="personalVar" name="variable">{{ whisky_detail.personal_note }}</input>
                             <canvas id="canvas-individual"></canvas>
                     </div>
                 </div>

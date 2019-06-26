@@ -68,7 +68,7 @@ var config = {
         labels: ['Flora', 'Fruity', 'Sweetness', 'Creamy', 'Nutty', 'Malty', 'Salty', 'Spicy', 'Smoky', 'Peaty'],
         datasets: [{
             label: 'whisky',
-            backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
+            backgroundColor: color("#FDEB7B").alpha(0.2).rgbString(),
             borderColor: window.chartColors.red,
             pointBackgroundColor: window.chartColors.red,
             data: [9, 6, 1, 7, 5, 2, 2, 4, 4, 3]
@@ -103,7 +103,7 @@ var config_individual = {
           backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
           borderColor: window.chartColors.red,
           pointBackgroundColor: window.chartColors.red,
-          data: [7, 6, 1, 7, 5, 3, 3, 4, 4, 1]
+          data: window.tableData
       }]
   },
   options: {
