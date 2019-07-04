@@ -97,7 +97,10 @@
                 <div class="whisky-text-info">
                     <div class="whisky-brand">{{ whisky.brand_series }}</div>
                     <div class="whisky-name"><a class="whisky-name" href="{% url 'whisky_view' whisky_slug=whisky.slug %}">{{ whisky.name }}</a></div>
-                    <div class="whisky-region"><img class="country-flag" src="{{ whisky.distillery.country.image.url}}" /> {{ whisky.distillery.region }}, {{ whisky.distillery.country.name }}</div>
+                    <div class="whisky-region">
+                        <img class="country-flag" src="{{ whisky.distillery.country.image.url}}" /> 
+                        <span>{{ whisky.distillery.region }}, {{ whisky.distillery.country.name }}</span>
+                    </div>
                 </div>
             </div>
         {% empty %}

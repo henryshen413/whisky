@@ -70,6 +70,7 @@
 .whisky-name {
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .whisky-region {
@@ -77,8 +78,10 @@
 }
 
 .country-flag {
-  width: 20px !important;
-  height: auto !important;
+  float: left;
+  width: auto !important;
+  height: 20px !important;
+  margin-right: 3px;
 }
 
 @media (max-width: 768px) {

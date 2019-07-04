@@ -50,8 +50,10 @@ class WhiskyView(DetailView):
         context = super(WhiskyView, self).get_context_data(*args, **kwargs)
         comments = Comment.objects.filter(whisky_id=self.object.id).order_by('created_at')
         personal_note = PersonalWhiskyNote.objects.filter(whisky=self.object).last()
-        personal_note_array = [personal_note.flora, personal_note.fruity, personal_note.sweet, personal_note.creamy, personal_note.nutty, personal_note.malty, personal_note.salty, personal_note.spicy, personal_note.smoky, personal_note.peaty]
-        
+        if personal_note:
+            personal_note_array = [personal_note.flora, personal_note.fruity, personal_note.sweet, personal_note.creamy, personal_note.nutty, personal_note.malty, personal_note.salty, personal_note.spicy, personal_note.smoky, personal_note.peaty]
+        else:
+            personal_note_array = [0,0,0,0,0,0,0,0,0,0]
         context.update({
             "comments": comments,
             "personal_note_array":  json.dumps(list(personal_note_array))
