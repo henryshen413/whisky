@@ -33,7 +33,7 @@ ul {
   width: 20%;
   border: none !important;
   padding: 5px 5%;
-  margin-top: 0px;
+  margin-top: 5px;
   -webkit-box-shadow: 0 15px 15px -15px rgba(200, 200, 200, 0.9);
           box-shadow: 0 15px 15px -15px rgba(200, 200, 200, 0.9);
   min-width: 190px !important;
@@ -76,14 +76,6 @@ ul {
   white-space: nowrap;
 }
 
-.lower-menu li:first-child a {
-  padding-left: 0px;
-}
-
-.lower-menu li:last-child a {
-  padding-right: 0px;
-}
-
 .list-group-item li a {
   padding: 0;
 }
@@ -107,7 +99,7 @@ ul {
 }
 
 .navbar a {
-  color: white;
+  color: #581D17;
   text-decoration: none;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
@@ -128,7 +120,9 @@ ul {
 }
 
 .mobile-nav .row {
-  background-color: white;
+  background-color: #FDEB7B;
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
 .mobile-nav .collapse {

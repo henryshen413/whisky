@@ -74,6 +74,16 @@
                 </div>
 
                 <div class="row collapse" id="mobile_menu">
+                    <div class="row search-row">
+                        <div class="col-xs-12">
+                            <form class="navbar-form navbar-left" name="search-form" role="search" action="/search/" method="get" autocomplete="off" accept-charset="utf-8">
+                                <div class="autocomplete">
+                                    <input id="myInput-m" type="search" name="q" placeholder="Search....">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
                     {% recurse menu.menu_set.all|dictsort:"lvl" with menu as menu %}
                     {% loop %}
                     <div class="row">
