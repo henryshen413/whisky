@@ -1,5 +1,5 @@
 .logo {
-  height: 40px;
+  height: 45px;
   margin-top: -4px;
 }
 
@@ -17,7 +17,7 @@ ul {
 }
 
 .lower-menu > li.dropdown.open, .mobile-nav > li.dropdown.open {
-  position: static;
+  position: relative;
 }
 
 .lower-menu > li.dropdown.open a, .mobile-nav > li.dropdown.open a {
@@ -29,16 +29,16 @@ ul {
 }
 
 .lower-menu > li.dropdown.open .dropdown-menu, .mobile-nav > li.dropdown.open .dropdown-menu {
-  width: 100%;
+  width: 25%;
   border: none !important;
   padding: 5px 5%;
-  margin-top: -5px;
+  margin-top: 20px;
   -webkit-box-shadow: 0 15px 15px -15px rgba(200, 200, 200, 0.9);
           box-shadow: 0 15px 15px -15px rgba(200, 200, 200, 0.9);
 }
 
 .lower-menu > li.dropdown.open .dropdown, .mobile-nav > li.dropdown.open .dropdown {
-  position: static;
+  position: relative;
 }
 
 .lower-menu > li.dropdown.open .dropdown .dropdown-menu, .mobile-nav > li.dropdown.open .dropdown .dropdown-menu {
@@ -275,7 +275,7 @@ ul {
 
 .navbar-form {
   width: calc(100% - 450px);
-  margin-left: 60px;
+  margin-left: 30px;
   border-top: none;
   border-bottom: none;
 }

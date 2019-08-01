@@ -1,13 +1,27 @@
-{% load site_tags %}
 {% load recurse %}
+{% load site_tags %}
 {% load static %}
 
     <header>
         <nav class="navbar navbar-default navbar-fixed-top desktop-nav">
             <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"><img class="logo col" src="{% static "img/logo.svg" %}"></a>
+            </div>
+
+            <form class="navbar-form navbar-left" role="search" action="/search/" method="get" autocomplete="off" accept-charset="utf-8">
+                <input type="search" name="q" placeholder="Search....">
+            </form>
 
             <!-- Collect the desktop nav links -->
             <div data-hover="dropdown" data-animations="zoomIn zoomIn zoomIn zoomIn">
+                <div class="row member-div">
+                    <ul class="membership navbar-right">
+                        <li class="themes">
+                            <button class="btn login-btn" type="button" name="button">Login<img src="{% static "img/author.png" %}" class="img-responsive member-thumbnail" /></button>
+                        </li>
+                    </ul>
+                </div>
                 <hr class="menu-hr">
                 {% recurse menu.menu_set.all|dictsort:"lvl" with menu as menu %}
                 <ul class="lower-menu">
@@ -19,8 +33,7 @@
                         </a>
 
                         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                            <li class="list-group-item col-xs-3" style="padding-left: 0px;">
-                                <h4 class="submenu-title">{{ menu.title }}</h4>
+                            <li class="list-group-item" style="padding-left: 0px;">
                                 {% for child in menu.get_children %}
                                     {% if child.has_children %}
                                         {% include "nav_submenu.html" with menu=child %}

@@ -21,23 +21,16 @@
 {% block content %}
     <div class="row">
         <div class="col-md-1 col-sm-1"></div>
-        <div class="col-md-5 col-sm-12 col-xs-12 whisky-img"><img class="img-responsive" src="{{ whisky_detail.photo.url }}" /></div>
-        <div class="col-md-5 col-sm-12 col-xs-12 whisky-info">
-            <div class="whisky-distillery">
-                {% for distillery in whisky_detail.distillery.all %}
-                    {% if forloop.last %}
-                    <h3><a href="" class="whisky-distillery-name">{{distillery}}, {{distillery.country}}</a></h3>
-                    {% else %}
-                    <h3><a href="" class="whisky-distillery-name">{{distillery}}, {{distillery.country}}</a></h3>
-                    {% endif %}
-                {% endfor %}
-            </div>
+        <div class="col-md-4 col-sm-12 col-xs-12 whisky-img"><img class="img-responsive" src="{{ whisky_detail.photo.url }}" /></div>
+        <div class="col-md-6 col-sm-12 col-xs-12 whisky-info">
+            <div class="whisky-brand">{{ whisky_detail.brand_series }}</div>
             <div class="whisky-name">
                 <h2>{{ whisky_detail.name }}</h2>
             </div>
-            <div class="whisky-abv">Abv: <span class="info">{{ whisky_detail.abv }}</span></div>
-            <div class="whisky-year">Year: <span class="info">{{ whisky_detail.year }}</span></div>
-            <div class="whisky-casktype">Casktype: <span class="info">{{ whisky_detail.casktype }}</span></div>
+            <div class="whisky-region">
+                <img class="country-flag" src="{{ whisky_detail.distillery.country.image.url}}" /> 
+                <span>{{ whisky_detail.distillery.region }}, {{ whisky_detail.distillery.country.name }}</span>
+            </div>
             <hr>
             <div class='tabs'>
                 <ul class='nav nav-pills nav-justified'>
@@ -57,13 +50,26 @@
 
                 <div class="nav-block" id='tab-2'>
                     <div class="chart">
-                            <input type="hidden" id="personalVar" name="variable">{{ whisky_detail.personal_note }}</input>
-                            <canvas id="canvas-individual"></canvas>
+                        <input type="hidden" id="personalVar" name="variable">{{ whisky_detail.personal_note }}</input>
+                        <canvas id="canvas-individual"></canvas>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-1 col-sm-1"></div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <h3>Summary</h3>
+        <div class="whisky-abv">Abv: <span class="info">{{ whisky_detail.abv }}</span></div>
+        <div class="whisky-year">Year: <span class="info">{{ whisky_detail.year }}</span></div>
+        <div class="whisky-casktype">Casktype: <span class="info">{{ whisky_detail.casktype }}</span></div>
+    </div>
+
+    <div class="row">
+        <h3>Community Review</h3>
     </div>
     
 {% endblock %}

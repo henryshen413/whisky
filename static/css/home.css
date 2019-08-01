@@ -84,6 +84,20 @@
   margin-right: 3px;
 }
 
+.owl-prev {
+  left: -5%;
+  font-size: 25px !important;
+  color: #5E1E0D !important;
+  background: none !important;
+}
+
+.owl-next {
+  right: -5%;
+  font-size: 25px !important;
+  color: #5E1E0D !important;
+  background: none !important;
+}
+
 @media (max-width: 768px) {
   .block-1, .block-2 {
     width: 100%;

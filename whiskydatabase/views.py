@@ -54,6 +54,7 @@ class WhiskyView(DetailView):
             personal_note_array = [personal_note.flora, personal_note.fruity, personal_note.sweet, personal_note.creamy, personal_note.nutty, personal_note.malty, personal_note.salty, personal_note.spicy, personal_note.smoky, personal_note.peaty]
         else:
             personal_note_array = [0,0,0,0,0,0,0,0,0,0]
+            
         context.update({
             "comments": comments,
             "personal_note_array":  json.dumps(list(personal_note_array))

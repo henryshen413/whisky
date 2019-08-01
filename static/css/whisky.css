@@ -37,6 +37,13 @@ a {
   font-style: italic;
 }
 
+.country-flag {
+  float: left;
+  width: auto !important;
+  height: 20px !important;
+  margin-right: 3px;
+}
+
 @media (max-width: 768px) {
   .whisky-info {
     text-align: center;
