@@ -22,20 +22,23 @@ ul
 
 .lower-menu, .mobile-nav
     display: flex
-    padding: 20px 0
+    padding: 15px 0
     > li.dropdown.open 
         position: relative
         a
-            color: $light_green
+            background-color: white
+            border-radius: 5px 5px 0px 0px !important
         .list-group-item a
             color: black
 
         .dropdown-menu
-            width: 25%
+            width: 20%
             border: none !important
             padding: 5px $menu_padding
-            margin-top: 20px
+            margin-top: 0px
             box-shadow: $box_shadow
+            min-width: 190px !important
+            border-radius: 0px 5px 5px 5px !important
         .dropdown
             position: relative
             @include link-hover 
@@ -47,8 +50,8 @@ ul
     border-top: 2px solid white
 .lower-menu, .themes, .membership
     a
-        padding: 20px
-        font-size: 18px
+        padding: 15px
+        font-size: 16px
         font-weight: bold
         color: $title-color !important
 .membership
@@ -141,6 +144,7 @@ ul
 
 .dropdown
     transition: all 0.3s ease-out !important
+
 .dropdown-toggle
     cursor: default
 
@@ -223,7 +227,7 @@ ul
 	        color: transparent
 .list-group-item
     ul
-        margin-bottom: 8px
+        margin: 2px 0px
     &:last-child
         border-bottom-right-radius: 0
         border-bottom-left-radius: 0

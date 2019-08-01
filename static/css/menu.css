@@ -13,7 +13,7 @@ ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 20px 0;
+  padding: 15px 0;
 }
 
 .lower-menu > li.dropdown.open, .mobile-nav > li.dropdown.open {
@@ -21,7 +21,8 @@ ul {
 }
 
 .lower-menu > li.dropdown.open a, .mobile-nav > li.dropdown.open a {
-  color: #0be6af;
+  background-color: white;
+  border-radius: 5px 5px 0px 0px !important;
 }
 
 .lower-menu > li.dropdown.open .list-group-item a, .mobile-nav > li.dropdown.open .list-group-item a {
@@ -29,12 +30,14 @@ ul {
 }
 
 .lower-menu > li.dropdown.open .dropdown-menu, .mobile-nav > li.dropdown.open .dropdown-menu {
-  width: 25%;
+  width: 20%;
   border: none !important;
   padding: 5px 5%;
-  margin-top: 20px;
+  margin-top: 0px;
   -webkit-box-shadow: 0 15px 15px -15px rgba(200, 200, 200, 0.9);
           box-shadow: 0 15px 15px -15px rgba(200, 200, 200, 0.9);
+  min-width: 190px !important;
+  border-radius: 0px 5px 5px 5px !important;
 }
 
 .lower-menu > li.dropdown.open .dropdown, .mobile-nav > li.dropdown.open .dropdown {
@@ -52,8 +55,8 @@ ul {
 }
 
 .lower-menu a, .themes a, .membership a {
-  padding: 20px;
-  font-size: 18px;
+  padding: 15px;
+  font-size: 16px;
   font-weight: bold;
   color: #581D17 !important;
 }
@@ -322,7 +325,7 @@ ul {
 }
 
 .list-group-item ul {
-  margin-bottom: 8px;
+  margin: 2px 0px;
 }
 
 .list-group-item:last-child {

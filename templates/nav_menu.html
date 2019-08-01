@@ -33,17 +33,17 @@
                         </a>
 
                         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                            <li class="list-group-item" style="padding-left: 0px;">
+                            <li class="list-group-item" style="padding: 5px 5px;">
                                 {% for child in menu.get_children %}
                                     {% if child.has_children %}
                                         {% include "nav_submenu.html" with menu=child %}
                                     {% else %}
-                                <ul>
-                                    <li class="">
-                                        <i class="{{ child.icon }} submenu-icon"></i>
-                                        <a href="{{ child.url }}#cat-header">{{ child.title }}</a>
-                                    </li>
-                                </ul>
+                                    <ul>
+                                        <li class="list-group-item" style="padding: 5px 5px;">
+                                            <i class="{{ child.icon }} submenu-icon"></i>
+                                            <a href="{{ child.url }}#cat-header">{{ child.title }}</a>
+                                        </li>
+                                    </ul>
                                     {% endif %}
                                 {% endfor %}
                             </li>
