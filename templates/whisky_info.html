@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load site_tags %}
 {% block title %}Whisky Vitae{% endblock %}
 {% block site_name %}{% endblock %}
 {% block extra_css %}
@@ -14,22 +14,26 @@
             window.tableData = JSON.parse('{{ personal_note_array|safe}}');
             
             $(".my-rating").starRating({
-                initialRating: 4,
+                initialRating: 0,
                 strokeColor: '#894A00',
                 strokeWidth: 10,
-                starSize: 25
+                starSize: 25,
+                disableAfterRate: false,
+                callback: function(currentRating, $el){
+                    // do something after rating
+
+                }
             });
         }());
     </script>
-    <script src="http://nashio.github.io/star-rating-svg/src/jquery.star-rating-svg.js"></script>
     <script src="{% static "js/whisky.js" %}"></script>
 {% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-1 col-sm-1"></div>
-        <div class="col-md-4 col-sm-12 col-xs-12 whisky-img"><img class="img-responsive" src="{{ whisky_detail.photo.url }}" /></div>
-        <div class="col-md-6 col-sm-12 col-xs-12 whisky-info">
+        <div class="col-md-4 col-xs-12"><img class="whisky-img" src="{{ whisky_detail.photo.url }}" /></div>
+        <div class="col-md-6 col-xs-12 whisky-info">
             <div class="whisky-brand">{{ whisky_detail.brand_series }}</div>
             <div class="whisky-name">
                 <h2>{{ whisky_detail.name }}</h2>
@@ -68,16 +72,69 @@
 
     <hr>
 
-    <div class="row">
-        <h3>Summary</h3>
-        <div class="whisky-abv">Abv: <span class="info">{{ whisky_detail.abv }}</span></div>
-        <div class="whisky-year">Year: <span class="info">{{ whisky_detail.year }}</span></div>
-        <div class="whisky-casktype">Casktype: <span class="info">{{ whisky_detail.casktype }}</span></div>
+    <div class="info-area">
+        <div class="row container">
+            <div class="col-md-offset-1 col-md-10 col-xs-12">	
+                <h3>Summary</h3>
+                <div class="whisky-abv">Abv: <span class="info">{{ whisky_detail.abv }}</span></div>
+                <div class="whisky-year">Year: <span class="info">{{ whisky_detail.year }}</span></div>
+                <div class="whisky-casktype">Casktype: <span class="info">{{ whisky_detail.casktype }}</span></div>
+            </div>
+        </div>
     </div>
 
-    <div class="row">
-        <h3>Community Review</h3>
-        <div class="my-rating"></div>
+    <div class="comment-area">
+        <div class="row container">
+            <div class="col-md-offset-1 col-md-10 col-xs-12">		
+                <div class="responses-box" id="r">
+                    <div class="comments">
+                        {% if comments %}
+                        <h3>Reviews</h3>
+                            {% for comment in comments %}
+                                <div class="row comment-row">
+                                    <hr style="margin-top: 20px; margin-bottom: 15px">
+                                    <div class="cm-user-pic">
+                                        {% if comment.user.profile.profilepic %}
+                                            <img src="{{ comment.user.profile.profilepic.url }}" class="img-responsive cm-user-img"/>
+                                        {% else %}
+                                            <img src="{% static "img/author.png" %}" class="img-responsive cm-user-img" />
+                                        {% endif %}
+                                    </div>
+                                    <div class="cm-user-content">
+                                        <div class="comment-box">
+                                            <span class="comment-user">{{ comment.user|show_username }}&nbsp;</span>
+                                            <span class="comment-date">{{ comment.created_at }}</span>
+                                            <br>
+                                            <div class="comment-content">{{ comment.content }}</div>
+                                        </div>
+                                            
+                                        <div class="comment-control">
+                                            {% if request.user == comment.user %}
+                                                <button type="button" name="delete-comment" class="comment-edit" onclick = "deleteComment({{ comment.id }})">delete</button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <hr style="margin-top: 20px; margin-bottom: 15px">
+                    </div>
+                    <h3>Add your review</h3>
+                    <form method="post">
+                        {% csrf_token %} 
+                        {% if request.user.is_active %}
+                        <div class="my-rating" style="margin-bottom: 10px"></div>
+                        <textarea class="form-control comment" placeholder="This whisky is..." name="comment" id="comment"></textarea>
+                        <br>
+                        <input type="submit" value="submit" class ="btn" style="color:#333">
+                        {% else %}
+                        <textarea class="form-control comment" placeholder="Please login or signup" disabled></textarea>
+                        {% endif %}
+                    </form>					
+                </div>
+            </div>
+        </div>
     </div>
+    
     
 {% endblock %}
