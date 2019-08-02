@@ -106,7 +106,7 @@ ul {
 }
 
 .navbar a:hover {
-  color: #0be6af;
+  color: #002366;
 }
 
 .navbar-header {
@@ -215,7 +215,7 @@ ul {
 }
 
 .submenu-title {
-  color: #0be6af;
+  color: #002366;
 }
 
 .submenu-icon {
@@ -378,7 +378,7 @@ ul {
 }
 
 #mobile_menu .col-xs-12 h4, #mobile_menu .col-xs-12 a {
-  color: #0be6af !important;
+  color: #002366 !important;
 }
 
 #mobile_menu .search-row {

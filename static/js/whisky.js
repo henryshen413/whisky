@@ -133,6 +133,3 @@ window.onload = function() {
 
 var colorNames = Object.keys(window.chartColors);
   
-  
-  
-  

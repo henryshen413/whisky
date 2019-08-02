@@ -78,7 +78,14 @@ if($('.pagination li:nth-last-child(2)').find('a span').text() == '>')
 $(document).ready(function(){
     if($(window).scrollTop() > 150){
         $('#gotop').fadeIn();
-    }
+	}
+	
+	$('.tabs').tabslet();
+    $('.tabs').on("_before", function(e) {
+        e.preventDefault();
+        testAnim("fadeInLeft")
+	});
+	
     $('.owl-carousel').owlCarousel({
         autoplay:true,
         autoplayTimeout:3000,
@@ -89,12 +96,6 @@ $(document).ready(function(){
         items: 1,
         navText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>']
     })// end carousel
-
-    $('.tabs').tabslet();
-    $('.tabs').on("_before", function(e) {
-        e.preventDefault();
-        testAnim("fadeInLeft")
-    });
 
     $('#myModal').modal('hide');
     $('#myModal').on('hidden', function(){

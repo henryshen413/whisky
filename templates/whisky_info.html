@@ -9,12 +9,19 @@
 {% block extra_js %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript"> 
         (function () {
             window.tableData = JSON.parse('{{ personal_note_array|safe}}');
+            
+            $(".my-rating").starRating({
+                initialRating: 4,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25
+            });
         }());
     </script>
+    <script src="http://nashio.github.io/star-rating-svg/src/jquery.star-rating-svg.js"></script>
     <script src="{% static "js/whisky.js" %}"></script>
 {% endblock %}
 
@@ -70,6 +77,7 @@
 
     <div class="row">
         <h3>Community Review</h3>
+        <div class="my-rating"></div>
     </div>
     
 {% endblock %}
