@@ -21,8 +21,96 @@
                 disableAfterRate: false,
                 callback: function(currentRating, $el){
                     // do something after rating
-
+                    document.getElementById('myRating').value = currentRating;
                 }
+            });
+
+            $(".rating 0").starRating({
+                initialRating: 0,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                readOnly: true
+            });
+
+            $(".rating 05").starRating({
+                initialRating: 0.5,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                readOnly: true
+            });
+
+            $(".rating 1").starRating({
+                initialRating: 1,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                readOnly: true
+            });
+
+            $(".rating 1.5").starRating({
+                initialRating: 1.5,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                readOnly: true
+            });
+
+            $(".rating 2").starRating({
+                initialRating: 2,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                readOnly: true
+            });
+
+            $(".rating 25").starRating({
+                initialRating: 2.5,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                readOnly: true
+            });
+
+            $(".rating 3").starRating({
+                initialRating: 3,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                readOnly: true
+            });
+
+            $(".rating 35").starRating({
+                initialRating: 3.5,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                readOnly: true
+            });
+
+            $(".rating 4").starRating({
+                initialRating: 4,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                readOnly: true
+            });
+
+            $(".rating 45").starRating({
+                initialRating: 4.5,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                readOnly: true
+            });
+
+            $(".rating 5").starRating({
+                initialRating: 5,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                readOnly: true
             });
         }());
     </script>
@@ -105,7 +193,8 @@
                                             <span class="comment-user">{{ comment.user|show_username }}&nbsp;</span>
                                             <span class="comment-date">{{ comment.created_at }}</span>
                                             <br>
-                                            <div class="comment-content">{{ comment.content }}</div>
+                                            <div class="rating 1" style="margin-bottom: 10px"></div>
+                                            <div class="comment-content">{{ comment.note }}</div>
                                         </div>
                                             
                                         <div class="comment-control">
@@ -124,6 +213,7 @@
                         {% csrf_token %} 
                         {% if request.user.is_active %}
                         <div class="my-rating" style="margin-bottom: 10px"></div>
+                        <input type="hidden" id="myRating" name="myRating" value="" />
                         <textarea class="form-control comment" placeholder="This whisky is..." name="comment" id="comment"></textarea>
                         <br>
                         <input type="submit" value="submit" class ="btn" style="color:#333">

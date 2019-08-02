@@ -24,13 +24,5 @@ def load_menu(context):
 
 @register.filter
 def show_username(user):
-    if user.profile.nickname:
-        name = user.profile.nickname
-    elif user.username != user.email:
-        name = user.username
-    elif user.last_name:
-        name = user.last_name + ' ' + user.first_name
-    else:
-        name = user.username
 
-    return name
+    return user.username

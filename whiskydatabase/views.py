@@ -1,6 +1,6 @@
 import json
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, DetailView, ListView
 from whiskydatabase.models import *
 
@@ -45,6 +45,28 @@ class WhiskyView(DetailView):
     model = WhiskyInfo
     slug_url_kwarg = "whisky_slug"
     context_object_name = "whisky_detail"
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('comment') : 
+            content = request.POST.get('comment')
+            rating = request.POST['myRating']
+
+            if content is not None and rating is not None:
+                comment = Comment.objects.create(
+                        note = content,
+                        user = self.request.user,
+                        whisky = self.object,
+                        rating = rating
+                    )
+                
+                comment.save()
+
+            return HttpResponseRedirect('/whisky/{}/#r'.format(self.object.slug))
+
+    def dispatch(self, request, *args, **kwargs):
+        self.object = WhiskyInfo.objects.filter(slug=kwargs.get("whisky_slug")).last()
+
+        return super(WhiskyView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super(WhiskyView, self).get_context_data(*args, **kwargs)
