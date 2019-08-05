@@ -26,3 +26,9 @@ def load_menu(context):
 def show_username(user):
 
     return user.username
+
+
+@register.filter
+def convert_rate(rate):
+    
+    return int(rate*10)

@@ -1,4 +1,4 @@
-$mobile_width: 768px
+$mobile_width: 667px
     
 canvas
     display: block
@@ -32,6 +32,87 @@ a
     height: 20px !important
     margin-right: 3px
 
+.comment
+    resize: none
+    min-height: 7em
+    text-align: left
+    padding: 15px
+    background-color: white
+    border-radius: 10px
+    border: none
+    box-shadow: none
+    transition: box-shadow 0.25s ease-in-out, height 0.1s ease-in-out
+    &:focus
+        border: none
+        box-shadow: 0px 0px 15px 6px rgba(230, 230, 230, 0.9)
+
+.comment-user
+    font-size: 16px
+    font-weight: bold
+
+.comment-date
+    font-size: 10px
+
+.comment-content
+    margin-bottom: 10px
+
+.comment-edit
+    background-color: transparent
+    border: none
+    outline: none
+    padding: 0px
+
+.cm-user-pic
+    width: 55px
+    display: inline-block
+    float: left
+
+.cm-user-content
+    width: calc(90% - 55px)
+    margin-left: 3%
+    margin-right: 2%
+    display: inline-block
+    float: left
+
+.cm-user-img
+    width: 55px
+    height: 55px
+    border-radius: 100%
+    padding: 10px
+
+.comment-box
+    padding: 10px
+    background-color: white
+    border-radius: 10px
+    box-shadow: 0px 0px 15px 6px rgba(230, 230, 230, 0.9)
+    
+    &:after
+        content: " "
+        position: relative
+        left: -20px
+        top: -50px
+        border-top: 10px solid transparent
+        border-right: 10px solid white
+        border-left: none
+        border-bottom: 10px solid transparent
+        float: left
+
+.comment-control
+    display: inline-block
+    float: left
+    color: #808080
+    .btn-control
+        background-color: transparent
+        border: none
+    .comment-edit
+        font-size: 14px
+    .btn-ctrl
+        margin-right: 3px
+
+.popover-content
+    padding: 5px 5px
+    width: 85px
+
 @media (max-width: $mobile_width)
     .whisky-info
         margin-top: 10px
@@ -42,3 +123,8 @@ a
         display: block
         margin-left: auto
         margin-right: auto
+
+    .cm-user-content
+        width: calc(85% - 55px)
+        margin-left: 3%
+        margin-right: 2%

@@ -132,4 +132,21 @@ window.onload = function() {
 };
 
 var colorNames = Object.keys(window.chartColors);
-  
+
+$(document).ready(function(){
+
+  $('[data-toggle="popover"]').popover({
+    html : true, 
+    container : '#btn-share',
+    content: function() {
+      return $('#popoverExampleHiddenContent').html();
+    }
+  });
+
+  $(document).click(function (event) {
+    // hide share button popover
+    if (!$(event.target).closest('#btn-share').length) {
+        $('#btn-share').popover('hide')
+    }
+  });
+});

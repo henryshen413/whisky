@@ -25,7 +25,7 @@
                 }
             });
 
-            $(".rating 0").starRating({
+            $(".rating-0").starRating({
                 initialRating: 0,
                 strokeColor: '#894A00',
                 strokeWidth: 10,
@@ -33,7 +33,7 @@
                 readOnly: true
             });
 
-            $(".rating 05").starRating({
+            $(".rating-5").starRating({
                 initialRating: 0.5,
                 strokeColor: '#894A00',
                 strokeWidth: 10,
@@ -41,7 +41,7 @@
                 readOnly: true
             });
 
-            $(".rating 1").starRating({
+            $(".rating-10").starRating({
                 initialRating: 1,
                 strokeColor: '#894A00',
                 strokeWidth: 10,
@@ -49,7 +49,7 @@
                 readOnly: true
             });
 
-            $(".rating 1.5").starRating({
+            $(".rating-15").starRating({
                 initialRating: 1.5,
                 strokeColor: '#894A00',
                 strokeWidth: 10,
@@ -57,7 +57,7 @@
                 readOnly: true
             });
 
-            $(".rating 2").starRating({
+            $(".rating-20").starRating({
                 initialRating: 2,
                 strokeColor: '#894A00',
                 strokeWidth: 10,
@@ -65,7 +65,7 @@
                 readOnly: true
             });
 
-            $(".rating 25").starRating({
+            $(".rating-25").starRating({
                 initialRating: 2.5,
                 strokeColor: '#894A00',
                 strokeWidth: 10,
@@ -73,7 +73,7 @@
                 readOnly: true
             });
 
-            $(".rating 3").starRating({
+            $(".rating-30").starRating({
                 initialRating: 3,
                 strokeColor: '#894A00',
                 strokeWidth: 10,
@@ -81,7 +81,7 @@
                 readOnly: true
             });
 
-            $(".rating 35").starRating({
+            $(".rating-35").starRating({
                 initialRating: 3.5,
                 strokeColor: '#894A00',
                 strokeWidth: 10,
@@ -89,7 +89,7 @@
                 readOnly: true
             });
 
-            $(".rating 4").starRating({
+            $(".rating-40").starRating({
                 initialRating: 4,
                 strokeColor: '#894A00',
                 strokeWidth: 10,
@@ -97,7 +97,7 @@
                 readOnly: true
             });
 
-            $(".rating 45").starRating({
+            $(".rating-45").starRating({
                 initialRating: 4.5,
                 strokeColor: '#894A00',
                 strokeWidth: 10,
@@ -105,7 +105,7 @@
                 readOnly: true
             });
 
-            $(".rating 5").starRating({
+            $(".rating-50").starRating({
                 initialRating: 5,
                 strokeColor: '#894A00',
                 strokeWidth: 10,
@@ -113,6 +113,24 @@
                 readOnly: true
             });
         }());
+
+        $(document).ready(function(){
+
+            $('[data-toggle="popover"]').popover({
+            html : true, 
+            container : '#btn-control',
+            content: function() {
+                return $('#popoverExampleHiddenContent').html();
+            }
+            });
+
+            $(document).click(function (event) {
+            // hide share button popover
+            if (!$(event.target).closest('#btn-control').length) {
+                $('#btn-share').popover('hide')
+            }
+            });
+        });
     </script>
     <script src="{% static "js/whisky.js" %}"></script>
 {% endblock %}
@@ -177,10 +195,10 @@
                 <div class="responses-box" id="r">
                     <div class="comments">
                         {% if comments %}
+                        <hr style="margin-top: 20px; margin-bottom: 15px">
                         <h3>Reviews</h3>
                             {% for comment in comments %}
                                 <div class="row comment-row">
-                                    <hr style="margin-top: 20px; margin-bottom: 15px">
                                     <div class="cm-user-pic">
                                         {% if comment.user.profile.profilepic %}
                                             <img src="{{ comment.user.profile.profilepic.url }}" class="img-responsive cm-user-img"/>
@@ -193,15 +211,24 @@
                                             <span class="comment-user">{{ comment.user|show_username }}&nbsp;</span>
                                             <span class="comment-date">{{ comment.created_at }}</span>
                                             <br>
-                                            <div class="rating 1" style="margin-bottom: 10px"></div>
+                                            <div class="rating-{{ comment.rating|convert_rate }}" style="margin-bottom: 10px"></div>
                                             <div class="comment-content">{{ comment.note }}</div>
                                         </div>
-                                            
-                                        <div class="comment-control">
-                                            {% if request.user == comment.user %}
-                                                <button type="button" name="delete-comment" class="comment-edit" onclick = "deleteComment({{ comment.id }})">delete</button>
-                                            {% endif %}
-                                        </div>
+                                    </div>
+                                    <div class="comment-control">
+                                        {% if request.user == comment.user %}
+                                            <button type="button" class="btn-control" id="btn-control" data-toggle="popover" data-placement="bottom" data-container="body">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                            </button>
+                                            <span id="popoverExampleHiddenContent" class="hidden">
+                                                <button type="button" name="delete-comment" class="comment-edit" onclick = "deleteComment({{ comment.id }})">
+                                                    <i class="fa fa-edit fa-fw btn-ctrl"></i>Edit...
+                                                </button>
+                                                <button type="button" name="delete-comment" class="comment-edit" onclick = "deleteComment({{ comment.id }})">
+                                                    <i class="fa fa-trash fa-fw btn-ctrl"></i>Delete...
+                                                </button>                                                    
+                                            </span>
+                                        {% endif %}
                                     </div>
                                 </div>
                             {% endfor %}

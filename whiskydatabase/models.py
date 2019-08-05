@@ -169,7 +169,7 @@ class Comment(models.Model):
     whisky = models.ForeignKey(WhiskyInfo, on_delete=models.CASCADE)
     note = models.TextField()
     publish_choice = models.CharField(max_length=10, choices=PUBLISH_CHOICE)
-    rating = models.IntegerField(default=0)
+    rating = models.FloatField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
