@@ -9,7 +9,7 @@
 {% block extra_js %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
-    <script type="text/javascript"> 
+    <script type="text/javascript">
         (function () {
             window.tableData = JSON.parse('{{ personal_note_array|safe}}');
             
@@ -113,26 +113,9 @@
                 readOnly: true
             });
         }());
-
-        $(document).ready(function(){
-
-            $('[data-toggle="popover"]').popover({
-            html : true, 
-            container : '#btn-control',
-            content: function() {
-                return $('#popoverExampleHiddenContent').html();
-            }
-            });
-
-            $(document).click(function (event) {
-            // hide share button popover
-            if (!$(event.target).closest('#btn-control').length) {
-                $('#btn-share').popover('hide')
-            }
-            });
-        });
     </script>
     <script src="{% static "js/whisky.js" %}"></script>
+    <script src="{% static "js/whisky_graph.js" %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -215,20 +198,22 @@
                                             <div class="comment-content">{{ comment.note }}</div>
                                         </div>
                                     </div>
-                                    <div class="comment-control">
-                                        {% if request.user == comment.user %}
-                                            <button type="button" class="btn-control" id="btn-control" data-toggle="popover" data-placement="bottom" data-container="body">
-                                                <i class="fas fa-ellipsis-h"></i>
-                                            </button>
-                                            <span id="popoverExampleHiddenContent" class="hidden">
-                                                <button type="button" name="delete-comment" class="comment-edit" onclick = "deleteComment({{ comment.id }})">
-                                                    <i class="fa fa-edit fa-fw btn-ctrl"></i>Edit...
+                                    <div class="popover-container">
+                                        <div class="comment-control-sec">
+                                            {% if request.user == comment.user %}
+                                                <button type="button" class="btn-control" id="btn-control" data-popover="true" data-placement="bottom" data-container="body">
+                                                    <i class="fas fa-ellipsis-h"></i>
                                                 </button>
-                                                <button type="button" name="delete-comment" class="comment-edit" onclick = "deleteComment({{ comment.id }})">
-                                                    <i class="fa fa-trash fa-fw btn-ctrl"></i>Delete...
-                                                </button>                                                    
-                                            </span>
-                                        {% endif %}
+                                                <div id="popover-content" class="hidden">
+                                                    <button type="button" name="delete-comment" class="comment-control" onclick = "editComment({{ comment.id }})">
+                                                        <i class="fa fa-edit fa-fw btn-ctrl"></i>Edit...
+                                                    </button>
+                                                    <button type="button" name="delete-comment" class="comment-control" onclick = "deleteComment({{ comment.id }})">
+                                                        <i class="fa fa-trash fa-fw btn-ctrl"></i>Delete...
+                                                    </button>                                                    
+                                                </div>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
                             {% endfor %}

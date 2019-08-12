@@ -50,8 +50,11 @@ class WhiskyView(DetailView):
         if request.POST.get('comment') : 
             content = request.POST.get('comment')
             rating = request.POST['myRating']
-
+            
             if content is not None and rating is not None:
+                if not rating:
+                    rating = 0
+
                 comment = Comment.objects.create(
                         note = content,
                         user = self.request.user,
@@ -62,6 +65,13 @@ class WhiskyView(DetailView):
                 comment.save()
 
             return HttpResponseRedirect('/whisky/{}/#r'.format(self.object.slug))
+
+        elif request.POST.get('delete_cmt_id'): 
+            delete_cmt_id = request.POST.get('delete_cmt_id')
+
+            Comment.objects.filter(id=delete_cmt_id).delete()
+
+            return HttpResponse(True)
 
     def dispatch(self, request, *args, **kwargs):
         self.object = WhiskyInfo.objects.filter(slug=kwargs.get("whisky_slug")).last()

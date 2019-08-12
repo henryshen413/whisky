@@ -1,152 +1,78 @@
-(function(Chart) {
-    var currentPoint = false;
-    var lastPoint = false;
-    var lastDist = false;
-    var stepDist = false;
-    var direction = 'up';
-     
-    var draggable = { 
-      id: "draggable",
-      beforeEvent: function(chart, evt){
-         if(currentPoint != false && currentPoint.length >= 0){
-           var largestPossibleRadius = Math.min(chart.scale.height / 2, chart.scale.width / 2);
-           var labelPoint = chart.scale.getPointPosition(currentPoint[0]._index, largestPossibleRadius) ;
-           
-           var a = chart.scale.xCenter - labelPoint.x;
-           var b = chart.scale.yCenter - labelPoint.y;
-           var c = Math.sqrt( a*a + b*b );
-           var steps = Math.round(c / (c/10));
-            
-           
-           var a2 = lastPoint[0] - labelPoint.x;
-           var b2 = lastPoint[1] - labelPoint.y;
-           var c2 = Math.sqrt( a2*a2 + b2*b2 );
-           
-           if (lastDist == false){ lastDist = c2; stepDist = c2; }    
-           
-           lalastPointstPoint = [evt.x, evt.y];
-           
-           direction = (lastDist < c2) ? 'down' : 'up'; 
-           console.log(direction);
-           if (Math.abs(stepDist-c2) > steps) { stepDist = c2; } else { return true; }
-           
-           var value = config.data.datasets[currentPoint[0]._datasetIndex].data[currentPoint[0]._index];
-           if (value == 10 && direction == 'up'){ return true; }
-           if (value == 0 && direction == 'down'){ return true; }
-           if (direction == 'up') { value = value + 1; } else { value = value - 1;}
-            config.data.datasets[currentPoint[0]._datasetIndex].data[currentPoint[0]._index] = value;
-            chart.update();
-            }
-        },
-      afterInit: function(chart, options) {
-        var canvas = chart.chart.ctx.canvas;
-        
-        $(canvas).on({
-          'mousedown': function(e){
-                          currentPoint = chart.getElementsAtEvent(e);
-                          lastPoint = [e.clientX, e.clientY];
-                          },
-          'mouseup': function(e){
-                          currentPoint = false;
-                          lastPoint = false;
-                          lastDist = false;
-                          stepDist = false;
-                          }
-          })
-        },
-   
-      };
-  
-    Chart.pluginService.register(draggable);
-  }.call(this, Chart));
-  
-  
-var color = Chart.helpers.color;
-var config = {
-    type: 'radar',
-    data: {
-        labels: ['Flora', 'Fruity', 'Sweetness', 'Creamy', 'Nutty', 'Malty', 'Salty', 'Spicy', 'Smoky', 'Peaty'],
-        datasets: [{
-            label: 'whisky',
-            backgroundColor: color("#FDEB7B").alpha(0.2).rgbString(),
-            borderColor: window.chartColors.red,
-            pointBackgroundColor: window.chartColors.red,
-            data: [9, 6, 1, 7, 5, 2, 2, 4, 4, 3]
-        }]
-    },
-    options: {
-        plugins: {
-          scrollingBar: { enabled: true }
-        },
-        legend: {
-          display: false,
-        },
-        title: {
-          display: false,
-        },
-        scale: {
-            ticks: {
-              min: 0,
-              max: 10,
-              beginAtZero: true
+$('body').popover({
+    selector: '[data-popover]',
+    trigger: 'focus',
+    html : true, 
+    delay: { "show": 100, "hide": 100 },
+    content: function() {
+        return $(this).next("#popover-content").html();
+    }
+});
+
+
+// ajax token
+jQuery(document).ajaxSend(function(event, xhr, settings) {
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
             }
         }
+        return cookieValue;
     }
-};
-
-var config_individual = {
-  type: 'radar',
-  data: {
-      labels: ['Flora', 'Fruity', 'Sweetness', 'Creamy', 'Nutty', 'Malty', 'Salty', 'Spicy', 'Smoky', 'Peaty'],
-      datasets: [{
-          label: 'whisky',
-          backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
-          borderColor: window.chartColors.red,
-          pointBackgroundColor: window.chartColors.red,
-          data: window.tableData
-      }]
-  },
-  options: {
-      plugins: {
-        scrollingBar: { enabled: true }
-      },
-      legend: {
-        display: false,
-      },
-      title: {
-        display: false,
-      },
-      scale: {
-          ticks: {
-            min: 0,
-            max: 10,
-            beginAtZero: true
-          }
-      }
-  }
-};
-
-window.onload = function() {
-  window.myRadar = new Chart(document.getElementById('canvas'), config);
-  window.myRadar = new Chart(document.getElementById('canvas-individual'), config_individual);
-};
-
-var colorNames = Object.keys(window.chartColors);
-
-$(document).ready(function(){
-
-  $('[data-toggle="popover"]').popover({
-    html : true, 
-    container : '#btn-share',
-    content: function() {
-      return $('#popoverExampleHiddenContent').html();
+    function sameOrigin(url) {
+        // url could be relative or scheme relative or absolute
+        var host = document.location.host; // host + port
+        var protocol = document.location.protocol;
+        var sr_origin = '//' + host;
+        var origin = protocol + sr_origin;
+        // Allow absolute or scheme relative URLs to same origin
+        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+            // or any other URL that isn't scheme relative or absolute i.e relative.
+            !(/^(\/\/|http:|https:).*/.test(url));
     }
-  });
-
-  $(document).click(function (event) {
-    // hide share button popover
-    if (!$(event.target).closest('#btn-share').length) {
-        $('#btn-share').popover('hide')
+    function safeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }    if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
+        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
     }
-  });
+});
+
+function deleteComment(delete_cmt_id) {
+    $.ajax({
+    url: window.location.pathname,
+    type: "POST",
+    data: {"delete_cmt_id": delete_cmt_id},
+    success:function(response){
+        location.reload();  
+    },
+    complete:function(){},
+    error:function (xhr, textStatus, thrownError){}
+	});
+}
+
+function showReplyBox(rp_id) {
+    var rp = rp_id.toString();
+    var rp_class = "#reply-input-" + rp;
+    $(rp_class).toggleClass('show');
+}
+
+function showReplies(rp_id) {
+    var rp = rp_id.toString();
+    var rp_class = "#reply-" + rp;
+    $(rp_class).toggleClass('show');
+}
+
+$("#comment").keypress(function (e) {
+    if(e.which == 13 && !e.shiftKey) {        
+        $(this).closest("form").submit();
+        e.preventDefault();
+    }
 });

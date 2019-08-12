@@ -47,16 +47,10 @@ a {
   padding: 15px;
   background-color: white;
   border-radius: 10px;
-  border: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
   -webkit-transition: height 0.1s ease-in-out, -webkit-box-shadow 0.25s ease-in-out;
   transition: height 0.1s ease-in-out, -webkit-box-shadow 0.25s ease-in-out;
   transition: box-shadow 0.25s ease-in-out, height 0.1s ease-in-out;
   transition: box-shadow 0.25s ease-in-out, height 0.1s ease-in-out, -webkit-box-shadow 0.25s ease-in-out;
-}
-
-.comment:focus {
   border: none;
   -webkit-box-shadow: 0px 0px 15px 6px rgba(230, 230, 230, 0.9);
           box-shadow: 0px 0px 15px 6px rgba(230, 230, 230, 0.9);
@@ -123,22 +117,29 @@ a {
   float: left;
 }
 
-.comment-control {
+.comment-control-sec {
   display: inline-block;
   float: left;
   color: #808080;
 }
 
-.comment-control .btn-control {
+.btn-control {
   background-color: transparent;
   border: none;
 }
 
-.comment-control .comment-edit {
-  font-size: 14px;
+.btn-control:focus {
+  outline: 0;
 }
 
-.comment-control .btn-ctrl {
+.comment-control {
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  padding: 0;
+}
+
+.btn-ctrl {
   margin-right: 3px;
 }
 
