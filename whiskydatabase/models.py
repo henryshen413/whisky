@@ -109,6 +109,7 @@ class WhiskyInfo(models.Model):
     distillery = models.ForeignKey(Distillery, related_name='whisky_distillery', on_delete=models.CASCADE)
     year = models.IntegerField(default=0)
     abv = models.FloatField(default=0)
+    general_desc = models.TextField(blank=True, null=True)
     casktype = models.CharField(max_length=100, blank=True, null=True)
     bottler = models.CharField(max_length=2, choices=BOTTLING_CHOICE)
     photo = models.ImageField(upload_to='whisky/uploads/%Y/%m/%d/', blank=True, null=True)

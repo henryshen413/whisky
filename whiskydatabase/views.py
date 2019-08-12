@@ -50,6 +50,10 @@ class WhiskyView(DetailView):
         if request.POST.get('comment') : 
             content = request.POST.get('comment')
             rating = request.POST['myRating']
+            p_choice = "Public"
+
+            if request.POST.get('publish_choice'):
+                p_choice = "Private"
             
             if content is not None and rating is not None:
                 if not rating:
@@ -58,6 +62,7 @@ class WhiskyView(DetailView):
                 comment = Comment.objects.create(
                         note = content,
                         user = self.request.user,
+                        publish_choice = p_choice,
                         whisky = self.object,
                         rating = rating
                     )
@@ -80,7 +85,7 @@ class WhiskyView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(WhiskyView, self).get_context_data(*args, **kwargs)
-        comments = Comment.objects.filter(whisky_id=self.object.id).order_by('created_at')
+        comments = Comment.objects.filter(whisky_id=self.object.id, publish_choice="Public").order_by('created_at')
         personal_note = PersonalWhiskyNote.objects.filter(whisky=self.object).last()
         if personal_note:
             personal_note_array = [personal_note.flora, personal_note.fruity, personal_note.sweet, personal_note.creamy, personal_note.nutty, personal_note.malty, personal_note.salty, personal_note.spicy, personal_note.smoky, personal_note.peaty]
