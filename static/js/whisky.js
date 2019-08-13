@@ -44,6 +44,15 @@ jQuery(document).ajaxSend(function(event, xhr, settings) {
     }
 });
 
+function editComment(edit_cmt_id) {
+    var c_id = edit_cmt_id.toString();
+    var old_comment = "#cm-user-content-"+c_id;
+    var edit_box = "#edit-box-"+c_id
+    
+    $(old_comment).hide();
+    $(edit_box).show();
+}
+
 function deleteComment(delete_cmt_id) {
     $.ajax({
     url: window.location.pathname,
@@ -56,25 +65,6 @@ function deleteComment(delete_cmt_id) {
     error:function (xhr, textStatus, thrownError){}
 	});
 }
-
-$(document).ready(function () {
-    function editComment(edit_cmt_txt) {
-        // Insert input after span
-        $('<input id="tmp_input">').insertAfter($(".comment-content-31"));
-        $(".comment-content-31").hide(); // Hide span
-        $(".comment-content-31").next().focus();
-        $("#tmp_input").val(edit_cmt_txt);
-        $("#tmp_input").blur(function() {
-            // Set input value as span content
-            // when focus of input is lost.
-            // Also delete the input.
-            var value = $(".comment-content-31").val();
-            $(".comment-content-31").prev().show();
-            $(".comment-content-31").prev().html(value);
-            $(".comment-content-31").remove();        
-        });
-    }
-});
 
 function showReplyBox(rp_id) {
     var rp = rp_id.toString();

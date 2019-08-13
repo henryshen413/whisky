@@ -112,6 +112,138 @@
                 starSize: 25,
                 readOnly: true
             });
+
+            $(".rating-edit-0").starRating({
+                initialRating: 0,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                disableAfterRate: false,
+                callback: function(currentRating, $el){
+                    // do something after rating
+                    document.getElementById('myRating-edit').value = currentRating;
+                }
+            });
+
+            $(".rating-edit-5").starRating({
+                initialRating: 0.5,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                disableAfterRate: false,
+                callback: function(currentRating, $el){
+                    // do something after rating
+                    document.getElementById('myRating-edit').value = currentRating;
+                }
+            });
+
+            $(".rating-edit-10").starRating({
+                initialRating: 1,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                disableAfterRate: false,
+                callback: function(currentRating, $el){
+                    // do something after rating
+                    document.getElementById('myRating-edit').value = currentRating;
+                }
+            });
+
+            $(".rating-edit-15").starRating({
+                initialRating: 1.5,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                disableAfterRate: false,
+                callback: function(currentRating, $el){
+                    // do something after rating
+                    document.getElementById('myRating-edit').value = currentRating;
+                }
+            });
+
+            $(".rating-edit-20").starRating({
+                initialRating: 2,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                disableAfterRate: false,
+                callback: function(currentRating, $el){
+                    // do something after rating
+                    document.getElementById('myRating-edit').value = currentRating;
+                }
+            });
+
+            $(".rating-edit-25").starRating({
+                initialRating: 2.5,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                disableAfterRate: false,
+                callback: function(currentRating, $el){
+                    // do something after rating
+                    document.getElementById('myRating-edit').value = currentRating;
+                }
+            });
+
+            $(".rating-edit-30").starRating({
+                initialRating: 3,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                disableAfterRate: false,
+                callback: function(currentRating, $el){
+                    // do something after rating
+                    document.getElementById('myRating-edit').value = currentRating;
+                }
+            });
+
+            $(".rating-edit-35").starRating({
+                initialRating: 3.5,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                disableAfterRate: false,
+                callback: function(currentRating, $el){
+                    // do something after rating
+                    document.getElementById('myRating-edit').value = currentRating;
+                }
+            });
+
+            $(".rating-edit-40").starRating({
+                initialRating: 4,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                disableAfterRate: false,
+                callback: function(currentRating, $el){
+                    // do something after rating
+                    document.getElementById('myRating-edit').value = currentRating;
+                }
+            });
+
+            $(".rating-edit-45").starRating({
+                initialRating: 4.5,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                disableAfterRate: false,
+                callback: function(currentRating, $el){
+                    // do something after rating
+                    document.getElementById('myRating-edit').value = currentRating;
+                }
+            });
+
+            $(".rating-edit-50").starRating({
+                initialRating: 5,
+                strokeColor: '#894A00',
+                strokeWidth: 10,
+                starSize: 25,
+                disableAfterRate: false,
+                callback: function(currentRating, $el){
+                    // do something after rating
+                    document.getElementById('myRating-edit').value = currentRating;
+                }
+            });
         }());
     </script>
     <script src="{% static "js/whisky.js" %}"></script>
@@ -181,7 +313,7 @@
                         <hr style="margin-top: 20px; margin-bottom: 15px">
                         <h3>Reviews</h3>
                             {% for comment in comments %}
-                                <div class="row comment-row">
+                                <div class="row comment-row" style="margin-top: 15px">
                                     <div class="cm-user-pic">
                                         {% if comment.user.profile.profilepic %}
                                             <img src="{{ comment.user.profile.profilepic.url }}" class="img-responsive cm-user-img"/>
@@ -189,7 +321,7 @@
                                             <img src="{% static "img/author.png" %}" class="img-responsive cm-user-img" />
                                         {% endif %}
                                     </div>
-                                    <div class="cm-user-content">
+                                    <div class="cm-user-content" id="cm-user-content-{{ comment.id }}">
                                         <div class="comment-box">
                                             <span class="comment-user">{{ comment.user|show_username }}&nbsp;</span>
                                             <span class="comment-date">{{ comment.created_at }}</span>
@@ -197,37 +329,57 @@
                                             <div class="rating-{{ comment.rating|convert_rate }}" style="margin-bottom: 10px"></div>
                                             <div class="comment-content-31">{{ comment.note }}</div>
                                         </div>
-                                    </div>
-                                    <div class="popover-container">
-                                        <div class="comment-control-sec">
-                                            {% if request.user == comment.user %}
+
+                                        {% if request.user == comment.user %}
+                                        <div class="popover-container">
+                                            <div class="comment-control-sec">
                                                 <button type="button" class="btn-control" id="btn-control" data-popover="true" data-placement="bottom" data-container="body">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </button>
                                                 <div id="popover-content" class="hidden">
-                                                    <button type="button" name="delete-comment" class="comment-control" onclick = "editComment({{ comment.note }})">
+                                                    <button type="button" name="edit-comment" class="comment-control" onclick = "editComment({{ comment.id }})">
                                                         <i class="fa fa-edit fa-fw btn-ctrl"></i>Edit...
                                                     </button>
                                                     <button type="button" name="delete-comment" class="comment-control" onclick = "deleteComment({{ comment.id }})">
                                                         <i class="fa fa-trash fa-fw btn-ctrl"></i>Delete...
                                                     </button>                                                    
                                                 </div>
-                                            {% endif %}
+                                            </div>
                                         </div>
+                                        {% endif %}
                                     </div>
+
+                                    {% if request.user == comment.user %}
+                                    <div id="edit-box-{{ comment.id }}" style="display: none">
+                                        <form method="post">
+                                            {% csrf_token %} 
+                                            {% if request.user.is_active %}
+                                            <input type="hidden" id="comment-id" name="comment-id" value="{{ comment.id }}">
+                                            <div class="rating-edit-{{ comment.rating|convert_rate }}" style="margin-top: 10px"></div>
+                                            <input type="hidden" id="myRating-{{ comment.id }}" name="myRating-{{ comment.id }}" value="" />
+                                            <textarea required class="form-control comment" placeholder="This whisky is..." name="comment-edit" id="comment-edit">{{ comment.note }}</textarea>
+                                            <input type="checkbox" name="publish_choice" id="publish_choice" value="Private">Private Note</input>
+                                            <br>
+                                            <button id="cancel" name="cancel" class="btn btn-default" value="1" style="margin-top: 10px">Cancel</button>
+                                            <input type="submit" value="submit" class ="btn" style="color:#333; margin-top: 10px">
+                                            {% else %}
+                                            <textarea class="form-control comment" placeholder="Please login or signup" disabled></textarea>
+                                            {% endif %}
+                                        </form>	
+                                    </div>
+                                    {% endif %}
                                 </div>
                             {% endfor %}
                         {% endif %}
                         <hr style="margin-top: 20px; margin-bottom: 15px">
                     </div>
-                    <h3>Add your review</h3>
+                    <h3>My Notes</h3>
                     <form method="post">
                         {% csrf_token %} 
                         {% if request.user.is_active %}
                         <div class="my-rating" style="margin-bottom: 10px"></div>
                         <input type="hidden" id="myRating" name="myRating" value="" />
-                        <textarea class="form-control comment" placeholder="This whisky is..." name="comment" id="comment"></textarea>
-                        <br>
+                        <textarea required class="form-control comment" placeholder="This whisky is..." name="comment" id="comment"></textarea>
                         <input type="checkbox" name="publish_choice" id="publish_choice" value="Private">Private Note</input>
                         <br>
                         <input type="submit" value="submit" class ="btn" style="color:#333; margin-top: 10px">

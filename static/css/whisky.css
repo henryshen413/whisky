@@ -45,6 +45,7 @@ a {
   min-height: 7em;
   text-align: left;
   padding: 15px;
+  margin-bottom: 10px;
   background-color: white;
   border-radius: 10px;
   -webkit-transition: height 0.1s ease-in-out, -webkit-box-shadow 0.25s ease-in-out;
@@ -82,14 +83,6 @@ a {
   float: left;
 }
 
-.cm-user-content {
-  width: calc(90% - 55px);
-  margin-left: 3%;
-  margin-right: 2%;
-  display: inline-block;
-  float: left;
-}
-
 .cm-user-img {
   width: 55px;
   height: 55px;
@@ -98,9 +91,14 @@ a {
 }
 
 .comment-box {
+  width: calc(90% - 55px);
+  margin-left: 3%;
+  margin-right: 2%;
   padding: 10px;
   background-color: white;
   border-radius: 10px;
+  display: inline-block;
+  float: left;
   -webkit-box-shadow: 0px 0px 15px 6px rgba(230, 230, 230, 0.9);
           box-shadow: 0px 0px 15px 6px rgba(230, 230, 230, 0.9);
 }
@@ -159,7 +157,7 @@ a {
     margin-left: auto;
     margin-right: auto;
   }
-  .cm-user-content {
+  .comment-box {
     width: calc(85% - 55px);
     margin-left: 3%;
     margin-right: 2%;
