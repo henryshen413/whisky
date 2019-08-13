@@ -355,8 +355,7 @@
                                             {% csrf_token %} 
                                             {% if request.user.is_active %}
                                             <input type="hidden" id="comment-id" name="comment-id" value="{{ comment.id }}">
-                                            <div class="rating-edit-{{ comment.rating|convert_rate }}" style="margin-top: 10px"></div>
-                                            <input type="hidden" id="myRating-{{ comment.id }}" name="myRating-{{ comment.id }}" value="" />
+                                            <div class="rating-edit-{{ comment.rating|convert_rate }}" id="rating-edit-{{ comment.id }}" style="margin-top: 10px"></div>
                                             <textarea required class="form-control comment" placeholder="This whisky is..." name="comment-edit" id="comment-edit">{{ comment.note }}</textarea>
                                             <input type="checkbox" name="publish_choice" id="publish_choice" value="Private">Private Note</input>
                                             <br>

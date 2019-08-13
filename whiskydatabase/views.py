@@ -49,21 +49,25 @@ class WhiskyView(DetailView):
     def post(self, request, *args, **kwargs):
         if request.POST.get('comment') : 
             content = request.POST.get('comment')
-            rating = request.POST.get('myRating', 0)
+            rating = request.POST['myRating']
             p_choice = "Public"
 
             if request.POST.get('publish_choice'):
                 p_choice = "Private"
             
-            comment = Comment.objects.create(
-                    note = content,
-                    user = self.request.user,
-                    publish_choice = p_choice,
-                    whisky = self.object,
-                    rating = rating
-                )
-            
-            comment.save()
+            if rating is not None:
+                if not rating:
+                    rating = 0
+
+                comment = Comment.objects.create(
+                        note = content,
+                        user = self.request.user,
+                        publish_choice = p_choice,
+                        whisky = self.object,
+                        rating = rating
+                    )
+                
+                comment.save()
 
             return HttpResponseRedirect('/whisky/{}/#r'.format(self.object.slug))
 
@@ -72,17 +76,21 @@ class WhiskyView(DetailView):
             comment = Comment.objects.filter(id=c_id).last()
             
             content = request.POST.get('comment-edit')
-            rating = request.POST.get('myRating', 0)
+            rating = request.POST['myRating-edit']
             p_choice = "Public"
 
             if request.POST.get('publish_choice'):
                 p_choice = "Private"
             
-            comment.note = content
-            comment.rating = rating
-            comment.publish_choice = p_choice
-            
-            comment.save()
+            if rating is not None:
+                if not rating:
+                    rating = 0
+
+                comment.note = content
+                comment.rating = rating
+                comment.publish_choice = p_choice
+                
+                comment.save()
 
             return HttpResponseRedirect('/whisky/{}/#r'.format(self.object.slug))
 

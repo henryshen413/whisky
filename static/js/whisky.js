@@ -47,10 +47,12 @@ jQuery(document).ajaxSend(function(event, xhr, settings) {
 function editComment(edit_cmt_id) {
     var c_id = edit_cmt_id.toString();
     var old_comment = "#cm-user-content-"+c_id;
-    var edit_box = "#edit-box-"+c_id
+    var edit_box = "#edit-box-"+c_id;
+    var rating_edit = "#rating-edit-"+c_id
     
     $(old_comment).hide();
     $(edit_box).show();
+    $(rating_edit).append("<input type=\"hidden\" id=\"myRating-edit\" name=\"myRating-edit\" value=\"\" />");
 }
 
 function deleteComment(delete_cmt_id) {
