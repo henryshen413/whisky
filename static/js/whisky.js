@@ -52,7 +52,7 @@ function editComment(edit_cmt_id) {
     
     $(old_comment).hide();
     $(edit_box).show();
-    $(rating_edit).append("<input type=\"hidden\" id=\"myRating-edit\" name=\"myRating-edit\" value=\"\" />");
+    $(rating_edit).after("<input type=\"hidden\" id=\"myRating-edit\" name=\"myRating-edit\" value=\"\" />");
 }
 
 function deleteComment(delete_cmt_id) {
@@ -66,6 +66,18 @@ function deleteComment(delete_cmt_id) {
     complete:function(){},
     error:function (xhr, textStatus, thrownError){}
 	});
+}
+
+function cancelEdit(edit_cmt_id, rating_score) {
+    var c_id = edit_cmt_id.toString();
+    var old_comment = "#cm-user-content-"+c_id;
+    var edit_box = "#edit-box-"+c_id;
+    var rating_edit = "#rating-edit-"+c_id
+    
+    $("#myRating-edit").remove();
+    $(rating_edit).starRating('setRating', rating_score)
+    $(edit_box).hide();
+    $(old_comment).show();
 }
 
 function showReplyBox(rp_id) {

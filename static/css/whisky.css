@@ -146,7 +146,7 @@ a {
   width: 85px;
 }
 
-@media (max-width: 667px) {
+@media (max-width: 768px) {
   .whisky-info {
     margin-top: 10px;
     text-align: center;
