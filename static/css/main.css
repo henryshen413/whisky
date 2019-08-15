@@ -3,6 +3,17 @@
   margin-top: 150px;
 }
 
+.block-1 {
+  display: inline-block;
+  width: 60%;
+}
+
+.block-2 {
+  display: inline;
+  width: 39%;
+  float: right;
+}
+
 body {
   background-color: white;
   overflow-x: hidden;

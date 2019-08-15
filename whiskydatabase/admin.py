@@ -18,3 +18,7 @@ class WhiskyInfoAdmin(admin.ModelAdmin):
 @admin.register(Country)
 class CountryAdmin(admin.ModelAdmin):
     list_display = ('name', )
+
+@admin.register(Region)
+class CountryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'country')

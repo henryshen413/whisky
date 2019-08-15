@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Whisky Vitae{% endblock %}
+{% block site_name %}{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "css/home.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="block-1">
+        <div id="owl-demo" class="owl-carousel-other">
+            <div class="item">
+                <div class="img-wrp">
+                    <div class="img-text">
+                        <h2>Whisky Map</h2>
+                    </div>
+                    <a href="{% url 'world_distillery_map' %}">
+                        <div class="region_img" style="background-image: url('{% static "img/whisky_map.jpg" %}');"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block-2">
+       
+        
+    </div>
+
+    <div class="whisky_pop_list">
+        <h1>Popular Whisky List</h1>
+        <div id="owl-demo-2" class="owl-carousel owl-theme">
+        {% for whisky in object_list %}
+            <div class="whisky-item">
+                <img class="whisky-photo" src="{{ whisky.photo.url }}"/>
+                <div class="whisky-text-info">
+                    <div class="whisky-brand">{{ whisky.brand_series }}</div>
+                    <div class="whisky-name"><a class="whisky-name" href="{% url 'whisky_view' whisky_slug=whisky.slug %}">{{ whisky.name }}</a></div>
+                    <div class="whisky-region">
+                        <img class="country-flag" src="{{ whisky.distillery.country.image.url}}" /> 
+                        <span>{{ whisky.distillery.region }}, {{ whisky.distillery.country.name }}</span>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div>No whisky yet.</div>
+        {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        $('.owl-carousel-other').owlCarousel({
+            items:1,
+            nav:true,
+            margin:10
+        });
+
+        $('#owl-demo-1').owlCarousel({
+            items:1,
+            loop:true,
+            margin:10,
+            autoplay:true,
+            autoplayTimeout:3000,
+            autoplayHoverPause:true
+        });
+
+        $('#owl-demo-2').owlCarousel({
+            responsive:{
+                0:{
+                    items:1,
+                    margin:30,
+                    nav:true
+                },
+                650:{
+                    items:2,
+                    nav:true
+                },
+                1000:{
+                    items:3,
+                    nav:true
+                },
+                1200:{
+                    items:4,
+                    nav:true
+                }
+            },
+            loop:true,
+            margin:10,
+            autoplay:true,
+            autoplayTimeout:3000,
+            autoplayHoverPause:true,
+            dots:false,
+            navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
+        });
+    </script>
+{% endblock %}

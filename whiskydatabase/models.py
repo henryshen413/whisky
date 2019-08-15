@@ -70,10 +70,15 @@ class Country(models.Model):
     def __str__(self):
         return self.name
 
+class Region(models.Model):
+    name = models.CharField(max_length=20)
+    country = models.ForeignKey(Country, related_name='region_country', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='region/uploads/%Y/%m/%d/', blank=True)
+
 class Distillery(models.Model):
     is_active = models.BooleanField(default=False)
     name = models.CharField(max_length=100, unique=True)
-    region = models.CharField(max_length=100)
+    region = models.ForeignKey(Region, related_name='distillery_region', on_delete=models.CASCADE)
     country = models.ForeignKey(Country, related_name='distillery_country', on_delete=models.CASCADE)
     year_founded = models.IntegerField(default=0)
     owner = models.CharField(max_length=100)
