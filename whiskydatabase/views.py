@@ -16,6 +16,14 @@ class HomeView(ListView):
         context = super().get_context_data(**kwargs)
         return context
 
+class WhiskyListView(ListView):
+    model = WhiskyInfo
+    template_name = "whisky_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
 class DistilleryMapView(TemplateView):
     template_name = "whiskymap.html"
 
@@ -30,15 +38,6 @@ class DistilleryListView(ListView):
 class DistilleryView(DetailView):
     model = Distillery
     template_name = "home.html"
-
-class WhiskyListView(ListView):
-    model = WhiskyInfo
-    template_name = "home.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        return context
 
 class WhiskyView(DetailView):
     template_name = "whisky_info.html"

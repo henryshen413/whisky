@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load site_tags %}
+
+{% block title %}Whisky Gallery{% endblock %}
+{% block site_name %}{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "css/whisky_list.css" %}">
+    <link rel="stylesheet" href="{% static "css/shelf.css" %}">
+{% endblock %}
+
+{% block content %}    
+    <div class="container" style="width: auto">
+        <div class=" row whisky_gallery">
+            {% for whisky in object_list %}
+                <div class="col-xs-6 col-sm-4 col-md-2">
+                    <div class="gallery-item"><img class="img-responsive bottle" src="{{ whisky.photo.url }}"/></div>
+                </div>
+                {% with rowvalue1="hidden-xs hidden-sm hidden-md hidden-lg" rowvalue2="hidden-sm hidden-md hidden-lg" rowvalue3="hidden-xs hidden-md hidden-lg" rowvalue4="hidden-sm hidden-md hidden-lg" rowvalue5="hidden-xs hidden-sm hidden-md hidden-lg" rowvalue6="" %}  
+                {% if forloop.last %}
+                    <div class="col-xs-12 col-sm-12 col-md-12 shelf"></div>
+                {% else %}
+                    <div class="col-xs-12 col-sm-12 col-md-12 shelf {% cycle rowvalue1 rowvalue2 rowvalue3 rowvalue4 rowvalue5 rowvalue6%}"></div>
+                {% endif %}                
+                {% endwith %}
+                
+            {% empty %}
+                <div>No whisky yet.</div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+   
+{% endblock %}

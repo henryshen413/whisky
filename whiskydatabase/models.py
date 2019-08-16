@@ -75,6 +75,9 @@ class Region(models.Model):
     country = models.ForeignKey(Country, related_name='region_country', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='region/uploads/%Y/%m/%d/', blank=True)
 
+    def __str__(self):
+        return self.name
+
 class Distillery(models.Model):
     is_active = models.BooleanField(default=False)
     name = models.CharField(max_length=100, unique=True)

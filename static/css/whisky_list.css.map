@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAC;EACT,KAAK,EAAE,SAAS;EAChB,OAAO,EAAE,MAAM;EACf,KAAK,EAAE,IAAI;CAAG;;AAElB,AAAA,aAAa,CAAC;EACV,KAAK,EAAE,gBAAgB;EACvB,MAAM,EAAE,gBAAgB;EACxB,WAAW,EAAE,IAAI;EACjB,YAAY,EAAE,IAAI;EAClB,UAAU,EAAE,IAAI;CAAG",
+    "sources": [
+        "../sass/whisky_list.sass"
+    ],
+    "names": [],
+    "file": "whisky_list.css"
+}
