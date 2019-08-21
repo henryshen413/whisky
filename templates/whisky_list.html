@@ -9,7 +9,41 @@
     <link rel="stylesheet" href="{% static "css/shelf.css" %}">
 {% endblock %}
 
-{% block content %}    
+{% block content %}
+    <div class="container" style="width: auto">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-2">
+              <a href=""><img src="http://placehold.it/150x190/e8117f/fff&amp;text=Book%20Title" class="img-responsive book"></a>
+            </div>
+            <div class="col-xs-12 shelf hidden-xs hidden-sm hidden-md hidden-lg"></div>
+
+            <div class="col-xs-6 col-sm-4 col-md-2">
+              <a href=""><img src="http://placehold.it/150x190/e8117f/fff&amp;text=Book%20Title" class="img-responsive book"></a>
+            </div>
+            <div class="col-xs-12 shelf hidden-sm hidden-md hidden-lg"></div>
+
+            <div class="col-xs-6 col-sm-4 col-md-2">
+                <a href=""><img src="http://placehold.it/150x190/e8117f/fff&amp;text=Book%20Title" class="img-responsive book"></a>
+            </div>
+            <div class="col-xs-12 shelf hidden-xs hidden-md hidden-lg"></div>
+
+            <div class="col-xs-6 col-sm-4 col-md-2">
+                <a href=""><img src="http://placehold.it/150x190/e8117f/fff&amp;text=Book%20Title" class="img-responsive book"></a>
+            </div>
+            <div class="col-xs-12 shelf hidden-sm hidden-md hidden-lg"></div>
+
+            <div class="col-xs-6 col-sm-4 col-md-2">
+                <a href=""><img src="http://placehold.it/150x190/e8117f/fff&amp;text=Book%20Title" class="img-responsive book"></a>
+            </div>
+            <div class="col-xs-12 shelf hidden-xs hidden-sm hidden-md hidden-lg"></div>
+
+            <div class="col-xs-6 col-sm-4 col-md-2">
+                <a href=""><img src="http://placehold.it/150x190/e8117f/fff&amp;text=Book%20Title" class="img-responsive book"></a>
+            </div>
+            <div class="col-xs-12 shelf"></div>
+        </div>
+    </div> 
+    
     <div class="container" style="width: auto">
         <div class=" row whisky_gallery">
             {% for whisky in object_list %}
