@@ -1,0 +1,66 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+<form method="post" action="" name="login-sheet" class="login-sheet">
+    {% csrf_token %}
+
+    <div class="modal-header" style="text-align: center; border-bottom:none">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-title" style="font-size: 20px; color: #43c1bd; margin-top: 20px">{% trans '會員登入' %}</div>
+    </div>
+
+    <div class="modal-body" style="padding:0px 25px">
+
+        <div class="login-form">
+            <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
+            {% for error in form.non_field_errors %}
+                {{ error }}
+            {% endfor %}
+            </div>
+                        
+            {% for field in form %}
+            <div class="form-group">
+                <label>
+                    {{ field.label }}
+                </label>
+                {{ field }}
+                <div class="{% if field.errors %} invalid{% endif %}">
+                {% for error in field.errors %}
+                    <p class="help-block">{{ error }}</p>
+                {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div style="margin-bottom: 10px">
+            <a href="{% url 'password_reset' %}" class="forget-password">{% trans '忘記密碼？' %}</a>
+        </div>
+        <div class="social-login">
+            <a href="{% url "social:begin" "google-oauth2" %}?next={{ request.META.HTTP_REFERER }}" class="google-login"><img src="{% static 'img/google-dark-icon.png'%}"/>使用Google登入</a>
+            <a href="{% url "social:begin" "facebook" %}?next={{ request.META.HTTP_REFERER }}" class="fb-login"><img src="{% static 'img/facebook-icon.png'%}"/>使用Facebook登入</span></a>
+        </div>
+    </div>
+    
+    <div class="modal-footer" style="border-top: none">
+        <div id="html_element" style="margin: 0px 10px"></div>
+        <table style="width:80%; table-layout:fixed; margin: 0px auto;">
+            <tr>
+                <td style="width: 30%; padding: 10% 8%"><button type="button" class="btn btn-default btn-block submit-btn" formnovalidate="formnovalidate" disabled>登入</button></td>
+                <td style="width: 30%; padding: 10% 8%"><button type="button" class="signup-btn btn btn-primary btn-block" type="button" name="button">立即註冊</button></td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $(function () {
+        // Sign up button
+        $(".signup-btn").modalForm({formURL: "{% url 'signup' %}"});
+    });
+</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+async defer>
+</script>

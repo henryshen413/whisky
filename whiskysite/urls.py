@@ -18,5 +18,10 @@ from django.urls import include, path
 
 urlpatterns = [
     path('', include('whiskydatabase.urls')),
+
+    #login/logout/signup
+    path(r'social-auth/', include('social_django.urls', namespace='social')),
+    re_path(r'^logout/$', admin_logout, name='admin_logout'),
+
     path('admin/', admin.site.urls),
 ]

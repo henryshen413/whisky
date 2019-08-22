@@ -1,0 +1,62 @@
+{% load i18n %}
+{% load widget_tweaks %}
+
+<form method="post" action="">
+    {% csrf_token %}
+
+    <div class="modal-header" style="border-bottom: none">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <span class="modal-title" style="font-size: 20px; color: #43c1bd; margin-top: 20px">{% trans '加入我們' %}</span>
+        <br>
+        <span class="modal-title" style="font-size: 20px; color: #43c1bd; margin-top: 20px">{% trans '成為blockore的一份子' %}</span>
+    </div>
+
+    <div class="modal-body" style="padding:0px 25px">
+
+        <div class="signup-form">
+            <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
+            {% for error in form.non_field_errors %}
+                {{ error }}
+            {% endfor %}
+            </div>
+      
+            {% for field in form %}
+            <div class="form-group">
+                <label>
+                    {{ field.label }}
+                </label>
+                {{ field }}
+                <div class="{% if field.errors %} invalid{% endif %}">
+                {% for error in field.errors %}
+                    <p class="help-block">{{ error }}</p>
+                {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="consent-text">          
+            <div id="PConsent" style="font-size:14px;">
+                <input type="checkbox" id="ChkConsent" onchange="signupBtnCtrl();" style="vertical-align:middle; margin-top:0px">
+                <span>我同意並遵守</span>
+                <a href="/service/" target="_blank">服務條款</a>
+                <span>與</span>
+                <a href="/privacy/" target="_blank">隱私權政策</a>
+                <span>的內容。</span>
+            </div>
+        </div>
+
+        
+    </div>
+    
+    <div class="modal-footer" style="border-top: none">
+        <div id="html_element" style="margin: 0px 10px"></div>
+        <button type="button" class="btn btn-primary btn-block submit-btn" style="margin:5px auto; width:60%;" formnovalidate="formnovalidate" disabled>完成註冊</button>
+    </div>
+
+</form>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+</script>
