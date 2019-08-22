@@ -7,11 +7,6 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.template.defaultfilters import filesizeformat, slugify
 from django.utils.translation import ugettext, ugettext_lazy as _
 
-from bootstrap_modal_forms.mixins import PopRequestMixin, CreateUpdateAjaxMixin
-
-from blogit.models import Page
-
-from mainsite.models import ROLE_CHOICE, Menu, ContactUsSettings
 
 class CustomAuthenticationForm(forms.ModelForm):
     email = forms.EmailField()
@@ -87,7 +82,7 @@ class CustomAuthenticationForm(forms.ModelForm):
 
         return self.cleaned_data
 
-class CustomUserCreationForm(PopRequestMixin, CreateUpdateAjaxMixin, UserCreationForm):
+class CustomUserCreationForm(UserCreationForm):
     form_info = {
         'email': '電子信箱',
         'password1': '密碼',

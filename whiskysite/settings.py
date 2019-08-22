@@ -42,11 +42,10 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'social_django',
+    'widget_tweaks',
 ]
 
 LOCAL_APPS = [
-    'whiskydatabase',
-    'whiskysite',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

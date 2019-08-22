@@ -8,7 +8,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
-        <div class="modal-title" style="font-size: 20px; color: #43c1bd; margin-top: 20px">{% trans '會員登入' %}</div>
+        <div class="modal-title" style="font-size: 20px; color: #43c1bd; margin-top: 20px">會員登入</div>
     </div>
 
     <div class="modal-body" style="padding:0px 25px">
@@ -36,8 +36,11 @@
         </div>
 
         <div style="margin-bottom: 10px">
-            <a href="{% url 'password_reset' %}" class="forget-password">{% trans '忘記密碼？' %}</a>
+            <a href="" class="forget-password">忘記密碼？</a>
         </div>
+
+        <div class="hr-sect">Or</div>
+
         <div class="social-login">
             <a href="{% url "social:begin" "google-oauth2" %}?next={{ request.META.HTTP_REFERER }}" class="google-login"><img src="{% static 'img/google-dark-icon.png'%}"/>使用Google登入</a>
             <a href="{% url "social:begin" "facebook" %}?next={{ request.META.HTTP_REFERER }}" class="fb-login"><img src="{% static 'img/facebook-icon.png'%}"/>使用Facebook登入</span></a>
@@ -48,7 +51,7 @@
         <div id="html_element" style="margin: 0px 10px"></div>
         <table style="width:80%; table-layout:fixed; margin: 0px auto;">
             <tr>
-                <td style="width: 30%; padding: 10% 8%"><button type="button" class="btn btn-default btn-block submit-btn" formnovalidate="formnovalidate" disabled>登入</button></td>
+                <td style="width: 30%; padding: 10% 8%"><button type="button" class="btn btn-default btn-block submit-btn" formnovalidate="formnovalidate">登入</button></td>
                 <td style="width: 30%; padding: 10% 8%"><button type="button" class="signup-btn btn btn-primary btn-block" type="button" name="button">立即註冊</button></td>
             </tr>
         </table>
@@ -60,7 +63,4 @@
         // Sign up button
         $(".signup-btn").modalForm({formURL: "{% url 'signup' %}"});
     });
-</script>
-<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-async defer>
 </script>
