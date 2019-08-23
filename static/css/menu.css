@@ -76,6 +76,14 @@ ul {
   white-space: nowrap;
 }
 
+.lower-menu li:first-child a {
+  padding-left: 0px;
+}
+
+.lower-menu li:last-child a {
+  padding-right: 0px;
+}
+
 .list-group-item li a {
   padding: 0;
 }
@@ -160,6 +168,10 @@ ul {
 .mobile-nav .lower-menu .btn {
   padding-top: 0;
   padding-bottom: 0;
+}
+
+.mobile-nav .lower-menu .navbar-brand {
+  margin-left: 20px;
 }
 
 .mobile-nav .lower-menu .navbar-brand img {

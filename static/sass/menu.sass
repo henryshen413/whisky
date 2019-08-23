@@ -66,7 +66,12 @@ ul
             overflow: hidden
             text-overflow: ellipsis
             white-space: nowrap
-
+.lower-menu
+    li
+        &:first-child a
+            padding-left: 0px
+        &:last-child a
+            padding-right: 0px
 .list-group-item li a
     padding: 0
 
@@ -96,7 +101,7 @@ ul
     .row
         background-color: #FDEB7B
         margin-right: 0px
-        margin-left: 0px
+        margin-left: 0px    
     .collapse
         overflow-x: scroll
         max-height: calc(100vh - 210px)
@@ -120,6 +125,7 @@ ul
             padding-top: 0
             padding-bottom: 0
         .navbar-brand
+            margin-left: 20px
             img
                 height: 30px
                 margin: initial
@@ -344,4 +350,3 @@ ul
 
 
 
-    

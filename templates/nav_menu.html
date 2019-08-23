@@ -75,11 +75,31 @@
             <!-- Collect the mobile nav links -->
             <div id="mobile_div">
                 <div class="mobile-div">
-                    <ul class="lower-menu">
+                    <ul class="lower-menu" style="justify-content: space-between;">
                         <li>
-                            <a class="navbar-toggler" data-toggle="collapse" data-target="#mobile_menu" data-parent="#mobile_div">
-                                <div class="animated-icon"><span></span><span></span><span></span></div>
-                            </a>
+                            <ul class="lower-menu">
+                                <li>
+                                    <a class="navbar-toggler" data-toggle="collapse" data-target="#mobile_menu" data-parent="#mobile_div">
+                                        <div class="animated-icon"><span></span><span></span><span></span></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="navbar-brand" href="/"><img src="{% static "img/logo.svg" %}"></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            {% if request.path|slice:"1:5" == "user" %}
+                            <a class="user-menu-btn" href="javascript:void(0)"><img src="{% static 'img/user-menu-btn.png' %}" class="member-thumbnail-mobile" /></a>
+                            {% elif request.user.is_active %}
+                                {% if request.user.profile.profilepic %}
+                                    <a href=""><img src="{{ request.user.profile.profilepic.url }}" class="member-thumbnail-mobile" /></a>
+                                {% else %}
+                                    <a href=""><i class="fa fa-user-circle"></i></a>
+                                {% endif %}
+                            {% else %}
+                            <button class="btn login-btn" type="button" name="button" style="background-color:transparent; border: none; color: black;"><i class="fa fa-user"></i></button>
+                            {% endif %}
                         </li>
                     </ul>
                 </div>
