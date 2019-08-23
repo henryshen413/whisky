@@ -281,10 +281,23 @@
                 </div>
 
                 <div class="nav-block" id='tab-2'>
+                    {% if request.user.is_active %}
                     <div class="chart">
                         <input type="hidden" id="personalVar" name="variable">{{ whisky_detail.personal_note }}</input>
                         <canvas id="canvas-individual"></canvas>
                     </div>
+                    {% else %}
+                    <div id="blurred-chart">
+                        <input type="hidden" id="personalVar" name="variable"></input>
+                        <canvas id="canvas-individual"></canvas>
+                    </div>
+
+                    <div id="overflow-cover">
+                        <a class="if-not-login-btn" style="width: 80%; padding: 20px">
+                            PLEASE LOGIN
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

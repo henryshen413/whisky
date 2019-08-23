@@ -83,7 +83,6 @@ $(document).ready(function(){
 	$('.tabs').tabslet();
     $('.tabs').on("_before", function(e) {
         e.preventDefault();
-        testAnim("fadeInLeft")
 	});
 	
     $('.owl-carousel').owlCarousel({
