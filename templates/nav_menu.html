@@ -17,9 +17,20 @@
             <div data-hover="dropdown" data-animations="zoomIn zoomIn zoomIn zoomIn">
                 <div class="row member-div">
                     <ul class="membership navbar-right">
+                        {% if request.user.is_active %}
                         <li class="themes">
-                            <button class="btn login-btn" type="button" name="button">Login<img src="{% static "img/author.png" %}" class="img-responsive member-thumbnail" /></button>
+                            <a href="" class="username" title="會員主頁">
+                                {{ request.user.username }}
+                            </a>
+                            <a href="" title="會員主頁"></a>
+                                <img src="{% static "img/author.png" %}" class="img-responsive member-thumbnail"/> 
+                            </a>
                         </li>
+                        {% else %}
+                        <li class="themes">
+                            <button class="btn login-btn" type="button" name="button">會員登入<img src="{% static "img/author.png" %}" class="img-responsive member-thumbnail" /></button>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
                 <hr class="menu-hr">
