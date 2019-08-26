@@ -10,7 +10,13 @@ $('body').popover({
 
 $(document).ready(function() {
     $('#show-edit-flavor').click(function() {
-        $('.edit-flavor-div').slideToggle("fast");
+        $('.edit-flavor-div').slideToggle("fast", function() {
+            if ($(this).is(":visible")) {
+                $('#show-edit-flavor').text('Close');                
+            } else {
+                $('#show-edit-flavor').text('Edit your Flavor');                
+            }        
+        });
     });
 });
 
@@ -23,11 +29,10 @@ $(function() {
 
         $( this ).empty().slider({
             value: value,
-            range: "max",
+            range: "min",
             min: 0,
             max: 10,
             orientation: "horizontal",
-            animate: true,
             slide: function( event, ui ) {
                 var csrftoken = getCookie('csrftoken');
                 $.ajax({

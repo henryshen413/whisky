@@ -286,32 +286,32 @@
                         <input type="hidden" id="personalVar" name="variable">{{ whisky_detail.personal_note }}</input>
                         <canvas id="canvas-individual"></canvas>
                     </div>
-                    <div id="show-edit-flavor" style="margin-top: 15px">Edit your Flavor</div>
+                    <button id="show-edit-flavor" class="btn">Edit your Flavor</button>
                     {{ personal_note_array.flora }}
-                    <div class="edit-flavor-div" style="display: none;">
+                    <div class="edit-flavor-div" style="display: none; margin-top: 15px">
                         <div id="flavor-bar-controller">
                             {% if personal_note %}
-                            <div class="flavor-ctrl" id="0">{{ personal_note.flora }}</div>
-                            <div class="flavor-ctrl" id="1">{{ personal_note.fruity }}</div>
-                            <div class="flavor-ctrl" id="2">{{ personal_note.sweet }}</div>
-                            <div class="flavor-ctrl" id="3">{{ personal_note.creamy }}</div>
-                            <div class="flavor-ctrl" id="4">{{ personal_note.nutty }}</div>
-                            <div class="flavor-ctrl" id="5">{{ personal_note.malty }}</div>
-                            <div class="flavor-ctrl" id="6">{{ personal_note.salty }}</div>
-                            <div class="flavor-ctrl" id="7">{{ personal_note.spicy }}</div>
-                            <div class="flavor-ctrl" id="8">{{ personal_note.smoky }}</div>
-                            <div class="flavor-ctrl" id="9">{{ personal_note.peaty }}</div>
+                            <span>Flora</span><div class="flavor-ctrl" id="0">{{ personal_note.flora }}</div>
+                            <span>Fruity</span><div class="flavor-ctrl" id="1">{{ personal_note.fruity }}</div>
+                            <span>Sweet</span><div class="flavor-ctrl" id="2">{{ personal_note.sweet }}</div>
+                            <span>Creamy</span><div class="flavor-ctrl" id="3">{{ personal_note.creamy }}</div>
+                            <span>Nutty</span><div class="flavor-ctrl" id="4">{{ personal_note.nutty }}</div>
+                            <span>Malty</span><div class="flavor-ctrl" id="5">{{ personal_note.malty }}</div>
+                            <span>Salty</span><div class="flavor-ctrl" id="6">{{ personal_note.salty }}</div>
+                            <span>Spicy</span><div class="flavor-ctrl" id="7">{{ personal_note.spicy }}</div>
+                            <span>Smoky</span><div class="flavor-ctrl" id="8">{{ personal_note.smoky }}</div>
+                            <span>Peaty</span><div class="flavor-ctrl" id="9">{{ personal_note.peaty }}</div>
                             {% else %}
-                            <div class="flavor-ctrl" id="0">0</div>
-                            <div class="flavor-ctrl" id="1">0</div>
-                            <div class="flavor-ctrl" id="2">0</div>
-                            <div class="flavor-ctrl" id="3">0</div>
-                            <div class="flavor-ctrl" id="4">0</div>
-                            <div class="flavor-ctrl" id="5">0</div>
-                            <div class="flavor-ctrl" id="6">0</div>
-                            <div class="flavor-ctrl" id="7">0</div>
-                            <div class="flavor-ctrl" id="8">0</div>
-                            <div class="flavor-ctrl" id="9">0</div>
+                            <span>Flora</span><div class="flavor-ctrl" id="0">0</div>
+                            <span>Fruity</span><div class="flavor-ctrl" id="1">0</div>
+                            <span>Sweet</span><div class="flavor-ctrl" id="2">0</div>
+                            <span>Creamy</span><div class="flavor-ctrl" id="3">0</div>
+                            <span>Nutty</span><div class="flavor-ctrl" id="4">0</div>
+                            <span>Malty</span><div class="flavor-ctrl" id="5">0</div>
+                            <span>Salty</span><div class="flavor-ctrl" id="6">0</div>
+                            <span>Spicy</span><div class="flavor-ctrl" id="7">0</div>
+                            <span>Smoky</span><div class="flavor-ctrl" id="8">0</div>
+                            <span>Peaty</span><div class="flavor-ctrl" id="9">0</div>
                             {% endif %}
                         </div>
                     </div>

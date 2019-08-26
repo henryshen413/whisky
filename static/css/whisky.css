@@ -170,6 +170,23 @@ a {
   text-align: center;
 }
 
+#show-edit-flavor {
+  text-align: center;
+  margin-top: 15px;
+  border-radius: 15px 15px;
+  outline: none;
+}
+
+.ui-slider-range {
+  background: #581D17;
+}
+
+.ui-slider-handle {
+  border-color: #581D17 !important;
+  background: #581D17 !important;
+  border-radius: 50%;
+}
+
 .flavor-ctrl {
   margin: 15px auto;
   width: 250px;
