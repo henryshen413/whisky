@@ -10,15 +10,6 @@ ROLE_CHOICE = (
     ('Pro', 'Pro'),
 )
 
-GRADES_CHOICES = (
-    (0, '0'),
-    (1, '1'),
-    (2, '2'),
-    (3, '3'),
-    (4, '4'),
-    (5, '5'),
-)
-
 PUBLISH_CHOICE = (
     ('Private', 'Private'),
     ('Public', 'Public'),
@@ -149,16 +140,16 @@ class WhiskyInfo(models.Model):
 class PersonalWhiskyNote(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='per_user', on_delete=models.CASCADE)
     whisky = models.ForeignKey(WhiskyInfo, related_name='per_whisky', on_delete=models.CASCADE)
-    flora = models.CharField(max_length=1, choices=GRADES_CHOICES)
-    fruity = models.CharField(max_length=1, choices=GRADES_CHOICES)
-    sweet = models.CharField(max_length=1, choices=GRADES_CHOICES)
-    creamy = models.CharField(max_length=1, choices=GRADES_CHOICES)
-    nutty = models.CharField(max_length=1, choices=GRADES_CHOICES)
-    malty = models.CharField(max_length=1, choices=GRADES_CHOICES)
-    salty = models.CharField(max_length=1, choices=GRADES_CHOICES)
-    spicy = models.CharField(max_length=1, choices=GRADES_CHOICES)
-    smoky = models.CharField(max_length=1, choices=GRADES_CHOICES)
-    peaty = models.CharField(max_length=1, choices=GRADES_CHOICES)
+    flora = models.IntegerField(default=0)
+    fruity = models.IntegerField(default=0)
+    sweet = models.IntegerField(default=0)
+    creamy = models.IntegerField(default=0)
+    nutty = models.IntegerField(default=0)
+    malty = models.IntegerField(default=0)
+    salty = models.IntegerField(default=0)
+    spicy = models.IntegerField(default=0)
+    smoky = models.IntegerField(default=0)
+    peaty = models.IntegerField(default=0)
 
 class GeneralWhiskyNote(models.Model):
     whisky = models.OneToOneField(WhiskyInfo, on_delete=models.CASCADE, unique=True, related_name="gen_whisky")
@@ -172,6 +163,7 @@ class GeneralWhiskyNote(models.Model):
     spicy = models.IntegerField(default=0)
     smoky = models.IntegerField(default=0)
     peaty = models.IntegerField(default=0)
+    total_notes_num = models.IntegerField(default=0)
 
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='note_user')

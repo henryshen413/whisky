@@ -8,6 +8,49 @@ $('body').popover({
     }
 });
 
+$(document).ready(function() {
+    $('#show-edit-flavor').click(function() {
+        $('.edit-flavor-div').slideToggle("fast");
+    });
+});
+
+//slider
+$(function() {
+    $( "#flavor-bar-controller > .flavor-ctrl" ).each(function() {
+        // read initial values from markup and remove that
+        var value = parseInt($( this ).text(), 10);
+        var ctrl_id = parseInt($(this).attr('id'), 10);
+
+        $( this ).empty().slider({
+            value: value,
+            range: "max",
+            min: 0,
+            max: 10,
+            orientation: "horizontal",
+            animate: true,
+            slide: function( event, ui ) {
+                var csrftoken = getCookie('csrftoken');
+                $.ajax({
+                headers: { "X-CSRFToken": csrftoken },
+                url: window.location.href,
+                type: "POST",
+                data: {"flavor_edit": "flavor_edit", "ctrl_id": ctrl_id, "value": ui.value},
+                success: function(response){
+                        config_individual.data.datasets[0].data[ctrl_id] = ui.value;
+                        config.data.datasets[0].data[ctrl_id] = response;
+                        // redraw chart
+                        myRadar.update();
+                        generalRadar.update();
+                },
+                complete:function(){},
+                error:function (xhr, textStatus, thrownError){}
+                });
+            }
+        });
+    });
+});
+
+
 // ajax token
 jQuery(document).ajaxSend(function(event, xhr, settings) {
     function getCookie(name) {

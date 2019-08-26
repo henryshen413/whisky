@@ -11,8 +11,8 @@
     <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
     <script type="text/javascript">
         (function () {
-            window.tableData = JSON.parse('{{ personal_note_array|safe}}');
-            
+            window.generaltableData = JSON.parse('{{general_note_array|safe}}');
+            window.personaltableData = JSON.parse('{{personal_note_array|safe}}');
             $(".my-rating").starRating({
                 initialRating: 0,
                 strokeColor: '#894A00',
@@ -285,6 +285,35 @@
                     <div class="chart">
                         <input type="hidden" id="personalVar" name="variable">{{ whisky_detail.personal_note }}</input>
                         <canvas id="canvas-individual"></canvas>
+                    </div>
+                    <div id="show-edit-flavor" style="margin-top: 15px">Edit your Flavor</div>
+                    {{ personal_note_array.flora }}
+                    <div class="edit-flavor-div" style="display: none;">
+                        <div id="flavor-bar-controller">
+                            {% if personal_note %}
+                            <div class="flavor-ctrl" id="0">{{ personal_note.flora }}</div>
+                            <div class="flavor-ctrl" id="1">{{ personal_note.fruity }}</div>
+                            <div class="flavor-ctrl" id="2">{{ personal_note.sweet }}</div>
+                            <div class="flavor-ctrl" id="3">{{ personal_note.creamy }}</div>
+                            <div class="flavor-ctrl" id="4">{{ personal_note.nutty }}</div>
+                            <div class="flavor-ctrl" id="5">{{ personal_note.malty }}</div>
+                            <div class="flavor-ctrl" id="6">{{ personal_note.salty }}</div>
+                            <div class="flavor-ctrl" id="7">{{ personal_note.spicy }}</div>
+                            <div class="flavor-ctrl" id="8">{{ personal_note.smoky }}</div>
+                            <div class="flavor-ctrl" id="9">{{ personal_note.peaty }}</div>
+                            {% else %}
+                            <div class="flavor-ctrl" id="0">0</div>
+                            <div class="flavor-ctrl" id="1">0</div>
+                            <div class="flavor-ctrl" id="2">0</div>
+                            <div class="flavor-ctrl" id="3">0</div>
+                            <div class="flavor-ctrl" id="4">0</div>
+                            <div class="flavor-ctrl" id="5">0</div>
+                            <div class="flavor-ctrl" id="6">0</div>
+                            <div class="flavor-ctrl" id="7">0</div>
+                            <div class="flavor-ctrl" id="8">0</div>
+                            <div class="flavor-ctrl" id="9">0</div>
+                            {% endif %}
+                        </div>
                     </div>
                     {% else %}
                     <div id="blurred-chart">

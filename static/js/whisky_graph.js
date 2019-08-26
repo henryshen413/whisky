@@ -2,13 +2,13 @@ var color = Chart.helpers.color;
 var config = {
     type: 'radar',
     data: {
-        labels: ['Flora', 'Fruity', 'Sweetness', 'Creamy', 'Nutty', 'Malty', 'Salty', 'Spicy', 'Smoky', 'Peaty'],
+        labels: ['Flora', 'Fruity', 'Sweet', 'Creamy', 'Nutty', 'Malty', 'Salty', 'Spicy', 'Smoky', 'Peaty'],
         datasets: [{
             label: 'whisky',
             backgroundColor: color("#FDEB7B").alpha(0.2).rgbString(),
             borderColor: window.chartColors.red,
             pointBackgroundColor: window.chartColors.red,
-            data: [9, 6, 1, 7, 5, 2, 2, 4, 4, 3]
+            data: window.generaltableData
         }]
     },
     options: {
@@ -34,13 +34,13 @@ var config = {
 var config_individual = {
   type: 'radar',
   data: {
-      labels: ['Flora', 'Fruity', 'Sweetness', 'Creamy', 'Nutty', 'Malty', 'Salty', 'Spicy', 'Smoky', 'Peaty'],
+      labels: ['Flora', 'Fruity', 'Sweet', 'Creamy', 'Nutty', 'Malty', 'Salty', 'Spicy', 'Smoky', 'Peaty'],
       datasets: [{
           label: 'whisky',
           backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
           borderColor: window.chartColors.red,
           pointBackgroundColor: window.chartColors.red,
-          data: window.tableData
+          data: window.personaltableData
       }]
   },
   options: {
@@ -64,7 +64,7 @@ var config_individual = {
 };
 
 window.onload = function() {
-  window.myRadar = new Chart(document.getElementById('canvas'), config);
+  window.generalRadar = new Chart(document.getElementById('canvas'), config);
   window.myRadar = new Chart(document.getElementById('canvas-individual'), config_individual);
 };
 

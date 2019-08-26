@@ -170,6 +170,11 @@ a {
   text-align: center;
 }
 
+.flavor-ctrl {
+  margin: 15px auto;
+  width: 250px;
+}
+
 @media (max-width: 768px) {
   .whisky-info {
     margin-top: 10px;
