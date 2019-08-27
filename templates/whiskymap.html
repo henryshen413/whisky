@@ -35,8 +35,26 @@
                 center: {lat: 57.033749, lng: -4.080696},
                 zoom: 6
             });
+
+            var markers = locations.map(function(location, i) {
+                return new google.maps.Marker({
+                position: location,
+                label: ''
+                });
+            });
+
+            // Add a marker clusterer to manage the markers.
+            var markerCluster = new MarkerClusterer(map, markers,
+                {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
         }
+
+        
+        var locations = [];
+        {% for distillery in distillery_list %}
+            locations.push({lat: {{ distillery.lat }}, lng: {{ distillery.lon }}});
+        {% endfor %}
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAk_JAWxllKD_6QyqchrgvO5Jkspxir_UI&callback=initMap" async defer></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 {% endblock %}
 
