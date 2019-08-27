@@ -76,7 +76,7 @@ class Distillery(models.Model):
     country = models.ForeignKey(Country, related_name='distillery_country', on_delete=models.CASCADE)
     year_founded = models.IntegerField(default=0)
     owner = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     photo = models.ImageField(upload_to='distillery/uploads/%Y/%m/%d/', blank=True, null=True)
     lon = models.FloatField()
     lat = models.FloatField()

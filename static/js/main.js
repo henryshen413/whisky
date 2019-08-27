@@ -200,7 +200,6 @@ $(function(){
 //open/close user menu
 function userMenudropDown() {
     document.getElementById("myDropdown").classList.toggle("show");
-    console.log("open")
 }
 
 // Close the dropdown if the user clicks outside of it
