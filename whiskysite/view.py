@@ -4,6 +4,7 @@ from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout
 from django.http import HttpResponse, Http404, JsonResponse, HttpResponseRedirect
+from django.urls import reverse, reverse_lazy
 
 from whiskysite.form import *
 from whiskysite.mixin import *
@@ -16,7 +17,8 @@ class CustomLoginView(LoginAjaxMixin, SuccessMessageMixin, LoginView):
 	success_message = '登入成功'
 
 def logout_view(request):
-    logout(request)
+	logout(request)
+	return HttpResponseRedirect(reverse('index'))
 
 class SignUpView(SuccessMessageMixin, CreateView):
 	form_class = CustomUserCreationForm
