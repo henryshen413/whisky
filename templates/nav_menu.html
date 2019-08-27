@@ -13,16 +13,38 @@
                 <input type="search" name="q" placeholder="Search....">
             </form>
 
+            <!-- <div class="dropdown">
+                <button onclick="userMenudropDown()" class="dropbtn">Dropdown</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div> -->
+            <div class="row member-div">
+                <div class="membership navbar-right">
+                    {% if request.user.is_active %}
+                    <button onclick="userMenudropDown()" class="dropbtn">
+                        <img src="{% static "img/author.png" %}" class="img-responsive member-thumbnail"/> 
+                    </button>
+                    {% else %}
+                    <button class="btn login-btn" type="button" name="button">會員登入<img src="{% static "img/author.png" %}" class="img-responsive member-thumbnail" /></button>
+                    {% endif %}
+
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="#">Profile</a>
+                        <a href="#">My whisky</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </div>
+            </div>
             <!-- Collect the desktop nav links -->
             <div data-hover="dropdown" data-animations="zoomIn zoomIn zoomIn zoomIn">
-                <div class="row member-div">
+                <!-- <div class="row member-div">
                     <ul class="membership navbar-right">
                         {% if request.user.is_active %}
                         <li class="themes">
-                            <a href="" class="username" title="會員主頁">
-                                {{ request.user.username }}
-                            </a>
-                            <a href="" title="會員主頁"></a>
+                            <a href="" title="會員主頁">
                                 <img src="{% static "img/author.png" %}" class="img-responsive member-thumbnail"/> 
                             </a>
                         </li>
@@ -32,7 +54,7 @@
                         </li>
                         {% endif %}
                     </ul>
-                </div>
+                </div> -->
                 <hr class="menu-hr">
                 {% recurse menu.menu_set.all|dictsort:"lvl" with menu as menu %}
                 <ul class="lower-menu">

@@ -186,21 +186,23 @@ class WhiskyView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(WhiskyView, self).get_context_data(*args, **kwargs)
         comments = Comment.objects.filter(whisky_id=self.object.id, publish_choice="Public").order_by('created_at')
-        personal_note = PersonalWhiskyNote.objects.filter(whisky=self.object, user=self.request.user).last()
+        personal_note_array = [0,0,0,0,0,0,0,0,0,0]
+        general_note_array = [0,0,0,0,0,0,0,0,0,0]
+
+        if not self.request.user.is_anonymous:
+            personal_note = PersonalWhiskyNote.objects.filter(whisky=self.object, user=self.request.user).last()
+
+            if personal_note:
+                personal_note_array = [personal_note.flora, personal_note.fruity, personal_note.sweet, personal_note.creamy, personal_note.nutty, personal_note.malty, personal_note.salty, personal_note.spicy, personal_note.smoky, personal_note.peaty]
+                
+        
         general_note = GeneralWhiskyNote.objects.filter(whisky=self.object).last()
-        if personal_note:
-            personal_note_array = [personal_note.flora, personal_note.fruity, personal_note.sweet, personal_note.creamy, personal_note.nutty, personal_note.malty, personal_note.salty, personal_note.spicy, personal_note.smoky, personal_note.peaty]
-        else:
-            personal_note_array = [0,0,0,0,0,0,0,0,0,0]
         
         if general_note:
             general_note_array = [general_note.flora, general_note.fruity, general_note.sweet, general_note.creamy, general_note.nutty, general_note.malty, general_note.salty, general_note.spicy, general_note.smoky, general_note.peaty]
-        else:
-            general_note_array = [0,0,0,0,0,0,0,0,0,0]
-
+            
         context.update({
             "comments": comments,
-            "personal_note": personal_note,
             "general_note_array": json.dumps(list(general_note_array)),
             "personal_note_array": json.dumps(list(personal_note_array)),
         })
