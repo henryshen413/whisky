@@ -127,7 +127,7 @@ class WhiskyInfo(models.Model):
             'pk': self.id,
             'slug': self.slug
         }
-        return reverse('article-pk-slug-detail', kwargs=kwargs)
+        return reverse('distillery-pk-slug-detail', kwargs=kwargs)
 
     def save(self, *args, **kwargs):
         value = self.name
@@ -172,6 +172,28 @@ class Comment(models.Model):
     publish_choice = models.CharField(max_length=10, choices=PUBLISH_CHOICE)
     rating = models.FloatField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
+
+class Bar(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    region = models.ForeignKey(Region, related_name='bar_region', on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, related_name='bar_country', on_delete=models.CASCADE)
+    description = models.TextField(blank=True, null=True)
+    photo = models.ImageField(upload_to='bar/uploads/%Y/%m/%d/', blank=True, null=True)
+    lon = models.FloatField()
+    lat = models.FloatField()
+    slug = models.SlugField(
+        default='',
+        editable=False,
+        max_length=200,
+    )
+
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
 
 
     
