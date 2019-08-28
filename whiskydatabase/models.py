@@ -78,8 +78,8 @@ class Distillery(models.Model):
     owner = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     photo = models.ImageField(upload_to='distillery/uploads/%Y/%m/%d/', blank=True, null=True)
-    lon = models.FloatField()
-    lat = models.FloatField()
+    lon = models.FloatField(blank=True, null=True)
+    lat = models.FloatField(blank=True, null=True)
     slug = models.SlugField(
         default='',
         editable=False,
@@ -179,8 +179,8 @@ class Bar(models.Model):
     country = models.ForeignKey(Country, related_name='bar_country', on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True)
     photo = models.ImageField(upload_to='bar/uploads/%Y/%m/%d/', blank=True, null=True)
-    lon = models.FloatField()
-    lat = models.FloatField()
+    lon = models.FloatField(blank=True, null=True)
+    lat = models.FloatField(blank=True, null=True)
     slug = models.SlugField(
         default='',
         editable=False,
