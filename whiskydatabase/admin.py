@@ -9,7 +9,7 @@ class MenuAdmin(admin.ModelAdmin):
 
 @admin.register(Distillery)
 class DistilleryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'region', 'owner')
+    list_display = ('name', 'country', 'region', 'owner')
 
 @admin.register(WhiskyInfo)
 class WhiskyInfoAdmin(admin.ModelAdmin):
@@ -22,3 +22,7 @@ class CountryAdmin(admin.ModelAdmin):
 @admin.register(Region)
 class CountryAdmin(admin.ModelAdmin):
     list_display = ('name', 'country')
+
+@admin.register(Bar)
+class CountryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'country', 'region')

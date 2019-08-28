@@ -27,8 +27,17 @@ class WhiskyListView(ListView):
 
 class DistilleryMapView(ListView):
     model = Distillery
-    template_name = "whiskymap.html"
+    template_name = "distillerymap.html"
     context_object_name = 'distillery_list'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+class BarMapView(ListView):
+    model = Bar
+    template_name = "barmap.html"
+    context_object_name = 'bar_list'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
