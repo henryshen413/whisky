@@ -44,11 +44,16 @@ def upload(request):
         form_data = TextIOWrapper(request.FILES['csv'].file, encoding='utf-8')
         csv_file = csv.reader(form_data)
         for line in csv_file:
-            distillery, created = Distillery.objects.get_or_create(name=line[0], country=Country.objects.get(name=line[3]), region=Region.objects.get(name=line[4]), lon=line[7], lat=line[8])
+            distillery, created = Distillery.objects.get_or_create(name=line[0], country=Country.objects.get(name=line[3]), region=Region.objects.get(name=line[4]))
+            if line[8] != "":
+                distillery.lat = line[8]
+            if line[7] != "":
+                distillery.lon = line[7]
             distillery.name = line[0]
             distillery.slug = line[1]
             distillery.owner = line[2]
-            distillery.year_founded = line[5]
+            if line[5] != "":
+                distillery.year_founded = line[5]
             distillery.description = line[6]
             distillery.is_active = line[9]
 

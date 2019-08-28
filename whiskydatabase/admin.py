@@ -9,20 +9,24 @@ class MenuAdmin(admin.ModelAdmin):
 
 @admin.register(Distillery)
 class DistilleryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'country', 'region', 'owner')
+    list_display = ('name', 'country', 'region', 'owner', 'lon', 'lat')
+    list_filter = ('country', 'region')
+    search_fields = ['name']
 
 @admin.register(WhiskyInfo)
 class WhiskyInfoAdmin(admin.ModelAdmin):
-    list_display = ('name', 'abv', 'bottler')
+    list_display = ('name', 'abv', 'brand_series', 'distillery', 'bottler')
+    list_filter = ('distillery', 'bottler', 'brand_series')
+    search_fields = ['name']
 
 @admin.register(Country)
 class CountryAdmin(admin.ModelAdmin):
     list_display = ('name', )
 
 @admin.register(Region)
-class CountryAdmin(admin.ModelAdmin):
+class RegionAdmin(admin.ModelAdmin):
     list_display = ('name', 'country')
 
 @admin.register(Bar)
-class CountryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'country', 'region')
+class BarAdmin(admin.ModelAdmin):
+    list_display = ('name', 'country', 'region', 'lon', 'lat')
