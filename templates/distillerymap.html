@@ -51,6 +51,7 @@
             var markers = [];
     
             {% for distillery in distillery_list %}
+                {% if distillery.lat and distillery.lon %}
                 var name = "{{ distillery.name }}";
                 var lat = {{ distillery.lat }};
                 var long = {{ distillery.lon }};
@@ -88,6 +89,7 @@
                         infos[0]=infowindow;
                     };
                 })(marker,content,infowindow)); 
+                {% endif %}
     
             {% endfor %}
 

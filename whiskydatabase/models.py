@@ -74,12 +74,14 @@ class Distillery(models.Model):
     name = models.CharField(max_length=100, unique=True)
     region = models.ForeignKey(Region, related_name='distillery_region', on_delete=models.CASCADE)
     country = models.ForeignKey(Country, related_name='distillery_country', on_delete=models.CASCADE)
-    year_founded = models.IntegerField(default=0)
+    year_founded = models.IntegerField(blank=True, null=True)
     owner = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     photo = models.ImageField(upload_to='distillery/uploads/%Y/%m/%d/', blank=True, null=True)
     lon = models.FloatField(blank=True, null=True)
     lat = models.FloatField(blank=True, null=True)
+    smws_code = models.IntegerField(default=0)
+    official_site = models.CharField(max_length=150, blank=True, null=True)
     slug = models.SlugField(
         default='',
         editable=False,

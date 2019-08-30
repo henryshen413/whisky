@@ -3,6 +3,7 @@ import urllib
 
 from django.http.response import HttpResponseRedirect
 from django.contrib import messages
+from django.http import Http404
 from django.contrib.auth import login as auth_login
 
 class LoginAjaxMixin(object):
@@ -16,3 +17,11 @@ class LoginAjaxMixin(object):
             messages.success(self.request, self.success_message)
 
         return HttpResponseRedirect(self.get_success_url())
+
+class NormalUserLoginMixin(object):
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_active:
+            raise Http404
+
+        return super(NormalUserLoginMixin, self).dispatch(request, *args, **kwargs)

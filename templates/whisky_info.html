@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
     <script type="text/javascript">
-        (function () {
+        (function () {                             
             window.generaltableData = JSON.parse('{{general_note_array|safe}}');
             window.personaltableData = JSON.parse('{{personal_note_array|safe}}');
             $(".my-rating").starRating({
@@ -267,10 +267,10 @@
             <div class='tabs'>
                 <ul class='nav nav-pills nav-justified'>
                     <li class="tab-li">
-                        <a href="#tab-1">Avg. Flavor Chart</a>
+                        <a href="#tab-1">Everyone's Taste</a>
                     </li>
                     <li class="tab-li">
-                        <a href="#tab-2">My Flavor Chart</a>
+                        <a href="#tab-2">My taste</a>
                     </li>
                 </ul>
 
@@ -286,7 +286,9 @@
                         <input type="hidden" id="personalVar" name="variable">{{ whisky_detail.personal_note }}</input>
                         <canvas id="canvas-individual"></canvas>
                     </div>
-                    <button id="show-edit-flavor" class="btn">Edit your Flavor</button>
+                    <div class="button-area">
+                        <button id="show-edit-flavor" class="btn">Edit your Flavor</button>
+                    </div>
                     {{ personal_note_array.flora }}
                     <div class="edit-flavor-div" style="display: none; margin-top: 15px">
                         <div id="flavor-bar-controller">
@@ -338,7 +340,7 @@
     <div class="info-area">
         <div class="row container">
             <div class="col-md-offset-1 col-md-10 col-xs-12">	
-                <h3>Summary</h3>
+                <h3 style="font-size: 20px;">Summary</h3>
                 <div class="whisky-abv">Abv: <span class="info">{{ whisky_detail.abv }}</span></div>
                 <div class="whisky-year">Year: <span class="info">{{ whisky_detail.year }}</span></div>
                 <div class="whisky-casktype">Casktype: <span class="info">{{ whisky_detail.casktype }}</span></div>
