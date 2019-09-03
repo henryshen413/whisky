@@ -28,5 +28,8 @@ urlpatterns = [
     path('upload/', upload, name='upload'),
     re_path(r'^logout/$', logout_view, name='logout_view'),
 
+    #user
+    path('user/', UserView.as_view(), name='profile'),
+
     path('admin/', admin.site.urls),
 ]

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}User Proile{% endblock %}
+{% block site_name %}{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "css/user_profile.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="col-sm-4 col-xs-12">
+        <div class="user-profile-pic"></div>
+        <div class="user-name"></div>
+        <div class="user-tab">
+            <a href="#google">google</a> 
+            <a href="#facebook">facebook</a> 
+        </div>
+    </div>
+
+    <div class="col-sm-8 col-xs-12">
+        <div class="whisky-list">
+            <div id="google">
+                <p>some text some text some text some text - google</p>
+            </div>
+            <div id="facebook">
+                <p>some text some text some text some text - facebook</p>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

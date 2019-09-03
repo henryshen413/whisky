@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../sass/user_profile.sass"
+    ],
+    "names": [],
+    "file": "user_profile.css"
+}

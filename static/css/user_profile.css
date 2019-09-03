@@ -1,0 +1,8 @@
+/* No CSS *//*# sourceMappingURL=user_profile.css.map */
+.whisky-list > div {
+    display:none;  
+}
+  
+.whisky-list > div:target {
+    display:block;  
+}

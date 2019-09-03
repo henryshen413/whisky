@@ -2,7 +2,7 @@ var color = Chart.helpers.color;
 var config = {
     type: 'radar',
     data: {
-        labels: ['Flora', 'Fruity', 'Sweet', 'Creamy', 'Nutty', 'Malty', 'Salty', 'Spicy', 'Smoky', 'Peaty'],
+        labels: ['Flora', 'Fruity', 'Creamy', 'Nutty', 'Malty', 'Spicy', 'Smoky', 'Peaty'],
         datasets: [{
             label: 'whisky',
             backgroundColor: color("#FDEB7B").alpha(0.2).rgbString(),
@@ -34,7 +34,7 @@ var config = {
 var config_individual = {
   type: 'radar',
   data: {
-      labels: ['Flora', 'Fruity', 'Sweet', 'Creamy', 'Nutty', 'Malty', 'Salty', 'Spicy', 'Smoky', 'Peaty'],
+      labels: ['Flora', 'Fruity', 'Creamy', 'Nutty', 'Malty', 'Spicy', 'Smoky', 'Peaty'],
       datasets: [{
           label: 'whisky',
           backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
