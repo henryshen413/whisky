@@ -16,7 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path, re_path
 from django.contrib.auth import views as auth_views
+from rest_framework import routers
+
+from api import views
 from whiskysite.view import *
+
+
+router = routers.DefaultRouter()
+router.register(r'whisky', views.WhiskyViewSet)
+router.register(r'distillery', views.DistilleryViewSet)
 
 urlpatterns = [
     path('', include('whiskydatabase.urls')),
@@ -32,4 +40,8 @@ urlpatterns = [
     path('user/', UserView.as_view(), name='profile'),
 
     path('admin/', admin.site.urls),
+
+    #api
+    path('api-view/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
