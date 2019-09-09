@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.urls import reverse
 from django.utils.text import slugify
+from django.utils.crypto import get_random_string
 
 ROLE_CHOICE = (
     ('Admin', 'Admin'),
@@ -25,12 +26,31 @@ BOOLEAN_CHOICE = (
     ('No', 'No'),
 )
 
+def path_and_rename(instance, filename):
+    upload_to = 'user'
+    ext = filename.split('.')[-1]
+    # get filename
+    filename = 'profile/{}.{}'.format(instance.user.username.split('@')[0]+'_'+get_random_string(length=15), ext)
+    # return the whole path to the file
+    return os.path.join(upload_to, filename)
+
 # Create your models here.
 class UserRole(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, unique=True, related_name="role")
     role = models.CharField(max_length=10, choices=ROLE_CHOICE)
     class Meta:
         ordering = ['-id']
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, unique=True, related_name="profile")
+    nickname = models.TextField(blank=True, null=True)
+    profilepic = models.ImageField(upload_to=path_and_rename, blank=True, null=True)
+    wishlist = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['-id']
+    def __str__(self):
+        return user
 
 class Menu(models.Model):
     parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
@@ -169,6 +189,11 @@ class Comment(models.Model):
     note = models.TextField()
     publish_choice = models.CharField(max_length=10, choices=PUBLISH_CHOICE)
     rating = models.FloatField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class wishlist(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    whisky = models.ForeignKey(WhiskyInfo, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
 class Bar(models.Model):

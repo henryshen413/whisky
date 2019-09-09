@@ -13,237 +13,6 @@
         (function () {                             
             window.generaltableData = JSON.parse('{{general_note_array|safe}}');
             window.personaltableData = JSON.parse('{{personal_note_array|safe}}');
-            $(".my-rating").starRating({
-                initialRating: 0,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                disableAfterRate: false,
-                callback: function(currentRating, $el){
-                    // do something after rating
-                    document.getElementById('myRating').value = currentRating;
-                }
-            });
-
-            $(".rating-0").starRating({
-                initialRating: 0,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                readOnly: true
-            });
-
-            $(".rating-5").starRating({
-                initialRating: 0.5,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                readOnly: true
-            });
-
-            $(".rating-10").starRating({
-                initialRating: 1,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                readOnly: true
-            });
-
-            $(".rating-15").starRating({
-                initialRating: 1.5,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                readOnly: true
-            });
-
-            $(".rating-20").starRating({
-                initialRating: 2,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                readOnly: true
-            });
-
-            $(".rating-25").starRating({
-                initialRating: 2.5,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                readOnly: true
-            });
-
-            $(".rating-30").starRating({
-                initialRating: 3,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                readOnly: true
-            });
-
-            $(".rating-35").starRating({
-                initialRating: 3.5,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                readOnly: true
-            });
-
-            $(".rating-40").starRating({
-                initialRating: 4,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                readOnly: true
-            });
-
-            $(".rating-45").starRating({
-                initialRating: 4.5,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                readOnly: true
-            });
-
-            $(".rating-50").starRating({
-                initialRating: 5,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                readOnly: true
-            });
-
-            $(".rating-edit-0").starRating({
-                initialRating: 0,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                disableAfterRate: false,
-                callback: function(currentRating, $el){
-                    // do something after rating
-                    document.getElementById('myRating-edit').value = currentRating;
-                }
-            });
-
-            $(".rating-edit-5").starRating({
-                initialRating: 0.5,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                disableAfterRate: false,
-                callback: function(currentRating, $el){
-                    // do something after rating
-                    document.getElementById('myRating-edit').value = currentRating;
-                }
-            });
-
-            $(".rating-edit-10").starRating({
-                initialRating: 1,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                disableAfterRate: false,
-                callback: function(currentRating, $el){
-                    // do something after rating
-                    document.getElementById('myRating-edit').value = currentRating;
-                }
-            });
-
-            $(".rating-edit-15").starRating({
-                initialRating: 1.5,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                disableAfterRate: false,
-                callback: function(currentRating, $el){
-                    // do something after rating
-                    document.getElementById('myRating-edit').value = currentRating;
-                }
-            });
-
-            $(".rating-edit-20").starRating({
-                initialRating: 2,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                disableAfterRate: false,
-                callback: function(currentRating, $el){
-                    // do something after rating
-                    document.getElementById('myRating-edit').value = currentRating;
-                }
-            });
-
-            $(".rating-edit-25").starRating({
-                initialRating: 2.5,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                disableAfterRate: false,
-                callback: function(currentRating, $el){
-                    // do something after rating
-                    document.getElementById('myRating-edit').value = currentRating;
-                }
-            });
-
-            $(".rating-edit-30").starRating({
-                initialRating: 3,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                disableAfterRate: false,
-                callback: function(currentRating, $el){
-                    // do something after rating
-                    document.getElementById('myRating-edit').value = currentRating;
-                }
-            });
-
-            $(".rating-edit-35").starRating({
-                initialRating: 3.5,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                disableAfterRate: false,
-                callback: function(currentRating, $el){
-                    // do something after rating
-                    document.getElementById('myRating-edit').value = currentRating;
-                }
-            });
-
-            $(".rating-edit-40").starRating({
-                initialRating: 4,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                disableAfterRate: false,
-                callback: function(currentRating, $el){
-                    // do something after rating
-                    document.getElementById('myRating-edit').value = currentRating;
-                }
-            });
-
-            $(".rating-edit-45").starRating({
-                initialRating: 4.5,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                disableAfterRate: false,
-                callback: function(currentRating, $el){
-                    // do something after rating
-                    document.getElementById('myRating-edit').value = currentRating;
-                }
-            });
-
-            $(".rating-edit-50").starRating({
-                initialRating: 5,
-                strokeColor: '#894A00',
-                strokeWidth: 10,
-                starSize: 25,
-                disableAfterRate: false,
-                callback: function(currentRating, $el){
-                    // do something after rating
-                    document.getElementById('myRating-edit').value = currentRating;
-                }
-            });
         }());
     </script>
     <script src="{% static "js/whisky.js" %}"></script>
@@ -267,10 +36,10 @@
             <div class='tabs'>
                 <ul class='nav nav-pills nav-justified'>
                     <li class="tab-li">
-                        <a href="#tab-1">Everyone's Taste</a>
+                        <a href="#tab-1">Flavor Chart</a>
                     </li>
                     <li class="tab-li">
-                        <a href="#tab-2">My taste</a>
+                        <a href="#tab-2">My Note</a>
                     </li>
                 </ul>
 
@@ -289,31 +58,26 @@
                     <div class="button-area">
                         <button id="show-edit-flavor" class="btn">Edit your Flavor</button>
                     </div>
-                    {{ personal_note_array.flora }}
                     <div class="edit-flavor-div" style="display: none; margin-top: 15px">
-                        <div id="flavor-bar-controller">
+                        <div id="flavor-bar-controller" style="text-align: center">
                             {% if personal_note %}
                             <span>Flora</span><div class="flavor-ctrl" id="0">{{ personal_note.flora }}</div>
                             <span>Fruity</span><div class="flavor-ctrl" id="1">{{ personal_note.fruity }}</div>
-                            <span>Sweet</span><div class="flavor-ctrl" id="2">{{ personal_note.sweet }}</div>
-                            <span>Creamy</span><div class="flavor-ctrl" id="3">{{ personal_note.creamy }}</div>
-                            <span>Nutty</span><div class="flavor-ctrl" id="4">{{ personal_note.nutty }}</div>
-                            <span>Malty</span><div class="flavor-ctrl" id="5">{{ personal_note.malty }}</div>
-                            <span>Salty</span><div class="flavor-ctrl" id="6">{{ personal_note.salty }}</div>
-                            <span>Spicy</span><div class="flavor-ctrl" id="7">{{ personal_note.spicy }}</div>
-                            <span>Smoky</span><div class="flavor-ctrl" id="8">{{ personal_note.smoky }}</div>
-                            <span>Peaty</span><div class="flavor-ctrl" id="9">{{ personal_note.peaty }}</div>
+                            <span>Creamy</span><div class="flavor-ctrl" id="2">{{ personal_note.creamy }}</div>
+                            <span>Nutty</span><div class="flavor-ctrl" id="3">{{ personal_note.nutty }}</div>
+                            <span>Malty</span><div class="flavor-ctrl" id="4">{{ personal_note.malty }}</div>
+                            <span>Spicy</span><div class="flavor-ctrl" id="5">{{ personal_note.spicy }}</div>
+                            <span>Smoky</span><div class="flavor-ctrl" id="6">{{ personal_note.smoky }}</div>
+                            <span>Peaty</span><div class="flavor-ctrl" id="7">{{ personal_note.peaty }}</div>
                             {% else %}
                             <span>Flora</span><div class="flavor-ctrl" id="0">0</div>
                             <span>Fruity</span><div class="flavor-ctrl" id="1">0</div>
-                            <span>Sweet</span><div class="flavor-ctrl" id="2">0</div>
-                            <span>Creamy</span><div class="flavor-ctrl" id="3">0</div>
-                            <span>Nutty</span><div class="flavor-ctrl" id="4">0</div>
-                            <span>Malty</span><div class="flavor-ctrl" id="5">0</div>
-                            <span>Salty</span><div class="flavor-ctrl" id="6">0</div>
-                            <span>Spicy</span><div class="flavor-ctrl" id="7">0</div>
-                            <span>Smoky</span><div class="flavor-ctrl" id="8">0</div>
-                            <span>Peaty</span><div class="flavor-ctrl" id="9">0</div>
+                            <span>Creamy</span><div class="flavor-ctrl" id="2">0</div>
+                            <span>Nutty</span><div class="flavor-ctrl" id="3">0</div>
+                            <span>Malty</span><div class="flavor-ctrl" id="4">0</div>
+                            <span>Spicy</span><div class="flavor-ctrl" id="5">0</div>
+                            <span>Smoky</span><div class="flavor-ctrl" id="6">0</div>
+                            <span>Peaty</span><div class="flavor-ctrl" id="7">0</div>
                             {% endif %}
                         </div>
                     </div>

@@ -154,27 +154,27 @@ class WhiskyView(DetailView):
                 p_note.fruity = value
                 g_note_return = (g_note.fruity*curr_num+value)/g_note.total_notes_num
                 g_note.fruity = g_note_return
-            elif ctrl_id == '3':
+            elif ctrl_id == '2':
                 p_note.creamy = value
                 g_note_return = (g_note.creamy*curr_num+value)/g_note.total_notes_num
                 g_note.creamy = g_note_return
-            elif ctrl_id == '4':
+            elif ctrl_id == '3':
                 p_note.nutty = value
                 g_note_return = (g_note.nutty*curr_num+value)/g_note.total_notes_num
                 g_note.nutty = g_note_return
-            elif ctrl_id == '5':
+            elif ctrl_id == '4':
                 p_note.malty = value
                 g_note_return = (g_note.malty*curr_num+value)/g_note.total_notes_num
                 g_note.malty = g_note_return
-            elif ctrl_id == '7':
+            elif ctrl_id == '5':
                 p_note.spicy = value
                 g_note_return = (g_note.spicy*curr_num+value)/g_note.total_notes_num
                 g_note.spicy = g_note_return
-            elif ctrl_id == '8':
+            elif ctrl_id == '6':
                 p_note.smoky = value
                 g_note_return = (g_note.smoky*curr_num+value)/g_note.total_notes_num
                 g_note.smoky = g_note_return
-            elif ctrl_id == '9':
+            elif ctrl_id == '7':
                 p_note.peaty = value
                 g_note_return = (g_note.peaty*curr_num+value)/g_note.total_notes_num
                 g_note.peaty = g_note_return
@@ -213,6 +213,7 @@ class WhiskyView(DetailView):
             "comments": comments,
             "general_note_array": json.dumps(list(general_note_array)),
             "personal_note_array": json.dumps(list(personal_note_array)),
+            "personal_note": personal_note,
         })
         context.update(distillery_list())
         return context

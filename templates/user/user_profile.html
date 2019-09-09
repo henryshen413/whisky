@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load site_tags %}
 
 {% block title %}User Proile{% endblock %}
 {% block site_name %}{% endblock %}
@@ -9,20 +10,43 @@
 
 {% block content %}
     <div class="col-sm-4 col-xs-12">
-        <div class="user-profile-pic"></div>
-        <div class="user-name"></div>
-        <div class="user-tab">
-            <a href="#google">google</a> 
-            <a href="#facebook">facebook</a> 
+        <div class="user-gen-info">
+            <div class="user-profile-pic">
+                <img src="{% static "img/author.png" %}"/ class="profile-pic">
+            </div>
+            <div class="user-name" style="margin-top: 15px">{{ user.username }}</div>
         </div>
     </div>
 
     <div class="col-sm-8 col-xs-12">
+        <ul class="user-tab">
+            <li class="user-tab-cell">
+                <a href="#mynote">My rating</a> 
+            </li>
+            <li class="user-tab-cell">
+                <a href="#wishlist">Wish List</a> 
+            </li>
+        </ul>
         <div class="whisky-list">
-            <div id="google">
-                <p>some text some text some text some text - google</p>
+            <div id="mynote">
+                {% if user_comment %}
+                    {% for comment in user_comment %}
+                        <div class="whisky-info">
+                            <div>{{ comment.whisky.name }}</div>
+                            <div>{{ comment.whisky.brand_series }}</div>
+                            <div>{{ comment.whisky.country }}</div>
+                            <div>{{ comment.whisky.abv }}</div>
+                        </div>
+                        <div class="user-comment">
+                            <span class="comment-date">{{ comment.created_at }}</span>
+                            <br>
+                            <div class="rating-{{ comment.rating|convert_rate }}" style="margin-bottom: 10px"></div>
+                            <div class="comment-content-31">{{ comment.note }}</div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
-            <div id="facebook">
+            <div id="wishlist">
                 <p>some text some text some text some text - facebook</p>
             </div>
         </div>

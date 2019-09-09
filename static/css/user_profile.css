@@ -1,8 +1,48 @@
-/* No CSS *//*# sourceMappingURL=user_profile.css.map */
 .whisky-list > div {
-    display:none;  
+  display: none;
 }
-  
+
 .whisky-list > div:target {
-    display:block;  
+  display: block;
 }
+
+.user-gen-info {
+  border: 1px solid #e6e6e6;
+  text-align: center;
+  padding: 20px;
+}
+
+.profile-pic {
+  border-radius: 100%;
+  max-width: 60px;
+}
+
+.user-tab {
+  text-align: center;
+}
+
+.user-tab .user-tab-cell {
+  display: inline-block;
+  float: left;
+  padding: 10px;
+  width: 50%;
+}
+
+.user-tab .user-tab-cell a {
+  color: #999999;
+}
+
+.user-tab .user-tab-cell a:hover {
+  text-decoration: none;
+  color: #581D17;
+}
+
+.user-tab .user-tab-cell a:target {
+  border-bottom: 3px solid #a11122;
+}
+
+.whisky-list {
+  border: 1px solid #e6e6e6;
+  padding: 10px;
+}
+/*# sourceMappingURL=user_profile.css.map */

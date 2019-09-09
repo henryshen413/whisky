@@ -32,7 +32,7 @@
                     {% endif %}
 
                     <div id="myDropdown" class="dropdown-content">
-                        <a href="#">Profile</a>
+                        <a href="{% url 'profile' %}">Profile</a>
                         <a href="#">My whisky</a>
                         <a href="{% url 'logout_view' %}">Logout</a>
                     </div>
@@ -111,9 +111,7 @@
                             </ul>
                         </li>
                         <li>
-                            {% if request.path|slice:"1:5" == "user" %}
-                            <a class="user-menu-btn" href="javascript:void(0)"><img src="{% static 'img/user-menu-btn.png' %}" class="member-thumbnail-mobile" /></a>
-                            {% elif request.user.is_active %}
+                            {% if request.user.is_active %}
                                 {% if request.user.profile.profilepic %}
                                     <a href=""><img src="{{ request.user.profile.profilepic.url }}" class="member-thumbnail-mobile" /></a>
                                 {% else %}

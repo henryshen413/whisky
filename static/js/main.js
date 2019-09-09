@@ -195,6 +195,238 @@ $(function(){
           $('#gotop').fadeOut();
         }
     });
+    
+    $(".my-rating").starRating({
+        initialRating: 0,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        disableAfterRate: false,
+        callback: function(currentRating, $el){
+            // do something after rating
+            document.getElementById('myRating').value = currentRating;
+        }
+    });
+
+    $(".rating-0").starRating({
+        initialRating: 0,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        readOnly: true
+    });
+
+    $(".rating-5").starRating({
+        initialRating: 0.5,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        readOnly: true
+    });
+
+    $(".rating-10").starRating({
+        initialRating: 1,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        readOnly: true
+    });
+
+    $(".rating-15").starRating({
+        initialRating: 1.5,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        readOnly: true
+    });
+
+    $(".rating-20").starRating({
+        initialRating: 2,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        readOnly: true
+    });
+
+    $(".rating-25").starRating({
+        initialRating: 2.5,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        readOnly: true
+    });
+
+    $(".rating-30").starRating({
+        initialRating: 3,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        readOnly: true
+    });
+
+    $(".rating-35").starRating({
+        initialRating: 3.5,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        readOnly: true
+    });
+
+    $(".rating-40").starRating({
+        initialRating: 4,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        readOnly: true
+    });
+
+    $(".rating-45").starRating({
+        initialRating: 4.5,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        readOnly: true
+    });
+
+    $(".rating-50").starRating({
+        initialRating: 5,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        readOnly: true
+    });
+
+    $(".rating-edit-0").starRating({
+        initialRating: 0,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        disableAfterRate: false,
+        callback: function(currentRating, $el){
+            // do something after rating
+            document.getElementById('myRating-edit').value = currentRating;
+        }
+    });
+
+    $(".rating-edit-5").starRating({
+        initialRating: 0.5,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        disableAfterRate: false,
+        callback: function(currentRating, $el){
+            // do something after rating
+            document.getElementById('myRating-edit').value = currentRating;
+        }
+    });
+
+    $(".rating-edit-10").starRating({
+        initialRating: 1,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        disableAfterRate: false,
+        callback: function(currentRating, $el){
+            // do something after rating
+            document.getElementById('myRating-edit').value = currentRating;
+        }
+    });
+
+    $(".rating-edit-15").starRating({
+        initialRating: 1.5,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        disableAfterRate: false,
+        callback: function(currentRating, $el){
+            // do something after rating
+            document.getElementById('myRating-edit').value = currentRating;
+        }
+    });
+
+    $(".rating-edit-20").starRating({
+        initialRating: 2,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        disableAfterRate: false,
+        callback: function(currentRating, $el){
+            // do something after rating
+            document.getElementById('myRating-edit').value = currentRating;
+        }
+    });
+
+    $(".rating-edit-25").starRating({
+        initialRating: 2.5,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        disableAfterRate: false,
+        callback: function(currentRating, $el){
+            // do something after rating
+            document.getElementById('myRating-edit').value = currentRating;
+        }
+    });
+
+    $(".rating-edit-30").starRating({
+        initialRating: 3,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        disableAfterRate: false,
+        callback: function(currentRating, $el){
+            // do something after rating
+            document.getElementById('myRating-edit').value = currentRating;
+        }
+    });
+
+    $(".rating-edit-35").starRating({
+        initialRating: 3.5,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        disableAfterRate: false,
+        callback: function(currentRating, $el){
+            // do something after rating
+            document.getElementById('myRating-edit').value = currentRating;
+        }
+    });
+
+    $(".rating-edit-40").starRating({
+        initialRating: 4,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        disableAfterRate: false,
+        callback: function(currentRating, $el){
+            // do something after rating
+            document.getElementById('myRating-edit').value = currentRating;
+        }
+    });
+
+    $(".rating-edit-45").starRating({
+        initialRating: 4.5,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        disableAfterRate: false,
+        callback: function(currentRating, $el){
+            // do something after rating
+            document.getElementById('myRating-edit').value = currentRating;
+        }
+    });
+
+    $(".rating-edit-50").starRating({
+        initialRating: 5,
+        strokeColor: '#894A00',
+        strokeWidth: 10,
+        starSize: 25,
+        disableAfterRate: false,
+        callback: function(currentRating, $el){
+            // do something after rating
+            document.getElementById('myRating-edit').value = currentRating;
+        }
+    });
 });
 
 //open/close user menu

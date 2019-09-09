@@ -13,7 +13,7 @@ from io import TextIOWrapper, StringIO
 
 from whiskysite.form import *
 from whiskysite.mixin import *
-from whiskydatabase.models import UserRole, Distillery, Country, Region
+from whiskydatabase.models import UserRole, Distillery, Country, Region, Comment
 
 
 
@@ -44,6 +44,10 @@ class UserView(NormalUserLoginMixin, TemplateView):
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
+		user_comment = Comment.objects.filter(user=self.request.user).order_by('created_at')
+		context.update({
+            "user_comment": user_comment,
+        })
 		return context
 
 
