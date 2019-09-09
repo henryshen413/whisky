@@ -191,7 +191,7 @@ class Comment(models.Model):
     rating = models.FloatField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
-class wishlist(models.Model):
+class Wishlist(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     whisky = models.ForeignKey(WhiskyInfo, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

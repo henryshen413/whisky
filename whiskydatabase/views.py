@@ -86,6 +86,21 @@ class WhiskyView(DetailView):
 
             return HttpResponseRedirect('/whisky/{}/#r'.format(self.object.slug))
 
+        elif request.POST.get('action') and request.POST.get('action') == 'bookmark':
+            if Wishlist.objects.filter(whisky=self.object, user=request.user).exists():
+                Wishlist.objects.filter(whisky=self.object, user=request.user).delete()
+                
+                return HttpResponse(0)
+
+            else:   
+                user_wishlist_obj = Wishlist.objects.create(
+                    whisky = self.object,
+                    user = request.user
+                )
+                user_wishlist_obj.save()
+
+                return HttpResponse(1)
+
         elif request.POST.get('comment-edit'): 
             c_id = request.POST.get('comment-id')
             comment = Comment.objects.filter(id=c_id).last()
@@ -184,8 +199,6 @@ class WhiskyView(DetailView):
 
             return HttpResponse(g_note_return)
 
-
-
     def dispatch(self, request, *args, **kwargs):
         self.object = WhiskyInfo.objects.filter(slug=kwargs.get("whisky_slug")).last()
 
@@ -213,6 +226,7 @@ class WhiskyView(DetailView):
             "comments": comments,
             "general_note_array": json.dumps(list(general_note_array)),
             "personal_note_array": json.dumps(list(personal_note_array)),
+            'bm_boolean': 1 if Wishlist.objects.filter(whisky=self.object, user_id=self.request.user.id).exists() else 0,
             "personal_note": personal_note,
         })
         context.update(distillery_list())

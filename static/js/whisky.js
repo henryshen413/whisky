@@ -18,6 +18,24 @@ $(document).ready(function() {
             }        
         });
     });
+
+    $('[data-toggle="popover"]').popover({
+        html : true, 
+        container : '#btn-share',
+        content: function() {
+          return $('#popoverExampleHiddenContent').html();
+        }
+    });
+
+    $(document).click(function (event) {
+        // hide share button popover
+        if (!$(event.target).closest('#btn-share').length) {
+            $('#btn-share').popover('hide')
+        }
+    });
+
+    $("a.twitter").attr("href", "https://twitter.com/home?status=" + window.location.href);
+    $("a.facebook").attr("href", "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href);
 });
 
 //slider
@@ -91,6 +109,30 @@ jQuery(document).ajaxSend(function(event, xhr, settings) {
         xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
     }
 });
+
+function wishlistEditor(el, action){
+    var csrftoken = getCookie('csrftoken');
+
+    $.ajax({
+        headers: { "X-CSRFToken": csrftoken },
+        url: window.location.pathname,
+        type: "POST",
+        data: {"action": action},
+        success:function(response){
+            if(response){
+                if(action == "bookmark"){
+                    if(response == 1){
+                        $(el).children('i').attr("class",'fas fa-bookmark');
+                    }
+                    else {
+                        $(el).children('i').attr("class",'far fa-bookmark');
+                    }
+                }
+            }
+        },
+        error:function (xhr, textStatus, thrownError){}
+	});
+}
 
 function editComment(edit_cmt_id) {
     var c_id = edit_cmt_id.toString();

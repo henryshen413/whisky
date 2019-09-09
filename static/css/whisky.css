@@ -207,6 +207,12 @@ h3 {
           justify-content: center;
 }
 
+#btn-share, #btn-bm {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
 @media (max-width: 768px) {
   .whisky-info {
     margin-top: 10px;

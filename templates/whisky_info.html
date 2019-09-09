@@ -104,7 +104,36 @@
     <div class="info-area">
         <div class="row container">
             <div class="col-md-offset-1 col-md-10 col-xs-12">	
-                <h3 style="font-size: 20px;">Summary</h3>
+                <div style="font-size: 20px; display: inline-block; float: left">Summary</div>
+                <div class="buttons" align="right">
+                    <button type="button" id="btn-share" data-toggle="popover" title="Share To:" data-placement="top" data-container="body">
+                        <i class="fas fa-share"></i>
+                    </button>
+                    <span id="popoverExampleHiddenContent" class="hidden">
+                        <a target="_blank" href="#" onclick="window.open(this.href, 'newwindow', 'width=500,height=250'); return false;" class="btn-media twitter">
+                            <i class="fab fa-twitter-square sm-icon"></i>
+                        </a>
+                        <a target="_blank" href="#" onclick="window.open(this.href, 'newwindow', 'width=500,height=250'); return false;" class="btn-media facebook">
+                            <i class="fab fa-facebook sm-icon"></i>
+                        </a>
+                    </span>
+                    {% if request.user.is_active %}
+                        {% if bm_boolean == 1 %}
+                            <button type="button" id="btn-bm" onclick="wishlistEditor(this, 'bookmark')">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        {% else %}
+                            <button type="button" id="btn-bm" onclick="wishlistEditor(this, 'bookmark')">
+                                <i class="far fa-bookmark"></i>
+                            </button>
+                        {% endif %}
+                    {% else %}
+                        <button type="button" id="btn-bm" class="if-not-login-btn">
+                            <img class="bm" src="/static/img/article/bookmark.png">	
+                        </button>
+                    {% endif %}
+                </div>
+                <br>
                 <div class="whisky-abv">Abv: <span class="info">{{ whisky_detail.abv }}</span></div>
                 <div class="whisky-year">Year: <span class="info">{{ whisky_detail.year }}</span></div>
                 <div class="whisky-casktype">Casktype: <span class="info">{{ whisky_detail.casktype }}</span></div>
