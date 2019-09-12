@@ -21,10 +21,10 @@
     <div class="col-sm-8 col-xs-12">
         <ul class="user-tab">
             <li class="user-tab-cell">
-                <a href="#mynote">My rating</a> 
+                <a href="{% url 'wineratinglist' %}">My rating</a> 
             </li>
             <li class="user-tab-cell">
-                <a href="#wishlist">Wish List</a> 
+                <a href="{% url 'wishlist' %}">Wish List</a> 
             </li>
         </ul>
         <div class="whisky-list">
@@ -47,7 +47,22 @@
                 {% endif %}
             </div>
             <div id="wishlist">
-                <p>some text some text some text some text - facebook</p>
+                {% if user_comment %}
+                    {% for comment in user_comment %}
+                        <div class="whisky-info">
+                            <div>{{ comment.whisky.name }}</div>
+                            <div>{{ comment.whisky.brand_series }}</div>
+                            <div>{{ comment.whisky.country }}</div>
+                            <div>{{ comment.whisky.abv }}</div>
+                        </div>
+                        <div class="user-comment">
+                            <span class="comment-date">{{ comment.created_at }}</span>
+                            <br>
+                            <div class="rating-{{ comment.rating|convert_rate }}" style="margin-bottom: 10px"></div>
+                            <div class="comment-content-31">{{ comment.note }}</div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>

@@ -13,7 +13,7 @@ from io import TextIOWrapper, StringIO
 
 from whiskysite.form import *
 from whiskysite.mixin import *
-from whiskydatabase.models import UserRole, Distillery, Country, Region, Comment
+from whiskydatabase.models import UserRole, Distillery, Country, Region, Comment, Wishlist
 
 
 
@@ -39,7 +39,7 @@ class SignUpView(SuccessMessageMixin, CreateView):
 
 		return HttpResponse('success')
 
-class UserView(NormalUserLoginMixin, TemplateView):
+class UserWineRatingView(NormalUserLoginMixin, TemplateView):
 	template_name = 'user/user_profile.html'
 
 	def get_context_data(self, **kwargs):
@@ -47,6 +47,17 @@ class UserView(NormalUserLoginMixin, TemplateView):
 		user_comment = Comment.objects.filter(user=self.request.user).order_by('created_at')
 		context.update({
             "user_comment": user_comment,
+        })
+		return context
+
+class UserWineWishlistView(NormalUserLoginMixin, TemplateView):
+	template_name = 'user/user_profile.html'
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		user_wishlist = Wishlist.objects.filter(user=self.request.user).order_by('created_at')
+		context.update({
+			"user_wishlist": user_wishlist,
         })
 		return context
 

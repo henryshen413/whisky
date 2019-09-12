@@ -34,7 +34,7 @@ $(document).ready(function() {
         }
     });
 
-    $("a.twitter").attr("href", "https://twitter.com/home?status=" + window.location.href);
+    $("a.twitter").attr("href", "https://twitter.com/intent/tweet?text=" + window.location.href);
     $("a.facebook").attr("href", "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href);
 });
 

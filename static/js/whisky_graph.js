@@ -5,16 +5,15 @@ var config = {
         labels: ['Flora', 'Fruity', 'Creamy', 'Nutty', 'Malty', 'Spicy', 'Smoky', 'Peaty'],
         datasets: [{
             label: 'whisky',
-            backgroundColor: color("#FDEB7B").alpha(0.2).rgbString(),
-            borderColor: window.chartColors.red,
-            pointBackgroundColor: window.chartColors.red,
+            backgroundColor: color("#FDEB7B").alpha(0.7).rgbString(),
+            borderColor: color("#FDEB7B").rgbString(),
+            borderWidth: 1,
+            pointBackgroundColor: color("#581D17").rgbString(),
+            pointBorderColor: color("#581D17").rgbString(),
             data: window.generaltableData
         }]
     },
     options: {
-        plugins: {
-          scrollingBar: { enabled: true }
-        },
         legend: {
           display: false,
         },
@@ -25,7 +24,11 @@ var config = {
             ticks: {
               min: 0,
               max: 10,
-              beginAtZero: true
+              beginAtZero: true,
+              display: false
+            },
+            gridLines: {
+              circular: true
             }
         }
     }
@@ -39,14 +42,12 @@ var config_individual = {
           label: 'whisky',
           backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
           borderColor: window.chartColors.red,
+          borderWidth: 1,
           pointBackgroundColor: window.chartColors.red,
           data: window.personaltableData
       }]
   },
   options: {
-      plugins: {
-        scrollingBar: { enabled: true }
-      },
       legend: {
         display: false,
       },
@@ -57,7 +58,11 @@ var config_individual = {
           ticks: {
             min: 0,
             max: 10,
-            beginAtZero: true
+            beginAtZero: true,
+            display: false
+          },
+          gridLines: {
+            circular: true
           }
       }
   }
