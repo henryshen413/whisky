@@ -182,7 +182,7 @@ h3, .fas, .far, .fab {
   text-align: center;
 }
 
-#show-edit-flavor {
+.flavor-edit {
   text-align: center;
   margin-top: 15px;
   border-radius: 15px 15px;

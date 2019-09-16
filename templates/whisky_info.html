@@ -33,65 +33,39 @@
                 <span>{{ whisky_detail.distillery.region.name }}, {{ whisky_detail.distillery.country.name }}</span>
             </div>
             <hr>
-            <div class='tabs'>
-                <ul class='nav nav-pills nav-justified'>
-                    <li class="tab-li">
-                        <a href="#tab-1">Flavor Chart</a>
-                    </li>
-                    <li class="tab-li">
-                        <a href="#tab-2">My Note</a>
-                    </li>
-                </ul>
+            <div class="flavor-chart">
+                    <div style="font-size: 20px; display: inline-block; float: left; margin-top: -5px">Flavor</div>
 
-                <div class="nav-block" id='tab-1'>
-                    <div class="chart">
-                        <canvas id="canvas"></canvas>
-                    </div>
-                </div>
-
-                <div class="nav-block" id='tab-2'>
+                <div class="flavor-radar-chart">
                     {% if request.user.is_active %}
-                    <div class="chart">
-                        <input type="hidden" id="personalVar" name="variable">{{ whisky_detail.personal_note }}</input>
-                        <canvas id="canvas-individual"></canvas>
-                    </div>
-                    <div class="button-area">
-                        <button id="show-edit-flavor" class="btn">Edit your Flavor</button>
-                    </div>
-                    <div class="edit-flavor-div" style="display: none; margin-top: 15px">
-                        <div id="flavor-bar-controller" style="text-align: center">
-                            {% if personal_note %}
-                            <span>Flora</span><div class="flavor-ctrl" id="0">{{ personal_note.flora }}</div>
-                            <span>Fruity</span><div class="flavor-ctrl" id="1">{{ personal_note.fruity }}</div>
-                            <span>Creamy</span><div class="flavor-ctrl" id="2">{{ personal_note.creamy }}</div>
-                            <span>Nutty</span><div class="flavor-ctrl" id="3">{{ personal_note.nutty }}</div>
-                            <span>Malty</span><div class="flavor-ctrl" id="4">{{ personal_note.malty }}</div>
-                            <span>Spicy</span><div class="flavor-ctrl" id="5">{{ personal_note.spicy }}</div>
-                            <span>Smoky</span><div class="flavor-ctrl" id="6">{{ personal_note.smoky }}</div>
-                            <span>Peaty</span><div class="flavor-ctrl" id="7">{{ personal_note.peaty }}</div>
-                            {% else %}
-                            <span>Flora</span><div class="flavor-ctrl" id="0">0</div>
-                            <span>Fruity</span><div class="flavor-ctrl" id="1">0</div>
-                            <span>Creamy</span><div class="flavor-ctrl" id="2">0</div>
-                            <span>Nutty</span><div class="flavor-ctrl" id="3">0</div>
-                            <span>Malty</span><div class="flavor-ctrl" id="4">0</div>
-                            <span>Spicy</span><div class="flavor-ctrl" id="5">0</div>
-                            <span>Smoky</span><div class="flavor-ctrl" id="6">0</div>
-                            <span>Peaty</span><div class="flavor-ctrl" id="7">0</div>
-                            {% endif %}
+                        <div class="chart">
+                            <input type="hidden" id="personalVar" name="variable">{{ whisky_detail.personal_note }}</input>
+                            <canvas id="canvas-individual"></canvas>
                         </div>
-                    </div>
+                        <div class="button-area">
+                            <button id="show-edit-flavor" class="btn flavor-edit">Edit your Flavor</button>
+                        </div>
+                        <div class="edit-flavor-div" style="display: none; margin-top: 15px">
+                            <div id="flavor-bar-controller" style="text-align: center">
+                                    <span>Flora</span><div class="flavor-ctrl" id="0">{% if personal_note.flora %}{{ personal_note.flora }}{% else %}0{% endif %}</div>
+                                    <span>Fruity</span><div class="flavor-ctrl" id="1">{% if personal_note.fruity %}{{ personal_note.fruity }}{% else %}0{% endif %}</div>
+                                    <span>Creamy</span><div class="flavor-ctrl" id="2">{% if personal_note.creamy %}{{ personal_note.creamy }}{% else %}0{% endif %}</div>
+                                    <span>Nutty</span><div class="flavor-ctrl" id="3">{% if personal_note.nutty %}{{ personal_note.nutty }}{% else %}0{% endif %}</div>
+                                    <span>Malty</span><div class="flavor-ctrl" id="4">{% if personal_note.malty %}{{ personal_note.malty }}{% else %}0{% endif %}</div>
+                                    <span>Spicy</span><div class="flavor-ctrl" id="5">{% if personal_note.spicy %}{{ personal_note.spicy }}{% else %}0{% endif %}</div>
+                                    <span>Smoky</span><div class="flavor-ctrl" id="6">{% if personal_note.smoky %}{{ personal_note.smoky }}{% else %}0{% endif %}</div>
+                                    <span>Peaty</span><div class="flavor-ctrl" id="7">{% if personal_note.peaty %}{{ personal_note.peaty }}{% else %}0{% endif %}</div>
+                            </div>
+                        </div>
                     {% else %}
-                    <div id="blurred-chart">
-                        <input type="hidden" id="personalVar" name="variable"></input>
-                        <canvas id="canvas-individual"></canvas>
-                    </div>
-
-                    <div id="overflow-cover">
-                        <button class="btn if-not-login-btn" style="width: 60%; padding: 10px">
-                            PLEASE LOGIN
-                        </button>
-                    </div>
+                        <div class="chart">
+                            <canvas id="canvas-individual"></canvas>
+                        </div>
+                        <div class="button-area">
+                            <button class="btn if-not-login-btn flavor-edit" >
+                                Login to Edit your Flavor
+                            </button>
+                        </div>
                     {% endif %}
                 </div>
             </div>
@@ -136,7 +110,7 @@
                         {% endif %}
                     {% else %}
                         <button type="button" id="btn-bm" class="if-not-login-btn">
-                            <img class="bm" src="/static/img/article/bookmark.png">	
+                                <i class="far fa-bookmark"></i>
                         </button>
                     {% endif %}
                 </div>

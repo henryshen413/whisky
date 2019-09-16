@@ -162,14 +162,14 @@ class WhiskyInfo(models.Model):
 class PersonalWhiskyNote(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='per_user', on_delete=models.CASCADE)
     whisky = models.ForeignKey(WhiskyInfo, related_name='per_whisky', on_delete=models.CASCADE)
-    flora = models.IntegerField(default=0)
-    fruity = models.IntegerField(default=0)
-    creamy = models.IntegerField(default=0)
-    nutty = models.IntegerField(default=0)
-    malty = models.IntegerField(default=0)
-    spicy = models.IntegerField(default=0)
-    smoky = models.IntegerField(default=0)
-    peaty = models.IntegerField(default=0)
+    flora = models.IntegerField(blank=True, null=True)
+    fruity = models.IntegerField(blank=True, null=True)
+    creamy = models.IntegerField(blank=True, null=True)
+    nutty = models.IntegerField(blank=True, null=True)
+    malty = models.IntegerField(blank=True, null=True)
+    spicy = models.IntegerField(blank=True, null=True)
+    smoky = models.IntegerField(blank=True, null=True)
+    peaty = models.IntegerField(blank=True, null=True)
 
 class GeneralWhiskyNote(models.Model):
     whisky = models.OneToOneField(WhiskyInfo, on_delete=models.CASCADE, unique=True, related_name="gen_whisky")

@@ -138,7 +138,6 @@ class WhiskyView(DetailView):
             user = self.request.user
             p_note = PersonalWhiskyNote.objects.filter(whisky=whisky, user=user).last()
             g_note = GeneralWhiskyNote.objects.filter(whisky=self.object).last()
-            curr_num = 0
 
             if p_note is None:
                 p_note = PersonalWhiskyNote.objects.create(
@@ -155,47 +154,89 @@ class WhiskyView(DetailView):
                     g_note.save()
 
                 else:
-                    curr_num = g_note.total_notes_num
                     g_note.total_notes_num+=1
                     g_note.save()
-
-            else:
-                curr_num = g_note.total_notes_num
-            
-            print(g_note.total_notes_num)
-            print(curr_num)            
+                     
             g_note_return = 0
 
             if ctrl_id == '0':
-                g_note_return = (g_note.flora*curr_num-p_note.flora+value)/g_note.total_notes_num
+                if (p_note.flora is None):
+                    curr_num = g_note.total_notes_num-1
+                    g_note_return = (g_note.flora*curr_num+value)/g_note.total_notes_num
+                else:
+                    curr_num = g_note.total_notes_num
+                    g_note_return = (g_note.flora*curr_num-p_note.flora+value)/g_note.total_notes_num 
+
                 g_note.flora = g_note_return
                 p_note.flora = value
             elif ctrl_id == '1':
-                g_note_return = (g_note.fruity*curr_num-p_note.fruity+value)/g_note.total_notes_num
+                if (p_note.fruity is None):
+                    curr_num = g_note.total_notes_num-1
+                    g_note_return = (g_note.fruity*curr_num+value)/g_note.total_notes_num
+                else:
+                    curr_num = g_note.total_notes_num
+                    g_note_return = (g_note.fruity*curr_num-p_note.fruity+value)/g_note.total_notes_num
+              
                 g_note.fruity = g_note_return
                 p_note.fruity = value
             elif ctrl_id == '2':
-                g_note_return = (g_note.creamy*curr_num-p_note.creamy+value)/g_note.total_notes_num
+                if (p_note.creamy is None):
+                    curr_num = g_note.total_notes_num-1
+                    g_note_return = (g_note.creamy*curr_num+value)/g_note.total_notes_num
+                else:
+                    curr_num = g_note.total_notes_num
+                    g_note_return = (g_note.creamy*curr_num-p_note.creamy+value)/g_note.total_notes_num
+
                 g_note.creamy = g_note_return
                 p_note.creamy = value
             elif ctrl_id == '3':
-                g_note_return = (g_note.nutty*curr_num-p_note.nutty+value)/g_note.total_notes_num
+                if (p_note.nutty is None):
+                    curr_num = g_note.total_notes_num-1
+                    g_note_return = (g_note.nutty*curr_num+value)/g_note.total_notes_num
+                else:
+                    curr_num = g_note.total_notes_num
+                    g_note_return = (g_note.nutty*curr_num-p_note.nutty+value)/g_note.total_notes_num
+
                 g_note.nutty = g_note_return
                 p_note.nutty = value
             elif ctrl_id == '4':
-                g_note_return = (g_note.malty*curr_num-p_note.malty+value)/g_note.total_notes_num
+                if (p_note.malty is None):
+                    curr_num = g_note.total_notes_num-1
+                    g_note_return = (g_note.malty*curr_num+value)/g_note.total_notes_num
+                else:
+                    curr_num = g_note.total_notes_num
+                    g_note_return = (g_note.malty*curr_num-p_note.malty+value)/g_note.total_notes_num
+
                 g_note.malty = g_note_return
                 p_note.malty = value
             elif ctrl_id == '5':
-                g_note_return = (g_note.spicy*curr_num-p_note.spicy+value)/g_note.total_notes_num
+                if (p_note.spicy is None):
+                    curr_num = g_note.total_notes_num-1
+                    g_note_return = (g_note.spicy*curr_num+value)/g_note.total_notes_num
+                else:
+                    curr_num = g_note.total_notes_num
+                    g_note_return = (g_note.spicy*curr_num-p_note.spicy+value)/g_note.total_notes_num
+                
                 g_note.spicy = g_note_return
                 p_note.spicy = value
             elif ctrl_id == '6':
-                g_note_return = (g_note.smoky*curr_num-p_note.smoky+value)/g_note.total_notes_num
+                if (p_note.smoky is None):
+                    curr_num = g_note.total_notes_num-1
+                    g_note_return = (g_note.smoky*curr_num+value)/g_note.total_notes_num
+                else:
+                    curr_num = g_note.total_notes_num
+                    g_note_return = (g_note.smoky*curr_num-p_note.smoky+value)/g_note.total_notes_num
+
                 g_note.smoky = g_note_return
                 p_note.smoky = value
             elif ctrl_id == '7':
-                g_note_return = (g_note.peaty*curr_num-p_note.peaty+value)/g_note.total_notes_num
+                if (p_note.peaty is None):
+                    curr_num = g_note.total_notes_num-1
+                    g_note_return = (g_note.peaty*curr_num+value)/g_note.total_notes_num
+                else:
+                    curr_num = g_note.total_notes_num
+                    g_note_return = (g_note.peaty*curr_num-p_note.peaty+value)/g_note.total_notes_num
+
                 g_note.peaty = g_note_return
                 p_note.peaty = value
             
@@ -214,6 +255,7 @@ class WhiskyView(DetailView):
         comments = Comment.objects.filter(whisky_id=self.object.id, publish_choice="Public").order_by('created_at')
         personal_note_array = [0,0,0,0,0,0,0,0]
         general_note_array = [0,0,0,0,0,0,0,0]
+        personal_note = None
 
         if not self.request.user.is_anonymous:
             personal_note = PersonalWhiskyNote.objects.filter(whisky=self.object, user=self.request.user).last()

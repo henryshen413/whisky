@@ -59,11 +59,10 @@ $(function() {
                 type: "POST",
                 data: {"flavor_edit": "flavor_edit", "ctrl_id": ctrl_id, "value": ui.value},
                 success: function(response){
-                        config_individual.data.datasets[0].data[ctrl_id] = ui.value;
-                        config.data.datasets[0].data[ctrl_id] = response;
+                        config_individual.data.datasets[1].data[ctrl_id] = ui.value;
+                        config_individual.data.datasets[0].data[ctrl_id] = response;
                         // redraw chart
                         myRadar.update();
-                        generalRadar.update();
                 },
                 complete:function(){},
                 error:function (xhr, textStatus, thrownError){}
