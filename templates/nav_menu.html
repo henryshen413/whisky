@@ -78,7 +78,7 @@
                         <li>
                             <ul class="lower-menu">
                                 <li>
-                                    <a class="navbar-toggler" data-toggle="collapse" data-target="#mobile_menu" data-parent="#mobile_div">
+                                    <a class="navbar-toggler" data-toggle="collapse" href="#mobile_menu" data-parent="#mobile_div">
                                         <div class="animated-icon"><span></span><span></span><span></span></div>
                                     </a>
                                 </li>
@@ -89,14 +89,18 @@
                         </li>
                         <li>
                             {% if request.user.is_active %}
-                                {% if request.user.profile.profilepic %}
-                                    <a href=""><img src="{{ request.user.profile.profilepic.url }}" class="member-thumbnail-mobile" /></a>
-                                {% else %}
-                                    <a href=""><i class="fa fa-user-circle"></i></a>
-                                {% endif %}
+                            <button onclick="userMobileMenudropDown()" class="dropbtn-mb">
+                                <img src="{% static "img/author.png" %}" class="img-responsive member-thumbnail"/> 
+                            </button>
                             {% else %}
-                            <button class="btn login-btn" type="button" name="button" style="background-color:transparent; border: none; color: black;"><i class="fa fa-user"></i></button>
+                                <button class="btn login-btn" type="button" name="button">會員登入<img src="{% static "img/author.png" %}" class="img-responsive member-thumbnail" /></button>
                             {% endif %}
+        
+                            <div id="mymobileDropdown" class="dropdown-content-mb">
+                                <a href="{% url 'wineratinglist' %}">Profile</a>
+                                <a href="{% url 'wishlist' %}">My wishky</a>
+                                <a href="{% url 'logout_view' %}">Logout</a>
+                            </div>
                         </li>
                     </ul>
                 </div>

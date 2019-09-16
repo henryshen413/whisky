@@ -306,7 +306,7 @@ ul
             top: 21px
             left: 8px
 
-.dropbtn
+.dropbtn, .dropbtn-mb
     background-color: Transparent
     padding: 0px
     margin: 0px
@@ -314,7 +314,7 @@ ul
     border: none
     outline: none
 
-.dropdown-content 
+.dropdown-content, .dropdown-content-mb
     display: none
     position: absolute
     background-color: white
@@ -337,9 +337,9 @@ ul
         border-top: 0
         margin-top: -20px
 
-.dropdown-content a
-    padding: 3px 15px
-    font-size: 14px
+.dropdown-content a, .dropdown-content-mb a
+    padding: 3px 15px !important
+    font-size: 14px !important
     text-decoration: none
     display: block
 
@@ -359,6 +359,12 @@ ul
         display: none
     .mobile-nav
         display: block
+    .dropdown-content-mb
+        top: 100%
+        width: 94%
+        &:after
+            top: 11%
+            left: 90%
 
 @media (max-width: 520px)
     .navbar-form

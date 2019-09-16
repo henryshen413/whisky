@@ -173,14 +173,14 @@ class PersonalWhiskyNote(models.Model):
 
 class GeneralWhiskyNote(models.Model):
     whisky = models.OneToOneField(WhiskyInfo, on_delete=models.CASCADE, unique=True, related_name="gen_whisky")
-    flora = models.IntegerField(default=0)
-    fruity = models.IntegerField(default=0)
-    creamy = models.IntegerField(default=0)
-    nutty = models.IntegerField(default=0)
-    malty = models.IntegerField(default=0)
-    spicy = models.IntegerField(default=0)
-    smoky = models.IntegerField(default=0)
-    peaty = models.IntegerField(default=0)
+    flora = models.FloatField(default=0)
+    fruity = models.FloatField(default=0)
+    creamy = models.FloatField(default=0)
+    nutty = models.FloatField(default=0)
+    malty = models.FloatField(default=0)
+    spicy = models.FloatField(default=0)
+    smoky = models.FloatField(default=0)
+    peaty = models.FloatField(default=0)
     total_notes_num = models.IntegerField(default=0)
 
 class Comment(models.Model):

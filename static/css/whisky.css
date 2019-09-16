@@ -6,7 +6,7 @@ a {
   color: black;
 }
 
-h3 {
+h3, .fas, .far, .fab {
   font-size: 20px;
 }
 
@@ -145,8 +145,17 @@ h3 {
 }
 
 .popover-content {
-  padding: 5px 5px;
-  width: 85px;
+  padding: 8px 8px;
+  width: 165px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  outline: none;
+}
+
+.popover-content .share-media {
+  position: relative;
+  top: -2px;
 }
 
 #blurred-chart {

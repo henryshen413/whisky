@@ -5,13 +5,20 @@ var config = {
         labels: ['Flora', 'Fruity', 'Creamy', 'Nutty', 'Malty', 'Spicy', 'Smoky', 'Peaty'],
         datasets: [{
             label: 'whisky',
-            backgroundColor: color("#FDEB7B").alpha(0.7).rgbString(),
+            backgroundColor: color("#FDEB7B").alpha(0.3).rgbString(),
             borderColor: color("#FDEB7B").rgbString(),
             borderWidth: 1,
             pointBackgroundColor: color("#581D17").rgbString(),
             pointBorderColor: color("#581D17").rgbString(),
             data: window.generaltableData
-        }]
+        },{
+          label: 'whisky',
+          backgroundColor: color(window.chartColors.red).alpha(0.6).rgbString(),
+          borderColor: window.chartColors.red,
+          borderWidth: 1,
+          pointBackgroundColor: window.chartColors.red,
+          data: window.personaltableData
+      }]
     },
     options: {
         legend: {

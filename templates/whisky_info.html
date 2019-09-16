@@ -104,18 +104,25 @@
     <div class="info-area">
         <div class="row container">
             <div class="col-md-offset-1 col-md-10 col-xs-12">	
-                <div style="font-size: 20px; display: inline-block; float: left">Summary</div>
+                <div style="font-size: 20px; display: inline-block; float: left; margin-top: -5px">Summary</div>
                 <div class="buttons" align="right">
-                    <button type="button" id="btn-share" data-toggle="popover" title="Share To:" data-placement="top" data-container="body">
+                    <button type="button" id="btn-share" data-toggle="popover" data-placement="left" data-container="body">
                         <i class="fas fa-share"></i>
                     </button>
                     <span id="popoverExampleHiddenContent" class="hidden">
-                        <a target="_blank" href="#" onclick="window.open(this.href, 'newwindow', 'width=500,height=250'); return false;" class="btn-media twitter">
-                            <i class="fab fa-twitter-square sm-icon"></i>
-                        </a>
-                        <a target="_blank" href="#" onclick="window.open(this.href, 'newwindow', 'width=500,height=250'); return false;" class="btn-media facebook">
-                            <i class="fab fa-facebook sm-icon"></i>
-                        </a>
+                        <div>
+                            <a target="_blank" href="#" onclick="window.open(this.href, 'newwindow', 'width=500,height=250'); return false;" class="btn-media twitter">
+                                <i class="fab fa-twitter-square sm-icon"></i> 
+                                <span class="share-media">Share on Twitter</span>
+                            </a>
+                        </div>
+                        
+                        <div style="margin-top:5px">
+                            <a target="_blank" href="#" onclick="window.open(this.href, 'newwindow', 'width=500,height=250'); return false;" class="btn-media facebook">
+                                <i class="fab fa-facebook sm-icon"></i>
+                                <span class="share-media">Share on Facebook</span>
+                            </a>
+                        </div>
                     </span>
                     {% if request.user.is_active %}
                         {% if bm_boolean == 1 %}

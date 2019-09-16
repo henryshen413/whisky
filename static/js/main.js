@@ -179,6 +179,14 @@ $(document).ready(function(){
     }).mouseleave(function(){
         $(this).find('.author-articles').clearQueue().css('display', 'none');
     });
+
+    $(document).click(function (event) {
+        var clickover = $(event.target);
+        var _opened = $("#mobile_menu").hasClass("row collapse in");
+        if (_opened === true && !clickover.hasClass("navbar-toggler")) {
+            $("a.navbar-toggler").click();
+        }
+    });
 });
 
 $(function(){
@@ -434,10 +442,25 @@ function userMenudropDown() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
+function userMobileMenudropDown() {
+    document.getElementById("mymobileDropdown").classList.toggle("show");
+}
+
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
     if (!document.getElementsByClassName('dropbtn')[0].contains(event.target)) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+
+    if (!document.getElementsByClassName('dropbtn-mb')[0].contains(event.target)) {
+        var dropdowns = document.getElementsByClassName("dropdown-content-mb");
         var i;
         for (i = 0; i < dropdowns.length; i++) {
             var openDropdown = dropdowns[i];

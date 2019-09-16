@@ -158,41 +158,46 @@ class WhiskyView(DetailView):
                     curr_num = g_note.total_notes_num
                     g_note.total_notes_num+=1
                     g_note.save()
+
+            else:
+                curr_num = g_note.total_notes_num
             
+            print(g_note.total_notes_num)
+            print(curr_num)            
             g_note_return = 0
 
             if ctrl_id == '0':
-                p_note.flora = value
-                g_note_return = (g_note.flora*curr_num+value)/g_note.total_notes_num
+                g_note_return = (g_note.flora*curr_num-p_note.flora+value)/g_note.total_notes_num
                 g_note.flora = g_note_return
+                p_note.flora = value
             elif ctrl_id == '1':
-                p_note.fruity = value
-                g_note_return = (g_note.fruity*curr_num+value)/g_note.total_notes_num
+                g_note_return = (g_note.fruity*curr_num-p_note.fruity+value)/g_note.total_notes_num
                 g_note.fruity = g_note_return
+                p_note.fruity = value
             elif ctrl_id == '2':
-                p_note.creamy = value
-                g_note_return = (g_note.creamy*curr_num+value)/g_note.total_notes_num
+                g_note_return = (g_note.creamy*curr_num-p_note.creamy+value)/g_note.total_notes_num
                 g_note.creamy = g_note_return
+                p_note.creamy = value
             elif ctrl_id == '3':
-                p_note.nutty = value
-                g_note_return = (g_note.nutty*curr_num+value)/g_note.total_notes_num
+                g_note_return = (g_note.nutty*curr_num-p_note.nutty+value)/g_note.total_notes_num
                 g_note.nutty = g_note_return
+                p_note.nutty = value
             elif ctrl_id == '4':
-                p_note.malty = value
-                g_note_return = (g_note.malty*curr_num+value)/g_note.total_notes_num
+                g_note_return = (g_note.malty*curr_num-p_note.malty+value)/g_note.total_notes_num
                 g_note.malty = g_note_return
+                p_note.malty = value
             elif ctrl_id == '5':
-                p_note.spicy = value
-                g_note_return = (g_note.spicy*curr_num+value)/g_note.total_notes_num
+                g_note_return = (g_note.spicy*curr_num-p_note.spicy+value)/g_note.total_notes_num
                 g_note.spicy = g_note_return
+                p_note.spicy = value
             elif ctrl_id == '6':
-                p_note.smoky = value
-                g_note_return = (g_note.smoky*curr_num+value)/g_note.total_notes_num
+                g_note_return = (g_note.smoky*curr_num-p_note.smoky+value)/g_note.total_notes_num
                 g_note.smoky = g_note_return
+                p_note.smoky = value
             elif ctrl_id == '7':
-                p_note.peaty = value
-                g_note_return = (g_note.peaty*curr_num+value)/g_note.total_notes_num
+                g_note_return = (g_note.peaty*curr_num-p_note.peaty+value)/g_note.total_notes_num
                 g_note.peaty = g_note_return
+                p_note.peaty = value
             
             p_note.save()
             g_note.save()
