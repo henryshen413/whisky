@@ -183,7 +183,7 @@ $(document).ready(function(){
     $(document).click(function (event) {
         var clickover = $(event.target);
         var _opened = $("#mobile_menu").hasClass("row collapse in");
-        if (_opened === true && !clickover.hasClass("navbar-toggler")) {
+        if (_opened === true && !clickover.is("#myInput-m")) {
             $("a.navbar-toggler").click();
         }
     });

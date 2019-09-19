@@ -28,6 +28,7 @@
             </li>
         </ul>
         <div class="whisky-list">
+            {% if review %}
             <div id="mynote">
                 {% if user_comment %}
                     {% for comment in user_comment %}
@@ -46,6 +47,9 @@
                     {% endfor %}
                 {% endif %}
             </div>
+            {% endif %}
+
+            {% if wishlist %}
             <div id="wishlist">
                 {% if user_comment %}
                     {% for comment in user_comment %}
@@ -64,6 +68,7 @@
                     {% endfor %}
                 {% endif %}
             </div>
+            {% endif %}
         </div>
     </div>
 

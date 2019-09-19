@@ -15,9 +15,6 @@ from whiskysite.form import *
 from whiskysite.mixin import *
 from whiskydatabase.models import UserRole, Distillery, Country, Region, Comment, Wishlist
 
-
-
-
 class CustomLoginView(LoginAjaxMixin, SuccessMessageMixin, LoginView):
 	authentication_form = CustomAuthenticationForm
 	template_name = 'login.html'

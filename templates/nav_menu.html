@@ -107,7 +107,7 @@
 
                 <div class="row collapse" id="mobile_menu">
                     <div class="row search-row">
-                        <div class="col-xs-12">
+                        <div class="col-sm-10 col-sm-offset-1 col-xs-12">
                             <form class="navbar-form navbar-left" name="search-form" role="search" action="/search/" method="get" autocomplete="off" accept-charset="utf-8">
                                 <div class="autocomplete">
                                     <input id="myInput-m" type="search" name="q" placeholder="Search....">
@@ -120,17 +120,17 @@
                     {% loop %}
                     <div class="row">
                         {% if menu.has_children %}
-                        <div class="col-xs-12">
+                        <div class="col-sm-8 col-sm-offset-2 col-xs-12">
                             <h4> {{ menu.title }} </h4>
                         </div>
                         {% for child in menu.get_children %}
-                        <div class="col-xs-6">
+                        <div class="col-sm-3 col-sm-offset-2 col-xs-6">
                             <i class="{{ child.icon }} submenu-icon"></i>
                             <a href="{{ child.url }}">{{ child.title }}</a>
                         </div>
                         {% endfor %}
                         {% else %}
-                        <div class="col-xs-12">
+                        <div class="col-sm-10 col-sm-offset-1 col-xs-12">
                             <h4><a href="{{ menu.url }}">{{ menu.title }}</a></h4>
                         </div>
                         {% endif %}

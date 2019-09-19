@@ -110,8 +110,12 @@ ul {
   display: none;
 }
 
+.mobile-nav #mobile_menu {
+  margin-top: 15px;
+}
+
 .mobile-nav .row {
-  background-color: #FDEB7B;
+  background-color: white;
   margin-right: 0px;
   margin-left: 0px;
 }
