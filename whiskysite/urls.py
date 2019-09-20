@@ -37,8 +37,8 @@ urlpatterns = [
     re_path(r'^logout/$', logout_view, name='logout_view'),
 
     #user
-    path('user/', UserWineRatingView.as_view(), name='wineratinglist'),
-    path('user/wishlist', UserWineWishlistView.as_view(), name='wishlist'),
+    path('user/', UserRatingView.as_view(), name='wineratinglist'),
+    path('user/wishlist', UserWishlistView.as_view(), name='wishlist'),
 
     path('admin/', admin.site.urls),
 

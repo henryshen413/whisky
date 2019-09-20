@@ -36,24 +36,26 @@ class SignUpView(SuccessMessageMixin, CreateView):
 
 		return HttpResponse('success')
 
-class UserWineRatingView(NormalUserLoginMixin, TemplateView):
+class UserRatingView(NormalUserLoginMixin, TemplateView):
 	template_name = 'user/user_profile.html'
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		user_comment = Comment.objects.filter(user=self.request.user).order_by('created_at')
 		context.update({
+			"rating_page": "rating_page",
             "user_comment": user_comment,
         })
 		return context
 
-class UserWineWishlistView(NormalUserLoginMixin, TemplateView):
+class UserWishlistView(NormalUserLoginMixin, TemplateView):
 	template_name = 'user/user_profile.html'
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		user_wishlist = Wishlist.objects.filter(user=self.request.user).order_by('created_at')
 		context.update({
+			"wishlist_page" : "wishlist_page",
 			"user_wishlist": user_wishlist,
         })
 		return context

@@ -32,3 +32,8 @@ def show_username(user):
 def convert_rate(rate):
     
     return int(rate*10)
+
+@register.filter
+def round_rate(rate):
+    
+    return round(rate, 1)

@@ -18,58 +18,97 @@
         </div>
     </div>
 
-    <div class="col-sm-8 col-xs-12">
-        <ul class="user-tab">
-            <li class="user-tab-cell">
-                <a href="{% url 'wineratinglist' %}">My rating</a> 
-            </li>
-            <li class="user-tab-cell">
-                <a href="{% url 'wishlist' %}">Wish List</a> 
-            </li>
-        </ul>
-        <div class="whisky-list">
-            {% if review %}
+    <div class="col-sm-8 col-xs-12 whisky-list-sec">
+        {% if rating_page %}
+            <div class="row list-tab" >
+                <ul class="user-tab">
+                    <li class="user-tab-cell">
+                        <a href="{% url 'wineratinglist' %}" style="border-bottom: solid 2px #a11122; padding-bottom: 5px">My rating</a> 
+                    </li>
+                    <li class="user-tab-cell">
+                        <a href="{% url 'wishlist' %}">Wish List</a> 
+                    </li>
+                </ul>
+            </div>
             <div id="mynote">
                 {% if user_comment %}
                     {% for comment in user_comment %}
-                        <div class="whisky-info">
-                            <div>{{ comment.whisky.name }}</div>
-                            <div>{{ comment.whisky.brand_series }}</div>
-                            <div>{{ comment.whisky.country }}</div>
-                            <div>{{ comment.whisky.abv }}</div>
-                        </div>
-                        <div class="user-comment">
-                            <span class="comment-date">{{ comment.created_at }}</span>
-                            <br>
-                            <div class="rating-{{ comment.rating|convert_rate }}" style="margin-bottom: 10px"></div>
-                            <div class="comment-content-31">{{ comment.note }}</div>
+                        <div class="comment-div">
+                            <div class="user-comment">
+                                <div style="font-size: 12px">
+                                    <span style="font-weight: bold">Rated on:</span>
+                                    <span class="comment-date">{{ comment.created_at }}</span>
+                                </div>
+                                <div class="rating-{{ comment.rating|convert_rate }}" style="margin-bottom: 10px"></div>
+                                <div class="comment-content">"{{ comment.note }}"</div>
+                            </div>
+                            <div class="row whisky-info">
+                                <div class="col-sm-3 col-xs-12">
+                                    <img class="whisky-list-photo" src="{{ comment.whisky.photo.url }}">
+                                </div>
+                                <div class="col-sm-9 col-xs-12">
+                                    <div class="whisky-list-bs">{{ comment.whisky.brand_series }}</div>
+                                    <div class="whisky-list-name"><a href="{% url 'whisky_view' whisky_slug=comment.whisky.slug %}">{{ comment.whisky.name }}</a></div>
+                                    <div class="whisky-list-region">
+                                        <img class="country-flag" src="{{ comment.whisky.distillery.country.image.url}}" /> 
+                                        <span>{{ comment.whisky.distillery.region }}, {{ comment.whisky.distillery.country }}</span>
+                                    </div>
+                                    <br>
+                                    <div class="col-xs-6 col-sm-5" style="padding-left:0px"> 
+                                        <div class="avg-rating-title">AVG. RATING</div> 
+                                        <div class="avg-rating">{{ comment.whisky.rating|round_rate }}</div> 
+                                        <div class="rating-num">{{ comment.whisky.num_rating }} Ratings</div> 
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     {% endfor %}
+                {% else %}
+                    <div>No wish bottle</div>
                 {% endif %}
             </div>
-            {% endif %}
 
-            {% if wishlist %}
+        {% elif wishlist_page %}
+            <div class="row list-tab">
+                <ul class="user-tab">
+                    <li class="user-tab-cell">
+                        <a href="{% url 'wineratinglist' %}">My rating</a> 
+                    </li>
+                    <li class="user-tab-cell">
+                        <a href="{% url 'wishlist' %}" style="border-bottom: solid 2px #a11122; padding-bottom: 5px">Wish List</a> 
+                    </li>
+                </ul>
+            </div>
             <div id="wishlist">
-                {% if user_comment %}
-                    {% for comment in user_comment %}
-                        <div class="whisky-info">
-                            <div>{{ comment.whisky.name }}</div>
-                            <div>{{ comment.whisky.brand_series }}</div>
-                            <div>{{ comment.whisky.country }}</div>
-                            <div>{{ comment.whisky.abv }}</div>
-                        </div>
-                        <div class="user-comment">
-                            <span class="comment-date">{{ comment.created_at }}</span>
-                            <br>
-                            <div class="rating-{{ comment.rating|convert_rate }}" style="margin-bottom: 10px"></div>
-                            <div class="comment-content-31">{{ comment.note }}</div>
+                {% if user_wishlist %}
+                    {% for item in user_wishlist %}
+                    <div class="comment-div">
+                            <div class="row whisky-info">
+                                <div class="col-sm-3 col-xs-12">
+                                    <img class="whisky-list-photo" src="{{ item.whisky.photo.url }}">
+                                </div>
+                                <div class="col-sm-9 col-xs-12">
+                                    <div class="whisky-list-bs">{{ item.whisky.brand_series }}</div>
+                                    <div class="whisky-list-name"><a href="{% url 'whisky_view' whisky_slug=item.whisky.slug %}">{{ item.whisky.name }}</a></div>
+                                    <div class="whisky-list-region">
+                                        <img class="country-flag" src="{{ item.whisky.distillery.country.image.url}}" /> 
+                                        <span>{{ item.whisky.distillery.region }}, {{ item.whisky.distillery.country }}</span>
+                                    </div>
+                                    <br>
+                                    <div class="col-xs-6 col-sm-5" style="padding-left:0px"> 
+                                        <div class="avg-rating-title">AVG. RATING</div> 
+                                        <div class="avg-rating">{{ item.whisky.rating|round_rate }}</div> 
+                                        <div class="rating-num">{{ item.whisky.num_rating }} Ratings</div> 
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     {% endfor %}
+                {% else %}
+                    <div>No wish bottle</div>
                 {% endif %}
             </div>
-            {% endif %}
-        </div>
+        {% endif %}
     </div>
 
 

@@ -83,23 +83,14 @@ class WhiskyView(DetailView):
                     )
                 
                 comment.save()
+                
+                curr_rating_total = self.object.num_rating*self.object.rating+float(rating)
+                self.object.num_rating += 1
+                self.object.rating = curr_rating_total/self.object.num_rating
+
+                self.object.save()
 
             return HttpResponseRedirect('/whisky/{}/#r'.format(self.object.slug))
-
-        elif request.POST.get('action') and request.POST.get('action') == 'bookmark':
-            if Wishlist.objects.filter(whisky=self.object, user=request.user).exists():
-                Wishlist.objects.filter(whisky=self.object, user=request.user).delete()
-                
-                return HttpResponse(0)
-
-            else:   
-                user_wishlist_obj = Wishlist.objects.create(
-                    whisky = self.object,
-                    user = request.user
-                )
-                user_wishlist_obj.save()
-
-                return HttpResponse(1)
 
         elif request.POST.get('comment-edit'): 
             c_id = request.POST.get('comment-id')
@@ -116,20 +107,52 @@ class WhiskyView(DetailView):
                 if not rating:
                     rating = 0
 
+                curr_rating_total = self.object.num_rating*self.object.rating-comment.rating+float(rating)
+
                 comment.note = content
                 comment.rating = rating
                 comment.publish_choice = p_choice
                 
                 comment.save()
 
+                self.object.rating = curr_rating_total/self.object.num_rating
+
+                self.object.save()
+
             return HttpResponseRedirect('/whisky/{}/#r'.format(self.object.slug))
 
         elif request.POST.get('delete_cmt_id'): 
             delete_cmt_id = request.POST.get('delete_cmt_id')
 
-            Comment.objects.filter(id=delete_cmt_id).delete()
+            comment = Comment.objects.filter(id=delete_cmt_id).last()
+
+            curr_rating_total = self.object.num_rating*self.object.rating-comment.rating
+            self.object.num_rating -= 1
+            if self.object.num_rating == 0:
+                self.object.rating = 0
+            else:
+                self.object.rating = curr_rating_total/self.object.num_rating
+
+            self.object.save()
+
+            comment.delete()
 
             return HttpResponse(True)
+
+        elif request.POST.get('action') and request.POST.get('action') == 'bookmark':
+            if Wishlist.objects.filter(whisky=self.object, user=request.user).exists():
+                Wishlist.objects.filter(whisky=self.object, user=request.user).delete()
+                
+                return HttpResponse(0)
+
+            else:   
+                user_wishlist_obj = Wishlist.objects.create(
+                    whisky = self.object,
+                    user = request.user
+                )
+                user_wishlist_obj.save()
+
+                return HttpResponse(1)
         
         elif request.POST.get('flavor_edit') and request.POST.get('flavor_edit') == 'flavor_edit':
             ctrl_id = request.POST.get('ctrl_id')
@@ -253,6 +276,7 @@ class WhiskyView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(WhiskyView, self).get_context_data(*args, **kwargs)
         comments = Comment.objects.filter(whisky_id=self.object.id, publish_choice="Public").order_by('created_at')
+        my_comment = Comment.objects.filter(whisky_id=self.object.id, user=self.request.user).last()
         personal_note_array = [0,0,0,0,0,0,0,0]
         general_note_array = [0,0,0,0,0,0,0,0]
         personal_note = None
@@ -271,6 +295,7 @@ class WhiskyView(DetailView):
             
         context.update({
             "comments": comments,
+            "my_comment": my_comment,
             "general_note_array": json.dumps(list(general_note_array)),
             "personal_note_array": json.dumps(list(personal_note_array)),
             'bm_boolean': 1 if Wishlist.objects.filter(whisky=self.object, user_id=self.request.user.id).exists() else 0,

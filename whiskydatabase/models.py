@@ -46,9 +46,13 @@ class UserProfile(models.Model):
     nickname = models.TextField(blank=True, null=True)
     profilepic = models.ImageField(upload_to=path_and_rename, blank=True, null=True)
     wishlist = models.IntegerField(default=0)
+    bottle_num = models.IntegerField(default=0)
+    rate_num = models.IntegerField(default=0)
+    distillery_num = models.IntegerField(default=0)
 
     class Meta:
         ordering = ['-id']
+
     def __str__(self):
         return user
 
@@ -138,6 +142,8 @@ class WhiskyInfo(models.Model):
     artificial_coloring = models.CharField(max_length=2, choices=BOOLEAN_CHOICE)
     cask_num = models.CharField(max_length=15, blank=True)
     bottle_num =  models.CharField(max_length=15, blank=True)
+    rating = models.FloatField(default=0)
+    num_rating = models.IntegerField(default=0)
     slug = models.SlugField(
         default='',
         editable=False,

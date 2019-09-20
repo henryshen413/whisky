@@ -24,17 +24,76 @@
   color: #999999;
 }
 
-.user-tab .user-tab-cell a:hover {
-  text-decoration: none;
+.whisky-list-sec {
+  background-color: #f9f9f9;
+  position: relative;
+  padding: 0px 24px 24px 24px;
+  min-height: 700px;
+  margin-bottom: 48px;
+  -webkit-box-shadow: 0 0 15px 0 rgba(50, 50, 50, 0.3);
+          box-shadow: 0 0 15px 0 rgba(50, 50, 50, 0.3);
+}
+
+.list-tab {
+  margin-bottom: 20px;
+}
+
+.comment-div {
+  -webkit-box-shadow: 0 2px 2px 0 rgba(50, 50, 50, 0.1);
+          box-shadow: 0 2px 2px 0 rgba(50, 50, 50, 0.1);
+  background-color: #ffffff;
+  margin-bottom: 25px;
+  padding: 0;
+}
+
+.user-comment {
+  padding: 12px;
+  border-bottom: 1px solid #f2f2f2;
+  margin-bottom: 20px;
+}
+
+.whisky-list-photo {
+  height: 150px;
+}
+
+.whisky-info {
+  color: black;
+  padding: 12px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.whisky-info .whisky-list-name {
+  font-size: 20px;
+  font-weight: bold;
   color: #581D17;
 }
 
-.user-tab .user-tab-cell a:target {
-  border-bottom: 3px solid #a11122;
+.whisky-info .whisky-list-bs {
+  font-size: 16px;
 }
 
-.whisky-list {
-  border: 1px solid #e6e6e6;
-  padding: 10px;
+.whisky-info .whisky-list-region {
+  font-size: 14px;
+}
+
+.whisky-info .whisky-list-region .country-flag {
+  float: left;
+  width: auto !important;
+  height: 15px !important;
+  margin-right: 3px;
+  margin-top: 3px;
+}
+
+.whisky-info .whisky-list-abv {
+  font-size: 12px;
+}
+
+.avg-rating-title, .rating-num {
+  color: grey;
+  font-size: 10px;
+}
+
+.avg-rating {
+  font-size: 20px;
 }
 /*# sourceMappingURL=user_profile.css.map */

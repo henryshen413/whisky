@@ -207,7 +207,7 @@ $(function(){
     $(".my-rating").starRating({
         initialRating: 0,
         strokeColor: '#894A00',
-        strokeWidth: 10,
+        strokeWidth: 5,
         starSize: 25,
         disableAfterRate: false,
         callback: function(currentRating, $el){
@@ -220,39 +220,39 @@ $(function(){
         initialRating: 0,
         strokeColor: '#894A00',
         strokeWidth: 10,
-        starSize: 25,
+        starSize: 18,
         readOnly: true
     });
 
     $(".rating-5").starRating({
         initialRating: 0.5,
         strokeColor: '#894A00',
-        strokeWidth: 10,
-        starSize: 25,
+        strokeWidth: 5,
+        starSize: 18,
         readOnly: true
     });
 
     $(".rating-10").starRating({
         initialRating: 1,
         strokeColor: '#894A00',
-        strokeWidth: 10,
-        starSize: 25,
-        readOnly: true
+        strokeWidth: 5,
+        starSize: 18,
+        readOnly: true,
     });
 
     $(".rating-15").starRating({
-        initialRating: 1.5,
+        initialRating: 1.8,
         strokeColor: '#894A00',
-        strokeWidth: 10,
-        starSize: 25,
+        strokeWidth: 5,
+        starSize: 18,
         readOnly: true
     });
 
     $(".rating-20").starRating({
         initialRating: 2,
         strokeColor: '#894A00',
-        strokeWidth: 10,
-        starSize: 25,
+        strokeWidth: 5,
+        starSize: 18,
         readOnly: true
     });
 
@@ -260,54 +260,54 @@ $(function(){
         initialRating: 2.5,
         strokeColor: '#894A00',
         strokeWidth: 10,
-        starSize: 25,
+        starSize: 18,
         readOnly: true
     });
 
     $(".rating-30").starRating({
         initialRating: 3,
         strokeColor: '#894A00',
-        strokeWidth: 10,
-        starSize: 25,
+        strokeWidth: 5,
+        starSize: 18,
         readOnly: true
     });
 
     $(".rating-35").starRating({
         initialRating: 3.5,
         strokeColor: '#894A00',
-        strokeWidth: 10,
-        starSize: 25,
+        strokeWidth: 5,
+        starSize: 18,
         readOnly: true
     });
 
     $(".rating-40").starRating({
         initialRating: 4,
         strokeColor: '#894A00',
-        strokeWidth: 10,
-        starSize: 25,
+        strokeWidth: 5,
+        starSize: 18,
         readOnly: true
     });
 
     $(".rating-45").starRating({
         initialRating: 4.5,
         strokeColor: '#894A00',
-        strokeWidth: 10,
-        starSize: 25,
+        strokeWidth: 5,
+        starSize: 18,
         readOnly: true
     });
 
     $(".rating-50").starRating({
         initialRating: 5,
         strokeColor: '#894A00',
-        strokeWidth: 10,
-        starSize: 25,
+        strokeWidth: 5,
+        starSize: 18,
         readOnly: true
     });
 
     $(".rating-edit-0").starRating({
         initialRating: 0,
         strokeColor: '#894A00',
-        strokeWidth: 10,
+        strokeWidth: 5,
         starSize: 25,
         disableAfterRate: false,
         callback: function(currentRating, $el){
@@ -319,7 +319,7 @@ $(function(){
     $(".rating-edit-5").starRating({
         initialRating: 0.5,
         strokeColor: '#894A00',
-        strokeWidth: 10,
+        strokeWidth: 5,
         starSize: 25,
         disableAfterRate: false,
         callback: function(currentRating, $el){
@@ -331,7 +331,7 @@ $(function(){
     $(".rating-edit-10").starRating({
         initialRating: 1,
         strokeColor: '#894A00',
-        strokeWidth: 10,
+        strokeWidth: 5,
         starSize: 25,
         disableAfterRate: false,
         callback: function(currentRating, $el){
@@ -343,7 +343,7 @@ $(function(){
     $(".rating-edit-15").starRating({
         initialRating: 1.5,
         strokeColor: '#894A00',
-        strokeWidth: 10,
+        strokeWidth: 5,
         starSize: 25,
         disableAfterRate: false,
         callback: function(currentRating, $el){
@@ -355,7 +355,7 @@ $(function(){
     $(".rating-edit-20").starRating({
         initialRating: 2,
         strokeColor: '#894A00',
-        strokeWidth: 10,
+        strokeWidth: 5,
         starSize: 25,
         disableAfterRate: false,
         callback: function(currentRating, $el){
@@ -367,7 +367,7 @@ $(function(){
     $(".rating-edit-25").starRating({
         initialRating: 2.5,
         strokeColor: '#894A00',
-        strokeWidth: 10,
+        strokeWidth: 5,
         starSize: 25,
         disableAfterRate: false,
         callback: function(currentRating, $el){
@@ -379,7 +379,7 @@ $(function(){
     $(".rating-edit-30").starRating({
         initialRating: 3,
         strokeColor: '#894A00',
-        strokeWidth: 10,
+        strokeWidth: 5,
         starSize: 25,
         disableAfterRate: false,
         callback: function(currentRating, $el){
@@ -391,7 +391,7 @@ $(function(){
     $(".rating-edit-35").starRating({
         initialRating: 3.5,
         strokeColor: '#894A00',
-        strokeWidth: 10,
+        strokeWidth: 5,
         starSize: 25,
         disableAfterRate: false,
         callback: function(currentRating, $el){
@@ -403,7 +403,7 @@ $(function(){
     $(".rating-edit-40").starRating({
         initialRating: 4,
         strokeColor: '#894A00',
-        strokeWidth: 10,
+        strokeWidth: 5,
         starSize: 25,
         disableAfterRate: false,
         callback: function(currentRating, $el){
@@ -415,7 +415,7 @@ $(function(){
     $(".rating-edit-45").starRating({
         initialRating: 4.5,
         strokeColor: '#894A00',
-        strokeWidth: 10,
+        strokeWidth: 5,
         starSize: 25,
         disableAfterRate: false,
         callback: function(currentRating, $el){
@@ -427,7 +427,7 @@ $(function(){
     $(".rating-edit-50").starRating({
         initialRating: 5,
         strokeColor: '#894A00',
-        strokeWidth: 10,
+        strokeWidth: 5,
         starSize: 25,
         disableAfterRate: false,
         callback: function(currentRating, $el){

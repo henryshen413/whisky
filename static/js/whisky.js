@@ -133,7 +133,7 @@ function wishlistEditor(el, action){
 	});
 }
 
-function editComment(edit_cmt_id) {
+function editComment(edit_cmt_id, cmd_r) {
     var c_id = edit_cmt_id.toString();
     var old_comment = "#cm-user-content-"+c_id;
     var edit_box = "#edit-box-"+c_id;
@@ -141,7 +141,7 @@ function editComment(edit_cmt_id) {
     
     $(old_comment).hide();
     $(edit_box).show();
-    $(rating_edit).after("<input type=\"hidden\" id=\"myRating-edit\" name=\"myRating-edit\" value=\"\" />");
+    $(rating_edit).after("<input type=\"hidden\" id=\"myRating-edit\" name=\"myRating-edit\" value=\""+cmd_r+"\" />");
 }
 
 function deleteComment(delete_cmt_id) {

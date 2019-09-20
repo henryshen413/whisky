@@ -115,6 +115,7 @@
                     {% endif %}
                 </div>
                 <br>
+                <div class="rating-{{ whisky_detail.rating|convert_rate }}" style="margin-bottom: 10px"></div>
                 <div class="whisky-abv">Abv: <span class="info">{{ whisky_detail.abv }}</span></div>
                 <div class="whisky-year">Year: <span class="info">{{ whisky_detail.year }}</span></div>
                 <div class="whisky-casktype">Casktype: <span class="info">{{ whisky_detail.casktype }}</span></div>
@@ -126,6 +127,76 @@
         <div class="row container">
             <div class="col-md-offset-1 col-md-10 col-xs-12">		
                 <div class="responses-box" id="r">
+                    <hr style="margin-top: 20px; margin-bottom: 15px">
+                    <h3>My Notes</h3>
+                    {% if my_comment %}
+                        <div class="row comment-row" style="margin-top: 15px">
+                            <div class="cm-user-pic">
+                                {% if my_comment.user.profile.profilepic %}
+                                    <img src="{{ my_comment.user.profile.profilepic.url }}" class="img-responsive cm-user-img"/>
+                                {% else %}
+                                    <img src="{% static "img/author.png" %}" class="img-responsive cm-user-img" />
+                                {% endif %}
+                            </div>
+                            <div class="cm-user-content" id="cm-user-content-{{ my_comment.id }}">
+                                <div class="comment-box">
+                                    <span class="comment-user">{{ my_comment.user|show_username }}&nbsp;</span>
+                                    <span class="comment-date">{{ my_comment.created_at }}</span>
+                                    <br>
+                                    <div class="rating-{{ my_comment.rating|convert_rate }}" style="margin-bottom: 10px"></div>
+                                    <div class="comment-content-31">{{ my_comment.note }}</div>
+                                </div>
+
+                                {% if request.user == my_comment.user %}
+                                <div class="popover-container">
+                                    <div class="comment-control-sec">
+                                        <button type="button" class="btn-control" id="btn-control" data-popover="true" data-placement="bottom" data-container="body">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <div id="popover-content" class="hidden">
+                                            <button type="button" name="edit-comment" class="comment-control" onclick = "editComment({{ my_comment.id }},{{ my_comment.rating }} )">
+                                                <i class="fa fa-edit fa-fw btn-ctrl"></i>Edit...
+                                            </button>
+                                            <button type="button" name="delete-comment" class="comment-control" onclick = "deleteComment({{ my_comment.id }})">
+                                                <i class="fa fa-trash fa-fw btn-ctrl"></i>Delete...
+                                            </button>                                                    
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            {% if request.user == my_comment.user %}
+                            <div id="edit-box-{{ my_comment.id }}" style="display: none">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" id="comment-id" name="comment-id" value="{{ my_comment.id }}">
+                                    <div class="rating-edit-{{ my_comment.rating|convert_rate }}" id="rating-edit-{{ my_comment.id }}" style="margin-top: 10px"></div>
+                                    <textarea required class="form-control comment" placeholder="This whisky is..." name="comment-edit" id="comment-edit">{{ my_comment.note }}</textarea>
+                                    <input type="checkbox" name="publish_choice" id="publish_choice" value="Private">Private Note</input>
+                                    <br>
+                                    <button type="reset" id="cancel" name="cancel" class="btn btn-default" value="1" style="margin-top: 10px" onclick="cancelEdit({{ comment.id }},{{ comment.rating }})">Cancel</button>
+                                    <input type="submit" value="submit" class ="btn" style="color:#333; margin-top: 10px">
+                                </form>	
+                            </div>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <form method="post">
+                            {% csrf_token %} 
+                            {% if request.user.is_active %}
+                            <div class="my-rating" style="margin-bottom: 10px"></div>
+                            <input type="hidden" id="myRating" name="myRating" value="" />
+                            <textarea required class="form-control comment" placeholder="This whisky is..." name="comment" id="comment"></textarea>
+                            <input type="checkbox" name="publish_choice" id="publish_choice" value="Private">Private Note</input>
+                            <br>
+                            <input type="submit" value="submit" class ="btn" style="color:#333; margin-top: 10px">
+                            {% else %}
+                            <textarea class="form-control comment" placeholder="Please login or signup" disabled></textarea>
+                            {% endif %}
+                        </form>
+                    {% endif %}
+
                     <div class="comments">
                         {% if comments %}
                         <hr style="margin-top: 20px; margin-bottom: 15px">
@@ -147,63 +218,11 @@
                                             <div class="rating-{{ comment.rating|convert_rate }}" style="margin-bottom: 10px"></div>
                                             <div class="comment-content-31">{{ comment.note }}</div>
                                         </div>
-
-                                        {% if request.user == comment.user %}
-                                        <div class="popover-container">
-                                            <div class="comment-control-sec">
-                                                <button type="button" class="btn-control" id="btn-control" data-popover="true" data-placement="bottom" data-container="body">
-                                                    <i class="fas fa-ellipsis-h"></i>
-                                                </button>
-                                                <div id="popover-content" class="hidden">
-                                                    <button type="button" name="edit-comment" class="comment-control" onclick = "editComment({{ comment.id }})">
-                                                        <i class="fa fa-edit fa-fw btn-ctrl"></i>Edit...
-                                                    </button>
-                                                    <button type="button" name="delete-comment" class="comment-control" onclick = "deleteComment({{ comment.id }})">
-                                                        <i class="fa fa-trash fa-fw btn-ctrl"></i>Delete...
-                                                    </button>                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {% endif %}
                                     </div>
-
-                                    {% if request.user == comment.user %}
-                                    <div id="edit-box-{{ comment.id }}" style="display: none">
-                                        <form method="post">
-                                            {% csrf_token %} 
-                                            {% if request.user.is_active %}
-                                            <input type="hidden" id="comment-id" name="comment-id" value="{{ comment.id }}">
-                                            <div class="rating-edit-{{ comment.rating|convert_rate }}" id="rating-edit-{{ comment.id }}" style="margin-top: 10px"></div>
-                                            <textarea required class="form-control comment" placeholder="This whisky is..." name="comment-edit" id="comment-edit">{{ comment.note }}</textarea>
-                                            <input type="checkbox" name="publish_choice" id="publish_choice" value="Private">Private Note</input>
-                                            <br>
-                                            <button type="reset" id="cancel" name="cancel" class="btn btn-default" value="1" style="margin-top: 10px" onclick="cancelEdit({{ comment.id }},{{ comment.rating }})">Cancel</button>
-                                            <input type="submit" value="submit" class ="btn" style="color:#333; margin-top: 10px">
-                                            {% else %}
-                                            <textarea class="form-control comment" placeholder="Please login or signup" disabled></textarea>
-                                            {% endif %}
-                                        </form>	
-                                    </div>
-                                    {% endif %}
                                 </div>
                             {% endfor %}
                         {% endif %}
-                        <hr style="margin-top: 20px; margin-bottom: 15px">
                     </div>
-                    <h3>My Notes</h3>
-                    <form method="post">
-                        {% csrf_token %} 
-                        {% if request.user.is_active %}
-                        <div class="my-rating" style="margin-bottom: 10px"></div>
-                        <input type="hidden" id="myRating" name="myRating" value="" />
-                        <textarea required class="form-control comment" placeholder="This whisky is..." name="comment" id="comment"></textarea>
-                        <input type="checkbox" name="publish_choice" id="publish_choice" value="Private">Private Note</input>
-                        <br>
-                        <input type="submit" value="submit" class ="btn" style="color:#333; margin-top: 10px">
-                        {% else %}
-                        <textarea class="form-control comment" placeholder="Please login or signup" disabled></textarea>
-                        {% endif %}
-                    </form>					
                 </div>
             </div>
         </div>
