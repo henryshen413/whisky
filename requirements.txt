@@ -4,5 +4,6 @@ django-simple-pagination==1.3
 django-geojson==2.10.0
 django-leaflet==0.24.0
 jsonfield==2.0.2
-Pilow==6.0.0
+Pilow==6.2.1
 six==1.11.0
+djangorestframework==3.3.3
