@@ -301,13 +301,13 @@ ul {
 
 .navbar-form input[type=search]:hover {
   background-color: #fff !important;
-  border-color: #43c1bd;
+  border-color: #581D17;
 }
 
 .navbar-form input[type=search]:focus {
   color: #000;
   background-color: #fff !important;
-  border-color: #43c1bd;
+  border-color: #581D17;
   -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
           box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
   cursor: auto;

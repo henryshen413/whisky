@@ -52,8 +52,21 @@ class DistilleryListView(ListView):
         return context
 
 class DistilleryView(DetailView):
+    template_name = "distillery.html"
     model = Distillery
-    template_name = "home.html"
+    slug_url_kwarg = "distillery_slug"
+    context_object_name = "distillery_detail"
+
+    def dispatch(self, request, *args, **kwargs):
+        self.object = Distillery.objects.filter(slug=kwargs.get("distillery_slug")).last()
+
+        return super(DistilleryView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(DistilleryView, self).get_context_data(*args, **kwargs)
+        
+        context.update(distillery_list())
+        return context
 
 class WhiskyView(DetailView):
     template_name = "whisky_info.html"
@@ -276,7 +289,10 @@ class WhiskyView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(WhiskyView, self).get_context_data(*args, **kwargs)
         comments = Comment.objects.filter(whisky_id=self.object.id, publish_choice="Public").order_by('created_at')
-        my_comment = Comment.objects.filter(whisky_id=self.object.id, user=self.request.user).last()
+
+        my_comment = None
+        if self.request.user == 'AnoymousUser':
+            my_comment = Comment.objects.filter(whisky_id=self.object.id, user=self.request.user).last()
         personal_note_array = [0,0,0,0,0,0,0,0]
         general_note_array = [0,0,0,0,0,0,0,0]
         personal_note = None

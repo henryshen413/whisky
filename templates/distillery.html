@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load site_tags %}
+{% block title %}Whisky Vitae{% endblock %}
+{% block site_name %}{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "css/distillery.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-4 col-xs-12">
+            <img class="distillery-img" src="{{ distillery_detail.photo.url }}" />
+        </div>
+
+        <div class="col-sm-6 col-xs-12">
+            <div class="distillery-name">
+                <h2>{{ distillery_detail.name }}</h2>
+            </div>
+            <div class="distillery-region">
+                <img class="country-flag" src="{{ distillery_detail.country.image.url}}" /> 
+                <span>{{ distillery_detail.region.name }}, {{ distillery_detail.country.name }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h2>General Info</h2>
+        <div>Year founded: {{ distillery_detail.year_founded }}</div>
+        <div>Owner: {{ distillery_detail.owner }}</div>
+        <div>Location: {{ distillery_detail.lon }}, {{ distillery_detail.lat }}</div>
+        <div>SWMS code: {{ distillery_detail.smws_code }}</div>
+        <div>Website: <a href="{{distillery_detail.official_site}}">{{ distillery_detail.official_site }}</a></div>
+    </div>
+
+    <div class="row">
+        <h2>Description</h2>
+        <div>{{ distillery_detail.description }}</div>
+    </div>
+
+    <div class="row">
+    
+    </div>
+{% endblock %}

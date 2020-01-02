@@ -7,6 +7,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.template.defaultfilters import filesizeformat, slugify
 from django.utils.translation import ugettext, ugettext_lazy as _
 
+from whiskydatabase.models import *
+
 
 class CustomAuthenticationForm(forms.ModelForm):
     email = forms.EmailField()
@@ -84,18 +86,20 @@ class CustomAuthenticationForm(forms.ModelForm):
 
 class CustomUserCreationForm(UserCreationForm):
     form_info = {
+        'nickname': '使用者名稱',
         'email': '電子信箱',
         'password1': '密碼',
         'password2': '確認密碼',
     }
 
     error_messages = {'password_mismatch': _("密碼不一致")}
+    nickname = forms.CharField(label=_("Nickname"), required=True)
     password1 = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
     password2 = forms.CharField(label=_("Password confirmation"), widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['email', 'password1', 'password2']
+        fields = ['nickname', 'email', 'password1', 'password2']
     
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -121,6 +125,13 @@ class CustomUserCreationForm(UserCreationForm):
     def save(self, commit=True):
         user = super(CustomUserCreationForm, self).save(commit=False)
         user.username = self.cleaned_data["email"]
+
         if commit:
             user.save()
+            userprofile = UserProfile.objects.create(
+                        user = user,
+                        nickname = self.cleaned_data["nickname"]
+                    )
+            userprofile.save()
+
         return user

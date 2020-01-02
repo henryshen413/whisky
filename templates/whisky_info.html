@@ -116,6 +116,7 @@
                 </div>
                 <br>
                 <div class="rating-{{ whisky_detail.rating|convert_rate }}" style="margin-bottom: 10px"></div>
+                <div class="whisky-abv">Distillery: <a href="{% url 'distillery_view' distillery_slug=whisky_detail.distillery.slug %}" class="info">{{ whisky_detail.distillery.name }}</a></div>
                 <div class="whisky-abv">Abv: <span class="info">{{ whisky_detail.abv }}</span></div>
                 <div class="whisky-year">Year: <span class="info">{{ whisky_detail.year }}</span></div>
                 <div class="whisky-casktype">Casktype: <span class="info">{{ whisky_detail.casktype }}</span></div>
