@@ -6,4 +6,4 @@ django-leaflet==0.24.0
 jsonfield==2.0.2
 Pilow==6.2.1
 six==1.11.0
-djangorestframework==3.3.3
+djangorestframework==3.9.1
